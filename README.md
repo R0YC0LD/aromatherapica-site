@@ -88,6 +88,26 @@ yalnizca panelin kazara acilmasini engeller.
 Gercek koruma gerekiyorsa sunucu tarafi kimlik dogrulamasi olan bir cozume
 (ornegin Netlify Identity, Cloudflare Access veya git tabanli bir CMS) gecilmelidir.
 
+## Kategori sayfalari
+
+Kategori sayfalari `index.html` sablon alinarak uretilir; yalnizca `<main>`
+icerigi degisir, header/footer/stiller/panel birebir korunur.
+
+```bash
+node tools/build-categories.js
+```
+
+- Urunler `index.html` icindeki urun onbelleginden okunur (ad, fiyat, kategori,
+  varyant, puan, yorum sayisi); gorseller `images/` altindan id ile eslesir.
+- Cikti: `collections/<slug>/index.html`
+- Menu ve footer linkleri uretilen yerel sayfalara baglanir; yerel karsiligi
+  olmayan tum ic yollar ana sayfaya dusurulur, boylece hicbir tiklama 404 vermez.
+- Komut tekrar calistirilabilir, ayni sonucu verir.
+
+Yeni kategori eklemek icin `tools/build-categories.js` icindeki `CATEGORIES`
+dizisine bir satir ekleyip komutu yeniden calistirin. Urun eklendiginde de
+ayni komut yeterlidir.
+
 ## Dosya yapisi
 
 ```
