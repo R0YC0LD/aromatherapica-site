@@ -29,8 +29,39 @@ Ardindan `http://localhost:4321` adresini acin.
 1. Logoya 4 kez tiklayip giris yapin - panel sagdan acilir.
 2. **Duzenleme modu**nu acin.
 3. Sayfadaki herhangi bir **metne tiklayip** dogrudan yazin.
-4. Herhangi bir **gorsele tiklayin** - dosya yukleyebilir veya gorsel adresi yapistirabilirsiniz.
+4. Herhangi bir **gorsele veya videoya tiklayin** - bilgisayarinizdan dosya secebilir
+   veya adres yapistirabilirsiniz.
 5. Degisiklikler aninda kaydedilir; panelde listelenir ve tek tek geri alinabilir.
+
+### Medya: gorsel ve video
+
+Her medya yuvasi **her iki turu de** kabul eder. Desteklenen uzantilar:
+
+| Gorsel | Video |
+|---|---|
+| jpg, jpeg, png, gif, webp, avif, svg, bmp | mp4, webm, ogv, mov, m4v |
+
+Yuva turu icerige gore **otomatik** ayarlanir: bir gorsel yuvasina `.mp4` verirseniz
+eleman `<video autoplay loop muted playsinline>` olarak yeniden olusturulur; bir video
+yuvasina `.jpg` verirseniz `<img>` olur. Sinif, olcu ve yerlesim korunur.
+
+### Dosyayi elle degistirirken dikkat
+
+Depodaki bir dosyayi GitHub uzerinden degistirirken **uzantiyi mutlaka koruyun**.
+Bu projedeki bazi dosya adlari zaten `-compress-jpg` gibi ekler icerdiginden
+karistirmak kolaydir:
+
+```
+DOGRU : KamoHPHeroBanner-Big-ezgif.com-compress-jpg.jpg
+YANLIS: KamoHPHeroBanner-Big-ezgif.com-compress-jpg        <- .jpg eksik, site 404 alir
+```
+
+Adres ve uzantilar **buyuk/kucuk harfe duyarlidir** (`.JPG` ile `.jpg` farklidir).
+Dosyayi degistirdikten sonra sayfayi **Ctrl+Shift+R** ile sert yenileyin; aksi halde
+tarayici eski gorseli onbellekten gosterir.
+
+En kolay yol: dosyayi elle degistirmek yerine **yonetim panelinden** gorsele tiklayip
+bilgisayardan secmek.
 
 ### Degisiklikleri yayina alma
 

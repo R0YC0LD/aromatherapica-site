@@ -20,7 +20,9 @@
         lsKey: 'arp_content_v1',
         ssKey: 'arp_session_v1',
         contentFile: 'content.json',
-        maxImageBytes: 1400000
+        // Tarayici localStorage siniri ~5 MB oldugu icin gomulu dosya boyutu sinirli.
+        // Daha buyuk dosyalar depoya yuklenip adresiyle kullanilmali.
+        maxImageBytes: 2500000
     };
 
     var store = {};        // key -> { t:'text'|'img', v:'...' }
@@ -75,6 +77,99 @@
 
     var SKIP = /^(script|style|noscript|template|option|title|path|rect|circle|line|polygon|polyline|defs|clippath|lineargradient|stop|use|g|br|input|select|textarea|iframe|video|source|audio)$/;
 
+    /* ------------------------------------------------------- medya turleri */
+
+    var VIDEO_EXT = /\.(mp4|webm|ogv|mov|m4v)(\?|#|$)/i;
+    var IMAGE_EXT = /\.(jpe?g|png|gif|webp|avif|svg|bmp|ico)(\?|#|$)/i;
+
+    /* Bir adresin gorsel mi video mu oldugunu belirler */
+    function mediaKind(url) {
+        if (!url) return null;
+        if (/^data:video\//i.test(url)) return 'video';
+        if (/^data:image\//i.test(url)) return 'image';
+        if (VIDEO_EXT.test(url)) return 'video';
+        if (IMAGE_EXT.test(url)) return 'image';
+        return null;
+    }
+
+    /* Site lazy-loading kullaniyor: yuklenmemis gorsellerin src'si kucuk bir
+       seffaf data URI olabilir. Bunu gercek kaynak saymiyoruz. */
+    function isPlaceholder(url) {
+        return !url || (/^data:image\/(png|gif|svg)/i.test(url) && url.length < 300);
+    }
+
+    /* Medya elemaninin (img veya video) gecerli kaynagini okur */
+    function getMediaSrc(node) {
+        if (!node) return '';
+        if ((node.tagName + '').toLowerCase() === 'img') {
+            var s0 = node.getAttribute('src');
+            if (isPlaceholder(s0)) return node.getAttribute('data-src') || s0 || '';
+            return s0 || '';
+        }
+        var direct = node.getAttribute('src');
+        if (direct) return direct;
+        var s = node.querySelector('source');
+        return s ? (s.getAttribute('src') || s.getAttribute('data-src') || '') : '';
+    }
+
+    /* Sunum ozelliklerini yeni elemana tasir (sinif, stil, olcu, erisilebilirlik) */
+    function carryOver(from, to) {
+        ['class', 'style', 'width', 'height', 'alt', 'title', 'aria-label',
+            'loading', 'data-arp-img'].forEach(function (a) {
+                var v = from.getAttribute(a);
+                if (v != null) to.setAttribute(a, v);
+            });
+    }
+
+    /* Medya yuvalarini icerigin gercek turune uyarlar:
+       gorsel yuvasina video konursa <video>, video yuvasina gorsel konursa <img>. */
+    function adaptMedia(root) {
+        root = root || document.body;
+
+        // <img> -> <video>
+        Array.prototype.slice.call(root.querySelectorAll('img[src]')).forEach(function (img) {
+            var src = img.getAttribute('src');
+            if (mediaKind(src) !== 'video') return;
+            var v = document.createElement('video');
+            carryOver(img, v);
+            v.setAttribute('autoplay', '');
+            v.setAttribute('loop', '');
+            v.setAttribute('muted', '');
+            v.setAttribute('playsinline', '');
+            v.muted = true;
+            v.setAttribute('src', src);
+            if (img.parentNode) img.parentNode.replaceChild(v, img);
+            var p = v.play(); if (p && p.catch) p.catch(function () { });
+        });
+
+        // <video> -> <img>
+        Array.prototype.slice.call(root.querySelectorAll('video')).forEach(function (vid) {
+            var src = getMediaSrc(vid);
+            if (mediaKind(src) !== 'image') return;
+            var im = document.createElement('img');
+            carryOver(vid, im);
+            im.setAttribute('src', src);
+            if (!im.getAttribute('alt')) im.setAttribute('alt', '');
+            if (vid.parentNode) vid.parentNode.replaceChild(im, vid);
+        });
+    }
+
+    /* Medya elemanina yeni kaynak yazar; tur degisirse eleman donusturulur */
+    function setMediaSrc(node, url) {
+        if (!node) return;
+        var tag = (node.tagName + '').toLowerCase();
+        if (tag === 'video') {
+            Array.prototype.slice.call(node.querySelectorAll('source')).forEach(function (s) {
+                s.parentNode.removeChild(s);
+            });
+            node.setAttribute('src', url);
+            try { node.load(); } catch (e) { }
+        } else {
+            node.setAttribute('src', url);
+        }
+        adaptMedia(node.parentNode || document.body);
+    }
+
     /* Sadece metin dugumleri (ve <br>) iceren elemanlar duzenlenebilir */
     function isTextEditable(node) {
         if (!node || node.nodeType !== 1) return false;
@@ -127,10 +222,16 @@
             var n = all[i];
             var tag = (n.tagName + '').toLowerCase();
             if (n.closest && n.closest('.arp-root, .arp-panel, .arp-overlay, .arp-tab')) continue;
-            if (tag === 'img') {
-                var k = keyOf(n);
+            if (tag === 'img' || tag === 'video') {
+                // Adaptasyon sirasinda tasinmis bir anahtar varsa onu koru
+                var k = n.getAttribute('data-arp-img') || keyOf(n);
                 n.setAttribute('data-arp-img', k);
-                if (!(k in baseline)) baseline[k] = n.getAttribute('src') || '';
+                var cur = getMediaSrc(n);
+                // Ilk indekslemede placeholder yakalanmis olabilir; gercek kaynak
+                // gelince orijinali guncelle ki "orijinaline don" dogru calissin.
+                if (!(k in baseline) || (isPlaceholder(baseline[k]) && !isPlaceholder(cur) && !store[k])) {
+                    baseline[k] = cur;
+                }
                 imgNodes.push(n);
             } else if (isTextEditable(n)) {
                 var kt = keyOf(n);
@@ -170,12 +271,12 @@
             var node = document.querySelector('[' + attr + '="' + CSS.escape(k) + '"]');
 
             if (rec.t === 'img') {
-                if (node) node.setAttribute('src', rec.v);
+                if (node) setMediaSrc(node, rec.v);
                 if (rec.o) {
                     var imgs = document.querySelectorAll('[data-arp-img]');
                     for (var i = 0; i < imgs.length; i++) {
                         if (baseline[imgs[i].getAttribute('data-arp-img')] === rec.o) {
-                            imgs[i].setAttribute('src', rec.v);
+                            setMediaSrc(imgs[i], rec.v);
                         }
                     }
                 }
@@ -201,14 +302,14 @@
         var attr = rec.t === 'img' ? 'data-arp-img' : 'data-arp-text';
         var node = document.querySelector('[' + attr + '="' + CSS.escape(k) + '"]');
         if (node) {
-            if (rec.t === 'img') node.setAttribute('src', orig);
+            if (rec.t === 'img') setMediaSrc(node, orig);
             else writeText(node, orig);
         }
         if (rec.t === 'img' && rec.o) {
             var imgs = document.querySelectorAll('[data-arp-img]');
             for (var i = 0; i < imgs.length; i++) {
                 if (baseline[imgs[i].getAttribute('data-arp-img')] === rec.o) {
-                    imgs[i].setAttribute('src', orig);
+                    setMediaSrc(imgs[i], orig);
                 }
             }
         } else if (!node && rec.t === 'text') {
@@ -221,8 +322,10 @@
 
     /* Carousel'ler slayt klonladigi icin DOM yerlesimi gec degisebilir */
     function refresh() {
+        adaptMedia();
         indexPage();
         applyStore();
+        adaptMedia();
         if (editMode) setEditMode(true);
         renderList();
     }
@@ -456,18 +559,19 @@
 
     function openImageDialog(img) {
         var k = img.getAttribute('data-arp-img');
-        var cur = img.getAttribute('src') || '';
+        var cur = getMediaSrc(img);
         var ov = el('div', 'arp-root arp-overlay');
         ov.innerHTML =
             '<div class="arp-dlg">' +
-            '<h3>Gorseli degistir</h3>' +
-            '<p class="arp-dlg__sub">Bilgisayarinizdan bir dosya secin ya da gorsel adresi yapistirin.</p>' +
+            '<h3>Gorsel / video degistir</h3>' +
+            '<p class="arp-dlg__sub">Bilgisayarinizdan dosya secin ya da adres yapistirin. ' +
+            'JPG, PNG, GIF, WEBP, SVG ve MP4, WEBM, MOV desteklenir - yuva turu icerige gore otomatik ayarlanir.</p>' +
             '<div class="arp-preview" id="arp-prev"></div>' +
-            '<button class="arp-btn arp-btn--block" id="arp-pick">Dosya sec</button>' +
-            '<input type="file" id="arp-file" accept="image/*" style="display:none">' +
+            '<button class="arp-btn arp-btn--block" id="arp-pick">Bilgisayardan dosya sec</button>' +
+            '<input type="file" id="arp-file" accept="image/*,video/*" style="display:none">' +
             '<p class="arp-or">veya</p>' +
-            '<div class="arp-field"><label for="arp-url">Gorsel adresi</label>' +
-            '<input class="arp-input" id="arp-url" type="text" placeholder="images/... veya https://..."></div>' +
+            '<div class="arp-field"><label for="arp-url">Dosya adresi</label>' +
+            '<input class="arp-input" id="arp-url" type="text" placeholder="images/foto.jpg, media/video.mp4 veya https://..."></div>' +
             '<div class="arp-row" style="margin-top:16px">' +
             '<button class="arp-btn arp-btn--primary" id="arp-ok">Uygula</button>' +
             '<button class="arp-btn" id="arp-x">Vazgec</button></div>' +
@@ -478,7 +582,22 @@
         var prev = ov.querySelector('#arp-prev');
         var urlIn = ov.querySelector('#arp-url');
         var pending = null;
-        prev.style.backgroundImage = 'url("' + cur.replace(/"/g, '\\"') + '")';
+
+        function showPreview(url) {
+            prev.innerHTML = '';
+            if (mediaKind(url) === 'video') {
+                prev.style.backgroundImage = 'none';
+                var v = document.createElement('video');
+                v.src = url; v.muted = true; v.loop = true; v.autoplay = true;
+                v.setAttribute('playsinline', '');
+                v.style.cssText = 'width:100%;height:100%;object-fit:contain;border-radius:8px;';
+                prev.appendChild(v);
+                var p = v.play(); if (p && p.catch) p.catch(function () { });
+            } else {
+                prev.style.backgroundImage = 'url("' + String(url).replace(/"/g, '\\"') + '")';
+            }
+        }
+        showPreview(cur);
         urlIn.value = /^data:/.test(cur) ? '' : cur;
 
         function close() { if (ov.parentNode) ov.parentNode.removeChild(ov); }
@@ -490,14 +609,18 @@
         ov.querySelector('#arp-file').onchange = function () {
             var f = this.files && this.files[0];
             if (!f) return;
+            var isVideo = /^video\//i.test(f.type);
             if (f.size > CFG.maxImageBytes) {
-                toast('Dosya cok buyuk (' + Math.round(f.size / 1024) + ' KB). 1.4 MB altinda bir gorsel secin ya da adres kullanin.', true);
+                toast('Dosya cok buyuk (' + Math.round(f.size / 1024 / 1024 * 10) / 10 + ' MB). ' +
+                    (isVideo
+                        ? 'Videolari depodaki media/ klasorune yukleyip adresini yazin (orn. media/video.mp4).'
+                        : 'Daha kucuk bir gorsel secin ya da depoya yukleyip adresini yazin.'), true);
                 return;
             }
             var fr = new FileReader();
             fr.onload = function () {
                 pending = fr.result;
-                prev.style.backgroundImage = 'url("' + pending + '")';
+                showPreview(pending);
                 urlIn.value = '';
             };
             fr.readAsDataURL(f);
@@ -505,29 +628,33 @@
 
         urlIn.oninput = function () {
             pending = this.value.trim();
-            if (pending) prev.style.backgroundImage = 'url("' + pending.replace(/"/g, '\\"') + '")';
+            if (pending) showPreview(pending);
         };
 
         ov.querySelector('#arp-ok').onclick = function () {
             var v = pending || urlIn.value.trim();
             if (!v) { close(); return; }
-            if (v === baseline[k]) { delete store[k]; img.setAttribute('src', v); }
+            if (v === baseline[k]) { delete store[k]; setMediaSrc(img, v); }
             else { store[k] = { t: 'img', v: v, o: baseline[k] }; }
             saveLocal();
-            applyStore();          // ayni gorselin carousel klonlarini da guncelle
+            applyStore();          // ayni medyanin carousel klonlarini da guncelle
+            indexPage();           // tur degistiyse (img<->video) yeniden indeksle
+            if (editMode) setEditMode(true);
             renderList();
             close();
-            toast('Gorsel guncellendi.');
+            toast(mediaKind(v) === 'video' ? 'Video guncellendi.' : 'Gorsel guncellendi.');
         };
 
         var rv = ov.querySelector('#arp-rv');
         if (rv) rv.onclick = function () {
-            img.setAttribute('src', baseline[k] || '');
+            restore(k, store[k]);
             delete store[k];
             saveLocal();
+            indexPage();
+            if (editMode) setEditMode(true);
             renderList();
             close();
-            toast('Gorsel orijinaline dondu.');
+            toast('Medya orijinaline dondu.');
         };
     }
 
@@ -683,8 +810,10 @@
     function init() {
         loadLocal();
         loadContentFile(function () {
+            adaptMedia();          // HTML'deki tur uyusmazliklarini duzelt
             indexPage();
             applyStore();
+            adaptMedia();          // kayitli degisiklikler tur degistirmis olabilir
             bindTrigger();
             document.addEventListener('blur', onTextBlur, true);
             document.addEventListener('click', onPageClick, true);
