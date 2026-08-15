@@ -1,0 +1,619 @@
+/* ==========================================================================
+   Aromatherapica - Yonetim Paneli
+   Siteye ait mevcut stilleri etkilemez; tum secicilar .arp- onekiyle izole.
+   ========================================================================== */
+
+:root {
+    --arp-bg: #17191c;
+    --arp-bg-2: #1f2226;
+    --arp-bg-3: #282c31;
+    --arp-line: #34393f;
+    --arp-text: #e8eaed;
+    --arp-muted: #9aa3ad;
+    --arp-accent: #7cc9e8;
+    --arp-accent-ink: #0d2129;
+    --arp-danger: #e8756b;
+    --arp-ok: #6fcf97;
+    --arp-shadow: 0 18px 50px rgba(0, 0, 0, .45);
+    --arp-radius: 12px;
+}
+
+.arp-root,
+.arp-root * {
+    box-sizing: border-box;
+}
+
+.arp-root {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--arp-text);
+}
+
+/* ---------- Overlay / Login ---------- */
+.arp-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 12, 14, .72);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    z-index: 2147483000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    animation: arp-fade .18s ease forwards;
+}
+
+@keyframes arp-fade {
+    to {
+        opacity: 1;
+    }
+}
+
+.arp-login {
+    width: 100%;
+    max-width: 380px;
+    background: var(--arp-bg);
+    border: 1px solid var(--arp-line);
+    border-radius: var(--arp-radius);
+    box-shadow: var(--arp-shadow);
+    padding: 30px 28px 26px;
+    transform: translateY(8px);
+    animation: arp-rise .22s cubic-bezier(.2, .8, .3, 1) forwards;
+}
+
+@keyframes arp-rise {
+    to {
+        transform: translateY(0);
+    }
+}
+
+.arp-login__brand {
+    font-size: 17px;
+    letter-spacing: .10em;
+    text-transform: uppercase;
+    margin: 0 0 4px;
+    font-weight: 600;
+}
+
+.arp-login__sub {
+    color: var(--arp-muted);
+    font-size: 12.5px;
+    margin: 0 0 22px;
+}
+
+.arp-field {
+    margin-bottom: 14px;
+}
+
+.arp-field label {
+    display: block;
+    font-size: 11.5px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--arp-muted);
+    margin-bottom: 6px;
+}
+
+.arp-input,
+.arp-textarea {
+    width: 100%;
+    background: var(--arp-bg-2);
+    border: 1px solid var(--arp-line);
+    border-radius: 8px;
+    color: var(--arp-text);
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.arp-input:focus,
+.arp-textarea:focus {
+    border-color: var(--arp-accent);
+    box-shadow: 0 0 0 3px rgba(124, 201, 232, .15);
+}
+
+.arp-textarea {
+    resize: vertical;
+    min-height: 120px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.arp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    border: 1px solid var(--arp-line);
+    background: var(--arp-bg-3);
+    color: var(--arp-text);
+    border-radius: 8px;
+    padding: 9px 14px;
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background .15s, border-color .15s, transform .08s;
+}
+
+.arp-btn:hover {
+    background: #31363c;
+    border-color: #454c54;
+}
+
+.arp-btn:active {
+    transform: translateY(1px);
+}
+
+.arp-btn--primary {
+    background: var(--arp-accent);
+    border-color: var(--arp-accent);
+    color: var(--arp-accent-ink);
+    font-weight: 600;
+}
+
+.arp-btn--primary:hover {
+    background: #94d6ef;
+    border-color: #94d6ef;
+}
+
+.arp-btn--danger {
+    color: var(--arp-danger);
+    border-color: #4a3330;
+}
+
+.arp-btn--danger:hover {
+    background: #3a2724;
+    border-color: #6b423c;
+}
+
+.arp-btn--block {
+    width: 100%;
+}
+
+.arp-login__err {
+    color: var(--arp-danger);
+    font-size: 12.5px;
+    min-height: 18px;
+    margin: 2px 0 10px;
+}
+
+.arp-login__hint {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--arp-line);
+    color: var(--arp-muted);
+    font-size: 11.5px;
+    line-height: 1.6;
+}
+
+/* ---------- Panel ---------- */
+.arp-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 380px;
+    max-width: 100vw;
+    background: var(--arp-bg);
+    border-left: 1px solid var(--arp-line);
+    box-shadow: var(--arp-shadow);
+    z-index: 2147482900;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform .26s cubic-bezier(.2, .8, .3, 1);
+}
+
+.arp-panel.is-open {
+    transform: translateX(0);
+}
+
+.arp-panel__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--arp-line);
+    flex: 0 0 auto;
+}
+
+.arp-panel__title {
+    font-size: 13px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0;
+}
+
+.arp-panel__title span {
+    display: block;
+    font-size: 11px;
+    letter-spacing: .04em;
+    text-transform: none;
+    color: var(--arp-muted);
+    font-weight: 400;
+    margin-top: 2px;
+}
+
+.arp-iconbtn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--arp-muted);
+    border-radius: 7px;
+    width: 30px;
+    height: 30px;
+    font-size: 17px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+}
+
+.arp-iconbtn:hover {
+    background: var(--arp-bg-3);
+    color: var(--arp-text);
+}
+
+.arp-panel__body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 16px 18px 24px;
+}
+
+.arp-sec {
+    margin-bottom: 22px;
+}
+
+.arp-sec__title {
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--arp-muted);
+    margin: 0 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.arp-sec__title b {
+    color: var(--arp-accent);
+    font-weight: 600;
+}
+
+/* toggle */
+.arp-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: var(--arp-bg-2);
+    border: 1px solid var(--arp-line);
+    border-radius: 10px;
+    padding: 13px 14px;
+    cursor: pointer;
+}
+
+.arp-toggle__txt strong {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+}
+
+.arp-toggle__txt small {
+    display: block;
+    color: var(--arp-muted);
+    font-size: 11.5px;
+    margin-top: 2px;
+}
+
+.arp-switch {
+    width: 42px;
+    height: 24px;
+    border-radius: 12px;
+    background: #3a4048 !important;
+    position: relative;
+    flex: 0 0 auto;
+    transition: background .18s;
+}
+
+/* Anahtar topuzu JS tarafindan .arp-knob olarak inline stil ile cizilir */
+
+.arp-toggle.is-on .arp-switch,
+.arp-root .arp-toggle.is-on .arp-switch {
+    background: #7cc9e8 !important;
+}
+
+
+/* stats */
+.arp-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+}
+
+.arp-stat {
+    background: var(--arp-bg-2);
+    border: 1px solid var(--arp-line);
+    border-radius: 9px;
+    padding: 10px;
+    text-align: center;
+}
+
+.arp-stat b {
+    display: block;
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+.arp-stat span {
+    display: block;
+    font-size: 10.5px;
+    color: var(--arp-muted);
+    margin-top: 2px;
+}
+
+/* change list */
+.arp-list {
+    border: 1px solid var(--arp-line);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--arp-bg-2);
+}
+
+.arp-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--arp-line);
+}
+
+.arp-item:last-child {
+    border-bottom: 0;
+}
+
+.arp-item__main {
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.arp-item__tag {
+    display: inline-block;
+    font-size: 9.5px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    background: var(--arp-bg-3);
+    color: var(--arp-muted);
+    border-radius: 4px;
+    padding: 2px 6px;
+    margin-bottom: 4px;
+}
+
+.arp-item__val {
+    font-size: 12.5px;
+    color: var(--arp-text);
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.arp-item__btns {
+    display: flex;
+    gap: 4px;
+    flex: 0 0 auto;
+}
+
+.arp-mini {
+    background: transparent;
+    border: 1px solid var(--arp-line);
+    color: var(--arp-muted);
+    border-radius: 6px;
+    padding: 3px 7px;
+    font-size: 11px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.arp-mini:hover {
+    color: var(--arp-text);
+    border-color: #4a5158;
+}
+
+.arp-empty {
+    color: var(--arp-muted);
+    font-size: 12.5px;
+    text-align: center;
+    padding: 22px 12px;
+}
+
+.arp-row {
+    display: flex;
+    gap: 8px;
+}
+
+.arp-row .arp-btn {
+    flex: 1 1 0;
+}
+
+.arp-note {
+    color: var(--arp-muted);
+    font-size: 11.5px;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+.arp-note code {
+    background: var(--arp-bg-3);
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 11px;
+}
+
+/* ---------- Edit mode markers on the live page ---------- */
+/* Sitenin kendi global outline kurallari daha spesifik oldugu icin
+   duzenleme isaretlerinde !important gerekiyor. */
+body.arp-edit-on [data-arp-text] {
+    outline: 1px dashed rgba(124, 201, 232, .6) !important;
+    outline-color: rgba(124, 201, 232, .6) !important;
+    outline-offset: 2px !important;
+    box-shadow: inset 0 0 0 1px rgba(124, 201, 232, .40) !important;
+    background-color: rgba(124, 201, 232, .07) !important;
+    cursor: text !important;
+    transition: background-color .12s, box-shadow .12s;
+}
+
+body.arp-edit-on [data-arp-text]:hover {
+    box-shadow: inset 0 0 0 2px #7cc9e8 !important;
+    background-color: rgba(124, 201, 232, .16) !important;
+}
+
+body.arp-edit-on [data-arp-text]:focus {
+    box-shadow: inset 0 0 0 2px #4aa8cd !important;
+    background-color: rgba(124, 201, 232, .22) !important;
+}
+
+body.arp-edit-on [data-arp-img] {
+    outline: 2px dashed rgba(124, 201, 232, .65) !important;
+    outline-color: rgba(124, 201, 232, .65) !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 2px rgba(124, 201, 232, .45) !important;
+    cursor: pointer !important;
+}
+
+body.arp-edit-on [data-arp-img]:hover {
+    outline-color: #7cc9e8 !important;
+    box-shadow: 0 0 0 3px #7cc9e8 !important;
+    filter: brightness(1.06);
+}
+
+.arp-badge {
+    position: fixed;
+    z-index: 2147482800;
+    background: var(--arp-accent);
+    color: var(--arp-accent-ink);
+    font: 600 10.5px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: 4px 7px;
+    border-radius: 5px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .12s;
+}
+
+.arp-badge.is-on {
+    opacity: 1;
+}
+
+/* ---------- Toast ---------- */
+.arp-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 26px;
+    transform: translate(-50%, 14px);
+    background: var(--arp-bg);
+    border: 1px solid var(--arp-line);
+    border-left: 3px solid var(--arp-ok);
+    color: var(--arp-text);
+    border-radius: 9px;
+    padding: 11px 16px;
+    font: 13px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    box-shadow: var(--arp-shadow);
+    z-index: 2147483100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s, transform .2s;
+    max-width: 84vw;
+}
+
+.arp-toast.is-on {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.arp-toast.is-err {
+    border-left-color: var(--arp-danger);
+}
+
+/* ---------- Floating reopen tab ---------- */
+.arp-tab {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--arp-bg);
+    color: var(--arp-accent);
+    border: 1px solid var(--arp-line);
+    border-right: 0;
+    border-radius: 8px 0 0 8px;
+    padding: 11px 8px;
+    font: 600 10.5px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    cursor: pointer;
+    z-index: 2147482700;
+    box-shadow: -6px 0 18px rgba(0, 0, 0, .3);
+}
+
+.arp-tab:hover {
+    background: var(--arp-bg-3);
+}
+
+/* ---------- Image dialog ---------- */
+.arp-dlg {
+    width: 100%;
+    max-width: 430px;
+    background: var(--arp-bg);
+    border: 1px solid var(--arp-line);
+    border-radius: var(--arp-radius);
+    box-shadow: var(--arp-shadow);
+    padding: 24px;
+}
+
+.arp-dlg h3 {
+    margin: 0 0 4px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.arp-dlg p.arp-dlg__sub {
+    margin: 0 0 18px;
+    color: var(--arp-muted);
+    font-size: 12.5px;
+}
+
+.arp-preview {
+    width: 100%;
+    height: 150px;
+    border: 1px solid var(--arp-line);
+    border-radius: 9px;
+    background: var(--arp-bg-2) center/contain no-repeat;
+    margin-bottom: 16px;
+}
+
+.arp-or {
+    text-align: center;
+    color: var(--arp-muted);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin: 12px 0;
+}
+
+@media (max-width: 600px) {
+    .arp-panel {
+        width: 100%;
+    }
+}
