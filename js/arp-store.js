@@ -102,10 +102,21 @@
     };
 
     function siralamayiKur() {
+        /* Kategori filtreleri: sablonun product-list.js dosyasi ".filter-pills"
+           tiklamasina baglanip calismayan bir AJAX cagrisi yapiyor ve gezinmeyi
+           engelliyor. Yakalama asamasinda kendimiz yonlendiriyoruz. */
+        document.addEventListener('click', function (e) {
+            var pil = e.target.closest && e.target.closest('.filter-pills');
+            if (!pil) return;
+            var hedef = pil.getAttribute('href') || pil.getAttribute('data-href');
+            if (!hedef || hedef === 'javascript:void(0)') return;
+            e.preventDefault();
+            e.stopPropagation();
+            location.href = hedef;
+        }, true);
+
         var kap = document.querySelector('.js-product-container');
-        // Sablonun kendi stilli secicisi kullanilir; boylece gorunum bozulmaz
-        var secim = document.querySelector('#grid-sort-header') ||
-            document.querySelector('#arp-siralama');
+        var secim = document.querySelector('#arp-siralama');
         if (!kap || !secim) return;
 
         // ilk sirayi "onerilen" olarak sakla

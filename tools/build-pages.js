@@ -350,10 +350,13 @@ function main() {
         sayfa = icerikDegistir(sayfa, 'refinement-content refinement-wrapper',
             filtreListesi(cat, c, up));
 
-        // 3) siralama: sablonun stilli select'inin secenekleri Turkcelestirilir
+        /* 3) Siralama: sablonun stilli select'i korunur ama id'si degistirilir.
+           product-list.js "#grid-sort-header" change olayina baglanip calismayan
+           Demandware AJAX'ini tetikliyordu; gorunumu veren siniflar kaldigi icin
+           id degisimi tasarimi etkilemez (CSS id'ye bakmiyor). */
         sayfa = sayfa.replace(
-            /(<select id="grid-sort-header"[^>]*>)[\s\S]*?(<\/select>)/,
-            `$1${SIRALAMA_SECENEKLERI}\n$2`);
+            /<select id="grid-sort-header"([^>]*)>[\s\S]*?<\/select>/,
+            `<select id="arp-siralama"$1>${SIRALAMA_SECENEKLERI}\n</select>`);
 
         // 4) mobil filtre sekmesindeki kategori adi
         sayfa = sayfa.replace(
