@@ -60,6 +60,9 @@ const KURALLAR = [
     ['GTM inline yukleyici',
         /[ \t]*<script>\s*\(function\(w,d,s,l,i\)\{[\s\S]*?googletagmanager\.com\/gtm\.js[\s\S]*?<\/script>\s*/gi],
     // Sunucu tarafi olmadigi icin bu Demandware yollari 404 donuyordu
+    // Abonelik servisi: hesap eski markaya ait, dosya projede yok
+    ['OrderGroove abonelik scripti',
+        /[ \t]*<script[^>]*src="(?:\.\.\/)*js\/ordergroove\.js"[^>]*>\s*<\/script>\s*/gi],
     ['Demandware main.js scripti',
         /[ \t]*<script[^>]*src="\/on\/demandware\.static\/[^"]*\/main\.js"[^>]*>\s*<\/script>\s*/gi],
     ['Eski PayPal yukleyicisi',
@@ -92,8 +95,11 @@ function removeDivByClass(html, cls) {
     return { html, kaldirilan };
 }
 
-/* Icerigi olmayan, sablondan devralinan bos tanitim panelleri */
-const BOS_BLOKLAR = ['homepage-section-4__2'];
+/* Sablondan devralinan, bu markaya ait olmayan bloklar:
+   - homepage-section-4__2 : icerigi olmayan bos tanitim paneli
+   - pdp-section-a-note    : eski markanin kurucusunun kisisel notu
+     (Ingilizce pazarlama metni ve imza gorseli; urun sayfasinda yeri yok) */
+const BOS_BLOKLAR = ['homepage-section-4__2', 'pdp-section-a-note'];
 
 function htmlFiles() {
     const out = [];

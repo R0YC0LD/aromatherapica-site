@@ -269,10 +269,22 @@ function ensureFixesCss(html, file) {
     // 404 sayfasi her derinlikte sunulabildigi icin bilincli olarak kendi
     // kendine yeterlidir; goreli varlik yolu ekleme.
     if (/404\.html$/i.test(file)) return html;
-    if (html.includes('css/site-fixes.css')) return html;
-    const up = /collections[\\/]/.test(file) ? '../../' : '';
-    return html.replace('</head>',
-        `<link rel="stylesheet" href="${up}css/site-fixes.css">\n</head>`);
+    const up = /(collections|urun)[\\/]/.test(file) ? '../../' : '';
+
+    if (!html.includes('css/site-fixes.css')) {
+        html = html.replace('</head>',
+            `<link rel="stylesheet" href="${up}css/site-fixes.css">\n</head>`);
+    }
+    // Yerlesim duzeltmesi ve yonetim paneli her sayfada bulunmali
+    if (!html.includes('js/layout-fix.js')) {
+        html = html.replace('</body>',
+            `<script src="${up}js/layout-fix.js"></script>\n</body>`);
+    }
+    if (!html.includes('js/admin-panel.js')) {
+        html = html.replace('</body>',
+            `<script src="${up}js/admin-panel.js"></script>\n</body>`);
+    }
+    return html;
 }
 
 /* Sayfa dili ve ana sayfa basligi/aciklamasi */

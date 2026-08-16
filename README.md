@@ -101,10 +101,36 @@ node tools/build.js
 |---|---|---|
 | 1 | `tools/import-xlsx.js` | `data/urunler.xlsx` (Ticimax disa aktarimi) -> `data/catalog.json` |
 | 2 | `tools/homepage-products.js` | Ana sayfa urun kartlarina ve hero gorsellerine gercek katalog verisi |
-| 3 | `tools/build-categories.js` | Magaza menusunu kategori agacina baglar, kategori sayfalarini uretir |
-| 4 | `tools/translate.js` | Tum HTML dosyalarini Turkcelestirir, `lang="tr"` yapar |
-| 5 | `tools/rename-tokens.js` | Eski markadan kalan CSS sinifi / ID adlarini HTML+CSS+JS'te esgudumlu yeniler |
-| 6 | `tools/clean-thirdparty.js` | Calismayan ucuncu parti entegrasyonlari cikarir |
+| 3 | `tools/build-categories.js` | Ana sayfadaki magaza menusunu kategori agacina baglar |
+| 4 | `tools/build-pages.js` | Kategori (22) ve urun (138) sayfalarini referans tasarimla uretir |
+| 5 | `tools/rebrand.js` | Marka donusumu + tum `<a>` baglantilarini yerel sayfalara baglar |
+| 6 | `tools/translate.js` | Turkcelestirir, `lang="tr"` yapar, panel/duzeltme dosyalarini ekler |
+| 7 | `tools/rename-tokens.js` | Eski markadan kalan CSS sinifi / ID adlarini HTML+CSS+JS'te esgudumlu yeniler |
+| 8 | `tools/clean-thirdparty.js` | Calismayan ucuncu parti entegrasyonlari ve olu bloklari cikarir |
+
+### Sayfa sablonlari
+
+Kategori ve urun sayfalari, depo kokundeki iki referans klasorunden uretilir
+(bunlar `.gitignore` icindedir, yayina cikmaz):
+
+| Sayfa | Sablon | Stil |
+|---|---|---|
+| Kategori | `kategorikismi ürün sekmesi/index.html` | `css/search.bundle.css` |
+| Urun | `ürüne özel sekme referans/index.html` | `css/product.bundle.css` |
+
+Sablonlarin isaretlemesine dokunulmaz; yalnizca veri tasiyan kisimlar
+(urun adi, fiyat, gorsel, aciklama, kategori listesi) degistirilir. Boylece
+tasarim referansla birebir kalir.
+
+Cikti yollari:
+
+```
+collections/<kategori-slug>/index.html
+urun/<urun-slug>/index.html
+```
+
+Kategori kartlarina tiklanınca ilgili urun sayfasi acilir; urun sayfasindaki
+ekmek kirintisi kategori zincirine geri baglar.
 
 Sablonun Turkce icerikle bozulan yerleri `css/site-fixes.css` ile duzeltilir;
 bundle'lara dokunulmaz.

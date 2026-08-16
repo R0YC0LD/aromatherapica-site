@@ -21,7 +21,9 @@ const ROOT = path.join(__dirname, '..');
 const ADIMLAR = [
     ['import-xlsx.js', 'Urun listesini ice aktar (data/urunler.xlsx)'],
     ['homepage-products.js', 'Ana sayfa urun karuseli'],
-    ['build-categories.js', 'Magaza menusu ve kategori sayfalari'],
+    ['build-categories.js', 'Magaza menusu (ana sayfa)'],
+    ['build-pages.js', 'Kategori ve urun sayfalari (referans tasarim)'],
+    ['rebrand.js', 'Marka donusumu ve ic baglantilar'],
     ['translate.js', 'Turkcelestirme'],
     ['rename-tokens.js', 'Teknik isim temizligi'],
     ['clean-thirdparty.js', 'Olu ucuncu parti entegrasyonlar']

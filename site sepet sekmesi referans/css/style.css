@@ -1,0 +1,18 @@
+body {
+	background-color: #fff;
+	margin: 10px 10px;
+}
+p {
+	margin: 10px 10px;
+}
+img {
+	float: left;
+	margin: 0 10px 0px 0;
+}
+a {
+	text-decoration: underline;
+}
+.system_info {
+	color: #000;
+	font-size: 16px;
+}
