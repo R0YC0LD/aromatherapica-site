@@ -185,7 +185,7 @@
 <link rel="preconnect" href="https://googletagmanager.com/" crossorigin="anonymous">
 <link rel="preconnect" href="https://www.google-analytics.com/" crossorigin="anonymous">
 <link rel="preconnect" href="https://www.gstatic.com/" crossorigin="anonymous">
-<link rel="preload" href="fonts/BrownBold.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="../../fonts/BrownBold.woff" as="font" type="font/woff" crossorigin="anonymous">
 
 
 
@@ -195,10 +195,10 @@
 <style>
 @font-face {
 font-family: "BrownRegular";
-src: url("fonts/BrownRegular.woff2") format("woff2");
-src: url("fonts/BrownRegular.woff") format("woff"),
-url("fonts/BrownRegular.eot") format("embedded-opentype"),
-url("fonts/BrownRegular.ttf") format("ttf");
+src: url("../../fonts/BrownRegular.woff2") format("woff2");
+src: url("../../fonts/BrownRegular.woff") format("woff"),
+url("../../fonts/BrownRegular.eot") format("embedded-opentype"),
+url("../../fonts/BrownRegular.ttf") format("ttf");
 font-weight: 400;
 font-style: normal;
 font-display: swap;
@@ -207,24 +207,73 @@ font-display: swap;
 
 
 
-<title>Aromatherapica | Doğal Aromaterapi ve Bakım Ürünleri</title>
+<title>Güçlendiriciler | Aromatherapica</title>
 
 
-<link href="images/favicon.ico" rel="shortcut icon">
-
-
-
-
-<meta name="description" content="Doğal uçucu yağlar, taşıyıcı yağlar, cilt ve saç bakım ürünleri. Aromatherapica ile bakımınıza doğadan gelen saflığı katın.">
+<link href="../../images/favicon.ico" rel="shortcut icon">
 
 
 
 
+<meta name="description" content="Güçlendiriciler kategorisindeki doğal Aromatherapica ürünleri.">
 
 
-<script src="js/i.js" defer=""></script><script type="text/javascript" async="" src="js/1374183447.js"></script>
+
+
+
+
+<script src="../../js/i.js" defer=""></script><script type="text/javascript" async="" src="../../js/1374183447.js"></script>
 <!-- Aromatherapica yonetim paneli -->
-<link rel="stylesheet" href="css/admin-panel.css">
+<link rel="stylesheet" href="../../css/admin-panel.css">
+
+<style id="arp-plp-css">
+.arp-plp{max-width:1440px;margin:0 auto;padding:2.5rem 1.5rem 5rem}
+.arp-crumbs{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#6d7075;margin-bottom:1.75rem}
+.arp-crumbs a{color:#6d7075;text-decoration:none}
+.arp-crumbs a:hover{color:#45474a;text-decoration:underline}
+.arp-crumbs span{margin:0 .5rem}
+.arp-crumbs span:last-child{margin:0;color:#45474a}
+.arp-plp__head{text-align:center;margin-bottom:2rem}
+.arp-plp__title{font-family:"SainteColombeRegular","BrownRegular",Georgia,serif;font-size:2.6rem;line-height:1.15;color:#45474a;margin:0 0 .6rem}
+.arp-plp__desc{font-size:1rem;color:#6d7075;margin:0 auto .6rem;max-width:640px;line-height:1.6}
+.arp-plp__count{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#8b8e93;margin:0}
+.arp-subnav{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin:0 0 3rem}
+.arp-subnav a{display:inline-flex;align-items:center;gap:.45rem;border:1px solid #dededa;border-radius:100px;
+  padding:.5rem 1.1rem;font-size:.8rem;color:#45474a;text-decoration:none;transition:background .16s,border-color .16s}
+.arp-subnav a:hover{background:#45474a;border-color:#45474a;color:#fff}
+.arp-subnav a span{font-size:.7rem;color:#8b8e93}
+.arp-subnav a:hover span{color:#d7d8da}
+.arp-grid{list-style:none;margin:0;padding:0;display:grid;gap:2.5rem 1.5rem;grid-template-columns:repeat(4,1fr)}
+@media (max-width:1100px){.arp-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:820px){.arp-grid{grid-template-columns:repeat(2,1fr)}.arp-plp__title{font-size:2rem}}
+@media (max-width:420px){.arp-grid{gap:2rem 1rem}}
+.arp-card__inner{display:flex;flex-direction:column;height:100%}
+.arp-card__media{position:relative;display:block;background:#f4f4f2;border-radius:4px;overflow:hidden;aspect-ratio:1/1}
+.arp-card__img{width:100%;height:100%;display:block;transition:transform .35s ease}
+.arp-card__img--cover{object-fit:cover}
+.arp-card__img--contain{object-fit:contain;padding:16%}
+.arp-card__media:hover .arp-card__img{transform:scale(1.04)}
+.arp-card__badge{position:absolute;top:.6rem;left:.6rem;background:#45474a;color:#fff;font-size:.62rem;
+  letter-spacing:.1em;text-transform:uppercase;padding:.28rem .55rem;border-radius:2px}
+.arp-card__badge--out{background:#8b8e93}
+.arp-card__body{padding-top:1rem;display:flex;flex-direction:column;flex:1 1 auto}
+.arp-card__cat{font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;color:#8b8e93;margin:0 0 .4rem}
+.arp-card__name{font-size:.95rem;line-height:1.35;font-weight:400;margin:0 0 .45rem;color:#45474a}
+.arp-card__desc{font-size:.78rem;line-height:1.5;color:#6d7075;margin:0 0 .6rem}
+.arp-card__price{margin:0 0 .9rem;font-size:.98rem;color:#45474a}
+.arp-card__old{text-decoration:line-through;color:#a3a6aa;font-size:.85rem;margin-right:.25rem}
+.arp-card__now{font-weight:500}
+.arp-card__btn{margin-top:auto;width:100%;background:#45474a;color:#fff;border:1px solid #45474a;border-radius:2px;
+  padding:.7rem 1rem;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .18s,color .18s}
+.arp-card__btn:hover:not([disabled]){background:#fff;color:#45474a}
+.arp-card__btn[disabled]{background:#d7d8da;border-color:#d7d8da;color:#fff;cursor:not-allowed}
+.arp-empty-cat{text-align:center;padding:4rem 1rem 6rem}
+.arp-empty-cat__title{font-family:"SainteColombeRegular","BrownRegular",Georgia,serif;font-size:1.7rem;color:#45474a;margin:0 0 .6rem}
+.arp-empty-cat__text{color:#6d7075;margin:0 0 1.6rem}
+.arp-empty-cat__btn{display:inline-block;background:#45474a;color:#fff;text-decoration:none;padding:.8rem 2rem;
+  border-radius:2px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
+.arp-empty-cat__btn:hover{opacity:.85}
+</style>
 </head><body><input type="hidden" id="trackgatedevent" value="null">
 
 
@@ -363,10 +412,10 @@ font-display: swap;
 
 
 
-<link href="css/jquery-ui.min.css" type="text/css" rel="stylesheet" media="print" onload="this.media='all'">
-<link href="css/font-awesome.min.css" rel="stylesheet" media="print" onload="this.media='all'">
-<link href="css/picker.min.css" type="text/css" rel="stylesheet noopener noreferrer" media="print" onload="this.media='all'">
-<link href="css/glide.core.min.css" type="text/css" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="../../css/jquery-ui.min.css" type="text/css" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="../../css/font-awesome.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="../../css/picker.min.css" type="text/css" rel="stylesheet noopener noreferrer" media="print" onload="this.media='all'">
+<link href="../../css/glide.core.min.css" type="text/css" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript>
 <link href="/on/demandware.static/Sites-aromatherapica_us-Site/-/en_US/v1786784877203/lib/jquery/ui/jquery-ui.min.css" type="text/css" rel="stylesheet" />
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -537,7 +586,7 @@ CQuotient.trackViewProduct = function(/* Object */ cqParamData){
 
 
 
-<script src="js/jquery-3.6.0.min.js"></script>
+<script src="../../js/jquery-3.6.0.min.js"></script>
 
 
 
@@ -545,16 +594,16 @@ CQuotient.trackViewProduct = function(/* Object */ cqParamData){
 
 
 
-<link rel="stylesheet" href="css/style.bundle.css">
+<link rel="stylesheet" href="../../css/style.bundle.css">
 
 <!-- CSS File bundles -->
 
-<link rel="stylesheet" href="css/storefront.bundle.css">
+<link rel="stylesheet" href="../../css/storefront.bundle.css">
 
 
 <!-- CSS File bundles -->
-<link rel="stylesheet" href="css/input-mask.css" type="text/css" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="css/imgAntiDownload.css" type="text/css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="../../css/input-mask.css" type="text/css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="../../css/imgAntiDownload.css" type="text/css" media="print" onload="this.media='all'">
 <noscript>
 <link rel="stylesheet" href="/on/demandware.static/Sites-aromatherapica_us-Site/-/en_US/v1786784877203/css/input-mask.css" type="text/css" />
 <link rel="stylesheet" href="/on/demandware.static/Sites-aromatherapica_us-Site/-/en_US/v1786784877203/css/imgAntiDownload.css" type="text/css" />
@@ -579,7 +628,7 @@ CQuotient.trackViewProduct = function(/* Object */ cqParamData){
 
 
 
-<script type="text/javascript" src="js/core.js" fetchpriority="high" async=""></script>
+<script type="text/javascript" src="../../js/core.js" fetchpriority="high" async=""></script>
 
 
 
@@ -690,7 +739,7 @@ var searchItems =
    var siteId = "aromatherapica_us";
 </script>
 
-<script src="js/googletagmanagerpageload.js"></script>
+<script src="../../js/googletagmanagerpageload.js"></script>
 
 
 
@@ -720,7 +769,7 @@ var searchItems =
 	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	
 
-<script defer="" src="js/gtmcheckoutoptionevent.js"></script>
+<script defer="" src="../../js/gtmcheckoutoptionevent.js"></script>
 
 <script>
 var cQuotient = window.CQuotient;
@@ -768,7 +817,7 @@ document.cookie = "cQuotientLocale=" + cQuotientLocale;
 <div class="swiper-wrapper">
 
 <div class="promotion-bar-slide swiper-slide announcement-content">
-    <a href="./" class="promotion-bar-link promo-link js-open-sh-popup" data-popup-name="skinny-banner-popup-08-11-2026_KamoTravelBag_header" tabindex="0" role="button">
+    <a href="../../" class="promotion-bar-link promo-link js-open-sh-popup" data-popup-name="skinny-banner-popup-08-11-2026_KamoTravelBag_header" tabindex="0" role="button">
         <div class="js-promo-bar de-promo-bar">
             <div class="de-desc">
                 <p class="desc-text">
@@ -811,7 +860,7 @@ document.cookie = "cQuotientLocale=" + cQuotientLocale;
 </script>
 
 <div class="promotion-bar-slide swiper-slide announcement-content">
-    <a href="./" class="promotion-bar-link promo-link" tabindex="0" role="button">
+    <a href="../../" class="promotion-bar-link promo-link" tabindex="0" role="button">
         <div class="js-promo-bar de-promo-bar">
             <div class="de-desc">
                 <p class="desc-text">
@@ -823,7 +872,7 @@ document.cookie = "cQuotientLocale=" + cQuotientLocale;
 </div>
 
 <div class="promotion-bar-slide swiper-slide announcement-content">
-    <a href="./" class="promotion-bar-link promo-link" tabindex="0" role="button">
+    <a href="../../" class="promotion-bar-link promo-link" tabindex="0" role="button">
         <div class="js-promo-bar de-promo-bar">
             <div class="de-desc">
                 <p class="desc-text">
@@ -1053,13 +1102,13 @@ document.cookie = "cQuotientLocale=" + cQuotientLocale;
 </button>
 <div class="de-nav-search" role="search" tabindex="-1">
 <button type="button" class="js-open-search-bar de-btn de-text-only" aria-label="Open Search Form">
-<img src="images/magnifying-glass.svg" title="open search" alt="arama formu görseli" class="searchicon-mobile">
+<img src="../../images/magnifying-glass.svg" title="open search" alt="arama formu görseli" class="searchicon-mobile">
 </button>
 </div>
 </div>
 <!-- LOGO -->
 <div class="de-logo-wrapper show-for-small-only">
-<a href="./" class="homepage-link">
+<a href="../../" class="homepage-link">
 
 
 
@@ -1228,7 +1277,7 @@ document.cookie = "cQuotientLocale=" + cQuotientLocale;
 <div class="nav-left-section">
 <!-- LOGO -->
 <div class="de-logo-wrapper hide-for-small-only">
-<a href="./" class="homepage-link">
+<a href="../../" class="homepage-link">
 
 
 
@@ -1259,14 +1308,14 @@ document.cookie = "cQuotientLocale=" + cQuotientLocale;
 
 
 <li class="products-allproducts-store">
-<a href="./" class="first-level-menu" id="navItem-products-allproducts" data-level1="products-allproducts" aria-expanded="false"> <span>Mağaza</span></a>
+<a href="../../" class="first-level-menu" id="navItem-products-allproducts" data-level1="products-allproducts" aria-expanded="false"> <span>Mağaza</span></a>
 
 
 <ul class="products-allproducts-list-container nav-list">
 <div class="de-submenu">
 
 <li class="second-level-menu">
-<a id="navItem-aromaterapi-yaglari" class="cat-level-2 de-third-parent" data-collection="aromaterapi-yaglari" data-related-submenu="Aromaterapi Yağları" data-tapped="false" aria-expanded="false" role="button" href="collections/aromaterapi-yaglari/">
+<a id="navItem-aromaterapi-yaglari" class="cat-level-2 de-third-parent" data-collection="aromaterapi-yaglari" data-related-submenu="Aromaterapi Yağları" data-tapped="false" aria-expanded="false" role="button" href="../../collections/aromaterapi-yaglari/">
 <span class="category-name-text">Aromaterapi Yağları</span>
 <span class="svg-icon greater-than-icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="5" height="8" viewBox="0 0 5 8" fill="none">
@@ -1278,19 +1327,19 @@ document.cookie = "cQuotientLocale=" + cQuotientLocale;
 <div class="subcat-level3-container" data-expanded="false" data-submenu="Aromaterapi Yağları">
 
 <li class="third-level-menu">
-<a href="collections/ucucu-yaglar/" id="navItem-ucucu-yaglar" data-collection="ucucu-yaglar" class="third-level-cat-link"> <span>Uçucu Yağlar</span> </a>
+<a href="../../collections/ucucu-yaglar/" id="navItem-ucucu-yaglar" data-collection="ucucu-yaglar" class="third-level-cat-link"> <span>Uçucu Yağlar</span> </a>
 </li>
 <li class="third-level-menu">
-<a href="collections/sabit-tasiyici-yaglar/" id="navItem-sabit-tasiyici-yaglar" data-collection="sabit-tasiyici-yaglar" class="third-level-cat-link"> <span>Sabit (Taşıyıcı) Yağlar</span> </a>
+<a href="../../collections/sabit-tasiyici-yaglar/" id="navItem-sabit-tasiyici-yaglar" data-collection="sabit-tasiyici-yaglar" class="third-level-cat-link"> <span>Sabit (Taşıyıcı) Yağlar</span> </a>
 </li>
 <li class="third-level-menu">
-<a href="collections/masaj-yaglari/" id="navItem-masaj-yaglari" data-collection="masaj-yaglari" class="third-level-cat-link"> <span>Masaj Yağları</span> </a>
+<a href="../../collections/masaj-yaglari/" id="navItem-masaj-yaglari" data-collection="masaj-yaglari" class="third-level-cat-link"> <span>Masaj Yağları</span> </a>
 </li>
 </div>
 </ul>
 </li>
 <li class="second-level-menu">
-<a id="navItem-sac-ve-vucut-bakimi" class="cat-level-2 de-third-parent" data-collection="sac-ve-vucut-bakimi" data-related-submenu="Saç ve Vücut Bakımı" data-tapped="false" aria-expanded="false" role="button" href="collections/sac-ve-vucut-bakimi/">
+<a id="navItem-sac-ve-vucut-bakimi" class="cat-level-2 de-third-parent" data-collection="sac-ve-vucut-bakimi" data-related-submenu="Saç ve Vücut Bakımı" data-tapped="false" aria-expanded="false" role="button" href="../../collections/sac-ve-vucut-bakimi/">
 <span class="category-name-text">Saç ve Vücut Bakımı</span>
 <span class="svg-icon greater-than-icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="5" height="8" viewBox="0 0 5 8" fill="none">
@@ -1302,25 +1351,25 @@ document.cookie = "cQuotientLocale=" + cQuotientLocale;
 <div class="subcat-level3-container" data-expanded="false" data-submenu="Saç ve Vücut Bakımı">
 
 <li class="third-level-menu">
-<a href="collections/sampuanlar/" id="navItem-sampuanlar" data-collection="sampuanlar" class="third-level-cat-link"> <span>Şampuanlar</span> </a>
+<a href="../../collections/sampuanlar/" id="navItem-sampuanlar" data-collection="sampuanlar" class="third-level-cat-link"> <span>Şampuanlar</span> </a>
 </li>
 <li class="third-level-menu">
-<a href="collections/sac-bakim-kremleri/" id="navItem-sac-bakim-kremleri" data-collection="sac-bakim-kremleri" class="third-level-cat-link"> <span>Saç Bakım Kremleri</span> </a>
+<a href="../../collections/sac-bakim-kremleri/" id="navItem-sac-bakim-kremleri" data-collection="sac-bakim-kremleri" class="third-level-cat-link"> <span>Saç Bakım Kremleri</span> </a>
 </li>
 <li class="third-level-menu">
-<a href="collections/sac-bakim-yaglari/" id="navItem-sac-bakim-yaglari" data-collection="sac-bakim-yaglari" class="third-level-cat-link"> <span>Saç Bakım Yağları</span> </a>
+<a href="../../collections/sac-bakim-yaglari/" id="navItem-sac-bakim-yaglari" data-collection="sac-bakim-yaglari" class="third-level-cat-link"> <span>Saç Bakım Yağları</span> </a>
 </li>
 <li class="third-level-menu">
-<a href="collections/vucut-yaglari/" id="navItem-vucut-yaglari" data-collection="vucut-yaglari" class="third-level-cat-link"> <span>Vücut Yağları</span> </a>
+<a href="../../collections/vucut-yaglari/" id="navItem-vucut-yaglari" data-collection="vucut-yaglari" class="third-level-cat-link"> <span>Vücut Yağları</span> </a>
 </li>
 <li class="third-level-menu">
-<a href="collections/dus-jelleri/" id="navItem-dus-jelleri" data-collection="dus-jelleri" class="third-level-cat-link"> <span>Duş Jelleri</span> </a>
+<a href="../../collections/dus-jelleri/" id="navItem-dus-jelleri" data-collection="dus-jelleri" class="third-level-cat-link"> <span>Duş Jelleri</span> </a>
 </li>
 </div>
 </ul>
 </li>
 <li class="second-level-menu">
-<a id="navItem-cilt-bakimi" class="cat-level-2 de-third-parent" data-collection="cilt-bakimi" data-related-submenu="Cilt Bakımı" data-tapped="false" aria-expanded="false" role="button" href="collections/cilt-bakimi/">
+<a id="navItem-cilt-bakimi" class="cat-level-2 de-third-parent" data-collection="cilt-bakimi" data-related-submenu="Cilt Bakımı" data-tapped="false" aria-expanded="false" role="button" href="../../collections/cilt-bakimi/">
 <span class="category-name-text">Cilt Bakımı</span>
 <span class="svg-icon greater-than-icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="5" height="8" viewBox="0 0 5 8" fill="none">
@@ -1332,25 +1381,25 @@ document.cookie = "cQuotientLocale=" + cQuotientLocale;
 <div class="subcat-level3-container" data-expanded="false" data-submenu="Cilt Bakımı">
 
 <li class="third-level-menu">
-<a href="collections/ince-ve-derin-cizgiler/" id="navItem-ince-ve-derin-cizgiler" data-collection="ince-ve-derin-cizgiler" class="third-level-cat-link"> <span>İnce ve Derin Çizgiler</span> </a>
+<a href="../../collections/ince-ve-derin-cizgiler/" id="navItem-ince-ve-derin-cizgiler" data-collection="ince-ve-derin-cizgiler" class="third-level-cat-link"> <span>İnce ve Derin Çizgiler</span> </a>
 </li>
 <li class="third-level-menu">
-<a href="collections/hassas-cilt/" id="navItem-hassas-cilt" data-collection="hassas-cilt" class="third-level-cat-link"> <span>Hassas Cilt</span> </a>
+<a href="../../collections/hassas-cilt/" id="navItem-hassas-cilt" data-collection="hassas-cilt" class="third-level-cat-link"> <span>Hassas Cilt</span> </a>
 </li>
 <li class="third-level-menu">
-<a href="collections/nemlendiriciler/" id="navItem-nemlendiriciler" data-collection="nemlendiriciler" class="third-level-cat-link"> <span>Nemlendiriciler</span> </a>
+<a href="../../collections/nemlendiriciler/" id="navItem-nemlendiriciler" data-collection="nemlendiriciler" class="third-level-cat-link"> <span>Nemlendiriciler</span> </a>
 </li>
 <li class="third-level-menu">
-<a href="collections/lekeli-cilt/" id="navItem-lekeli-cilt" data-collection="lekeli-cilt" class="third-level-cat-link"> <span>Lekeli Cilt</span> </a>
+<a href="../../collections/lekeli-cilt/" id="navItem-lekeli-cilt" data-collection="lekeli-cilt" class="third-level-cat-link"> <span>Lekeli Cilt</span> </a>
 </li>
 <li class="third-level-menu">
-<a href="collections/gunes-kremleri/" id="navItem-gunes-kremleri" data-collection="gunes-kremleri" class="third-level-cat-link"> <span>Güneş Kremleri</span> </a>
+<a href="../../collections/gunes-kremleri/" id="navItem-gunes-kremleri" data-collection="gunes-kremleri" class="third-level-cat-link"> <span>Güneş Kremleri</span> </a>
 </li>
 <li class="third-level-menu">
-<a href="collections/cilt-bakim-yaglari/" id="navItem-cilt-bakim-yaglari" data-collection="cilt-bakim-yaglari" class="third-level-cat-link"> <span>Cilt Bakım Yağları</span> </a>
+<a href="../../collections/cilt-bakim-yaglari/" id="navItem-cilt-bakim-yaglari" data-collection="cilt-bakim-yaglari" class="third-level-cat-link"> <span>Cilt Bakım Yağları</span> </a>
 </li>
 <li class="third-level-menu">
-<a href="collections/guclendiriciler/" id="navItem-guclendiriciler" data-collection="guclendiriciler" class="third-level-cat-link"> <span>Güçlendiriciler</span> </a>
+<a href="../../collections/guclendiriciler/" id="navItem-guclendiriciler" data-collection="guclendiriciler" class="third-level-cat-link"> <span>Güçlendiriciler</span> </a>
 </li>
 </div>
 </ul>
@@ -1362,7 +1411,7 @@ document.cookie = "cQuotientLocale=" + cQuotientLocale;
 
 
 <li class="learn-store">
-<a href="./" class="first-level-menu" id="navItem-learn" data-level1="learn" aria-expanded="false"> <span>Keşfet</span></a>
+<a href="../../" class="first-level-menu" id="navItem-learn" data-level1="learn" aria-expanded="false"> <span>Keşfet</span></a>
 
 
 <ul class="learn-list-container nav-list">
@@ -1370,7 +1419,7 @@ document.cookie = "cQuotientLocale=" + cQuotientLocale;
 
 
 <li class="second-level-menu">
-<a id="navItem-Routine-Builder" class="cat-level-2 no-more-child" data-collection="Routine-Builder" href="./">
+<a id="navItem-Routine-Builder" class="cat-level-2 no-more-child" data-collection="Routine-Builder" href="../../">
 <span class="category-name-text">Bakım Rutinini Bul</span>
 
 </a>
@@ -1379,7 +1428,7 @@ document.cookie = "cQuotientLocale=" + cQuotientLocale;
 
 
 <li class="second-level-menu">
-<a id="navItem-Shade-Finder" class="cat-level-2 no-more-child" data-collection="Shade-Finder" href="./">
+<a id="navItem-Shade-Finder" class="cat-level-2 no-more-child" data-collection="Shade-Finder" href="../../">
 <span class="category-name-text">Ton Bulucu</span>
 
 </a>
@@ -1388,7 +1437,7 @@ document.cookie = "cQuotientLocale=" + cQuotientLocale;
 
 
 <li class="second-level-menu">
-<a id="navItem-de-redesign-philosophy" class="cat-level-2 no-more-child" data-collection="de-redesign-philosophy" href="./">
+<a id="navItem-de-redesign-philosophy" class="cat-level-2 no-more-child" data-collection="de-redesign-philosophy" href="../../">
 <span class="category-name-text">Felsefemiz</span>
 
 </a>
@@ -1397,7 +1446,7 @@ document.cookie = "cQuotientLocale=" + cQuotientLocale;
 
 
 <li class="second-level-menu">
-<a id="navItem-smoothie-glossary" class="cat-level-2 no-more-child" data-collection="smoothie-glossary" data-related-submenu="Smoothie Glossary" data-tapped="false" aria-expanded="false" role="button" href="./">
+<a id="navItem-smoothie-glossary" class="cat-level-2 no-more-child" data-collection="smoothie-glossary" data-related-submenu="Smoothie Glossary" data-tapped="false" aria-expanded="false" role="button" href="../../">
 <span class="category-name-text">Karışım Rehberi</span>
 
 </a>
@@ -1437,22 +1486,22 @@ document.cookie = "cQuotientLocale=" + cQuotientLocale;
 
 
 <li class="third-level-menu">
-<a href="./" id="navItem-Vitamin-C" data-collection="Vitamin-C" class="third-level-cat-link"> <span>C Vitamini Rehberi</span> </a>
+<a href="../../" id="navItem-Vitamin-C" data-collection="Vitamin-C" class="third-level-cat-link"> <span>C Vitamini Rehberi</span> </a>
 </li>
 
 
 <li class="third-level-menu">
-<a href="./" id="navItem-the-moisturizer-edit" data-collection="the-moisturizer-edit" class="third-level-cat-link"> <span>Nemlendirici Seçkisi</span> </a>
+<a href="../../" id="navItem-the-moisturizer-edit" data-collection="the-moisturizer-edit" class="third-level-cat-link"> <span>Nemlendirici Seçkisi</span> </a>
 </li>
 
 
 <li class="third-level-menu">
-<a href="./" id="navItem-color-serums" data-collection="color-serums" class="third-level-cat-link"> <span>Renkli Serum Damlaları</span> </a>
+<a href="../../" id="navItem-color-serums" data-collection="color-serums" class="third-level-cat-link"> <span>Renkli Serum Damlaları</span> </a>
 </li>
 
 
 <li class="third-level-menu">
-<a href="./" id="navItem-Find-Your-Hydrating-Serum" data-collection="Find-Your-Hydrating-Serum" class="third-level-cat-link"> <span>Nemlendirici Serumunu Bul</span> </a>
+<a href="../../" id="navItem-Find-Your-Hydrating-Serum" data-collection="Find-Your-Hydrating-Serum" class="third-level-cat-link"> <span>Nemlendirici Serumunu Bul</span> </a>
 </li>
 
 
@@ -1464,7 +1513,7 @@ document.cookie = "cQuotientLocale=" + cQuotientLocale;
 
 
 <li class="second-level-menu">
-<a id="navItem-de-redesign-faq" class="cat-level-2 no-more-child" data-collection="de-redesign-faq" href="./">
+<a id="navItem-de-redesign-faq" class="cat-level-2 no-more-child" data-collection="de-redesign-faq" href="../../">
 <span class="category-name-text">Sıkça Sorulan Sorular</span>
 
 </a>
@@ -1473,7 +1522,7 @@ document.cookie = "cQuotientLocale=" + cQuotientLocale;
 
 
 <li class="second-level-menu">
-<a id="navItem-de-redesign-blog" class="cat-level-2 no-more-child" data-collection="de-redesign-blog" href="./">
+<a id="navItem-de-redesign-blog" class="cat-level-2 no-more-child" data-collection="de-redesign-blog" href="../../">
 <span class="category-name-text">Aromatherapica Blog</span>
 
 </a>
@@ -1482,7 +1531,7 @@ document.cookie = "cQuotientLocale=" + cQuotientLocale;
 
 
 <li class="second-level-menu">
-<a id="navItem-de-redesign-contact" class="cat-level-2 no-more-child" data-collection="de-redesign-contact" href="./">
+<a id="navItem-de-redesign-contact" class="cat-level-2 no-more-child" data-collection="de-redesign-contact" href="../../">
 <span class="category-name-text">İletişim</span>
 
 </a>
@@ -1503,21 +1552,21 @@ document.cookie = "cQuotientLocale=" + cQuotientLocale;
 <div class="de-right-nav quick-links-desktop">
 
 <div class="de-store-locator">
-<a class="button--option option--locations svg-icon" aria-label="Mağazalar" title="Find Your Store" href="./">
-<img src="images/location.svg" title="store locator" alt="mağaza bulucu görseli">
+<a class="button--option option--locations svg-icon" aria-label="Mağazalar" title="Find Your Store" href="../../">
+<img src="../../images/location.svg" title="store locator" alt="mağaza bulucu görseli">
 </a>
 </div>
 <!-- SEARCH -->
 <div class="de-nav-search" role="search" tabindex="-1">
 <button type="button" class="js-open-search-bar de-btn de-text-only" aria-label="Open Search Form">
-<img src="images/magnifying-glass.svg" title="open search" alt="arama formu görseli">
+<img src="../../images/magnifying-glass.svg" title="open search" alt="arama formu görseli">
 </button>
 </div>
 <!-- ACCOUNT LINKS -->
 <span class="account-icon-wrapper">
 	
-	<a href="./" class="de-account-link guest-user" aria-label="Login">
-		<img src="images/smiley.svg" title="user account" alt="hesap görseli" class="de-icon de-icon-account">
+	<a href="../../" class="de-account-link guest-user" aria-label="Login">
+		<img src="../../images/smiley.svg" title="user account" alt="hesap görseli" class="de-icon de-icon-account">
 		<span class="sign-text"> Giriş Yap / Üye Ol</span>
 	</a>
 
@@ -1736,9 +1785,9 @@ CART
 
 
 		
-    <a href="./" data-cart-view="data-cart-view" class="de-cart-icon mini-cart-link mini-cart-empty inactiveLink" aria-label="open cart" title="Your cart is empty">
-		<img src="images/cart-bag.svg" title="shopping bag" alt="sepeti görüntüle" class="de-icon de-icon-cart">
-		<img src="images/cart-bag-filled.svg" title="shopping bag" alt="" class="de-icon de-icon-cart-filled hide">
+    <a href="../../" data-cart-view="data-cart-view" class="de-cart-icon mini-cart-link mini-cart-empty inactiveLink" aria-label="open cart" title="Your cart is empty">
+		<img src="../../images/cart-bag.svg" title="shopping bag" alt="sepeti görüntüle" class="de-icon de-icon-cart">
+		<img src="../../images/cart-bag-filled.svg" title="shopping bag" alt="" class="de-icon de-icon-cart-filled hide">
       <span class="minicart-quantity">
         <span class="visually-hidden">Sepetteki ürün adedi</span>
         <span class="sr-only">,</span>
@@ -1788,7 +1837,7 @@ ara
 <div class="search-tab">
 <div class="field-button-container">
 <label for="q" class="search-icon-label">
-<img src="images/search-label.svg" title="search form" alt="ara" class="search-label-img">
+<img src="../../images/search-label.svg" title="search form" alt="ara" class="search-label-img">
 </label>
 <input class="js-search search-inactive" type="text" id="q" name="q" placeholder="Ara" moisturizer""="" autocomplete="off" spellcheck="false" value="" aria-describedby="search-instructions">
 <div class="sr-only" id="suggestions-count" aria-role="alert" aria-live="assertive"></div>
@@ -1853,4444 +1902,56 @@ ara
 
 <!-- homepage.isml -->
 <main id="main" class="">
-
-
-<h1 class="visually-hidden sr-only">Aromatherapica | Cilt, saç ve vücut bakımı</h1>
-<div class="hp-section-row">
-
-	 
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-one-container swiper row section-full-width">
-<div class="navigation-controls">
-<button id="play-pause-btn" class="navigation-controls-btn" aria-label="Karuseli duraklat">
-<i id="play-pause-icon" class="fa fa-pause"></i> <!-- Font Awesome 4.3.0 Pause icon -->
-</button>
-<button class="swiper-button-prev nav-control-btn" aria-label="display previous slide">
-<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-<path d="M14.1 10.575C14.3781 10.575 14.6035 10.3495 14.6035 10.0714C14.6035 9.7933 14.3781 9.56784 14.1 9.56784V10.575ZM5.68675 9.71533C5.4901 9.91199 5.4901 10.2308 5.68675 10.4275L8.89146 13.6322C9.08812 13.8289 9.40696 13.8289 9.60362 13.6322C9.80028 13.4355 9.80028 13.1167 9.60362 12.92L6.75499 10.0714L9.60362 7.22278C9.80028 7.02612 9.80028 6.70728 9.60362 6.51062C9.40696 6.31397 9.08812 6.31397 8.89146 6.51062L5.68675 9.71533ZM14.1 9.56784H6.04283V10.575H14.1V9.56784Z" fill="#45474A"></path>
-</svg>
-</button>
-<div class="swiper-pagination" tabindex="-1"></div>
-<button class="swiper-button-next nav-control-btn" aria-label="display next slide">
-<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-<path d="M6.90002 10.575C6.62191 10.575 6.39645 10.3495 6.39645 10.0714C6.39645 9.7933 6.62191 9.56784 6.90002 9.56784V10.575ZM15.3132 9.71533C15.5099 9.91199 15.5099 10.2308 15.3132 10.4275L12.1085 13.6322C11.9119 13.8289 11.593 13.8289 11.3964 13.6322C11.1997 13.4355 11.1997 13.1167 11.3964 12.92L14.245 10.0714L11.3964 7.22278C11.1997 7.02612 11.1997 6.70728 11.3964 6.51062C11.593 6.31397 11.9119 6.31397 12.1085 6.51062L15.3132 9.71533ZM6.90002 9.56784H14.9572V10.575H6.90002V9.56784Z" fill="#45474A"></path>
-</svg>
-</button>
-</div>
-<div class="swiper-wrapper">
-
-
-
-<div class="swiper-product-item swiper-slide row promo-creative" data-background-color="#fafafa" style="background-color:#fafafa;" aria-labelledby="productid-NEW: Kamo" data-creative="HP Slider: KAMO - NEW LAUNCH ALERT!">
-<div class="swiper-img-large small-12 medium-6">
-
-<a href="./" class="pdp-link w-100 h-100 homepage-hero-image-large">
-<img src="https://static.ticimax.cloud/74521/Uploads/UrunResimleri/biberiye-ucucu-yagi-15-ml-b0d-48.png" alt="image" data-product-image- title="" class="product-large-image br-5 w-100 h-100 animated slideInRight">
-</a>
-
-</div>
-<div class="product-desc-wrapper small-12 medium-6">
-<div class="row marequee-carousel-container">
-<div class="marquee-section-one de-marquee-text">
-<div class="de-marquee__inner animated">
-
-
-<span class="text-family-brown">YENİ ÜRÜN!</span>
-
-
-
-<span class="text-family-brown">YENİ ÜRÜN!</span>
-
-
-
-<span class="text-family-brown">YENİ ÜRÜN!</span>
-
-</div>
-<div class="de-marquee__inner animated">
-
-
-<span class="text-family-brown">YENİ ÜRÜN!</span>
-
-
-
-<span class="text-family-brown">YENİ ÜRÜN!</span>
-
-
-
-<span class="text-family-brown">YENİ ÜRÜN!</span>
-
-</div>
-</div>
-</div>
-<div class="row shortdesc-image-column shortdesc-img-wrapper row">
-<div class="shortdesc-cta-desktop br-5 small-6 row" style="background-color:#fff;">
-<div class="shortdesc-msg animated slideInRight" id="shortdescription-NEW: Kamo">
-
-Meet Kamo Triple-Peptide Cover Drops! Our new superstar foundation/concealer/skin tint firms as it covers. You won’t believe what it can do. Available now!
-
-</div>
-
-<div class="productpage-cta animated slideInRight hide-for-mobile">
-<a href="./" class="bg-pure-white w-100 shop-link-desktop shop-now-link homepage-hero-slot-shop-now" aria-describedby="shortdescription-NEW: Kamo" data-creativename="homepagehero--Creative" data-promoid="homepagehero-promoId-NEW: Kamo" data-promotionname="homepagehero-promotxt-NEW: Kamo">
-<span>Hemen Al</span>
-</a>
-</div>
-
-</div>
-<div class="swiper-img-small small-6">
-
-<a href="./" class="pdp-link w-100 h-100">
-<img src="https://static.ticimax.cloud/74521/uploads/urunresimleri/jojoba-yagi-15-ml---ac33-.png" alt="image" data-product-image- title="" class="product-img-small br-5 animated" width="335" height="335">
-</a>
-
-</div>
-
-<div class="productpage-cta-mobile small-12">
-<a href="./" class="bg-pure-white w-100 animated shop-link-mobile shop-now-link homepage-hero-slot-shop-now" aria-describedby="shortdescription-NEW: Kamo" data-creativename="homepagehero--Creative" data-promoid="homepagehero-promoId-NEW: Kamo" data-promotionname="homepagehero-promotxt-NEW: Kamo">
-<span>Hemen Al</span>
-</a>
-</div>
-
-</div>
-</div>
-<div class="swiper-botton-gradient" style="background-image:linear-gradient(180deg,#fafafa, #fff);">
-</div>
-</div>
-
-
-
-<div class="swiper-product-item swiper-slide row promo-creative" data-background-color="#fafafa" style="background-color:#fafafa;" aria-labelledby="productid-NEW: Kamo" data-creative="HP Slider: HP-Carousel-Kamo-Puffer">
-<div class="swiper-img-large small-12 medium-6">
-
-<div class="pdp-link w-100 h-100">
-<video autoplay="" loop="" muted="" playsinline="" class="promo-video">
-<source src="media/DE074_Kamo_GWP_Site_HpCarousel_BigSquare_PLP.mp4" type="video/mp4">
-</video>
-<!-- Play/Pause button with icon -->
-<div class="video-overlay">
-<button class="mute-unmute-btn" aria-label="Sesi kapat">
-<i class="mute-unmute-icon fa fa-volume-off"></i> <!-- Font Awesome mute icon -->
-</button>
-</div>
-</div>
-
-</div>
-<div class="product-desc-wrapper small-12 medium-6">
-<div class="row marequee-carousel-container">
-<div class="marquee-section-one de-marquee-text">
-<div class="de-marquee__inner animated">
-
-
-<span class="text-family-brown">Doğallığı keşfedin!</span>
-
-
-
-<span class="text-family-brown">Doğallığı keşfedin!</span>
-
-
-
-<span class="text-family-brown">Doğallığı keşfedin!</span>
-
-</div>
-<div class="de-marquee__inner animated">
-
-
-<span class="text-family-brown">Doğallığı keşfedin!</span>
-
-
-
-<span class="text-family-brown">Doğallığı keşfedin!</span>
-
-
-
-<span class="text-family-brown">Doğallığı keşfedin!</span>
-
-</div>
-</div>
-</div>
-<div class="row shortdesc-image-column shortdesc-img-wrapper row">
-<div class="shortdesc-cta-desktop br-5 small-6 row" style="background-color:#fff;">
-<div class="shortdesc-msg animated slideInRight" id="shortdescription-NEW: Kamo">
-
-Play around with our genius new foundation/concealer/skin tint with a 6-shade sample card (we couldn’t fit all 25), plus get a cute limited-edition travel bag when you spend $110.
-
-</div>
-
-<div class="productpage-cta animated slideInRight hide-for-mobile">
-<a href="./" class="bg-pure-white w-100 shop-link-desktop shop-now-link homepage-hero-slot-shop-now" aria-describedby="shortdescription-NEW: Kamo" data-creativename="homepagehero--Creative" data-promoid="homepagehero-promoId-NEW: Kamo" data-promotionname="homepagehero-promotxt-NEW: Kamo">
-<span>Hemen Al</span>
-</a>
-</div>
-
-</div>
-<div class="swiper-img-small small-6">
-
-<a href="./" class="pdp-link w-100 h-100">
-<img src="https://static.ticimax.cloud/74521/uploads/urunresimleri/jojoba-badem-hacimlendirici-sampuan-40-ff25-4.png" alt="image" data-product-image- title="" class="product-img-small br-5 animated" width="335" height="335">
-</a>
-
-</div>
-
-<div class="productpage-cta-mobile small-12">
-<a href="./" class="bg-pure-white w-100 animated shop-link-mobile shop-now-link homepage-hero-slot-shop-now" aria-describedby="shortdescription-NEW: Kamo" data-creativename="homepagehero--Creative" data-promoid="homepagehero-promoId-NEW: Kamo" data-promotionname="homepagehero-promotxt-NEW: Kamo">
-<span>Hemen Al</span>
-</a>
-</div>
-
-</div>
-</div>
-<div class="swiper-botton-gradient" style="background-image:linear-gradient(180deg,#fafafa, #fff);">
-</div>
-</div>
-
-
-
-<div class="swiper-product-item swiper-slide row promo-creative" data-background-color="#fafafa" style="background-color:#fafafa;" aria-labelledby="productid-NEW: Kamo" data-creative="HP Slider: HP-Carousel-Skincare-Chronicles">
-<div class="swiper-img-large small-12 medium-6">
-
-<a href="./" class="pdp-link w-100 h-100 homepage-hero-image-large">
-<img src="https://static.ticimax.cloud/74521/uploads/urunresimleri/anti-aging-argireline-peptide-face-cre-b4c0d-.png" alt="image" data-product-image- title="" class="product-large-image br-5 w-100 h-100 animated slideInRight">
-</a>
-
-</div>
-<div class="product-desc-wrapper small-12 medium-6">
-<div class="row marequee-carousel-container">
-<div class="marquee-section-one de-marquee-text">
-<div class="de-marquee__inner animated">
-
-
-<span class="text-family-brown">Zamanın ne olduğunu biliyoruz</span>
-
-
-
-<span class="text-family-brown">Zamanın ne olduğunu biliyoruz</span>
-
-
-
-<span class="text-family-brown">Zamanın ne olduğunu biliyoruz</span>
-
-</div>
-<div class="de-marquee__inner animated">
-
-
-<span class="text-family-brown">Zamanın ne olduğunu biliyoruz</span>
-
-
-
-<span class="text-family-brown">Zamanın ne olduğunu biliyoruz</span>
-
-
-
-<span class="text-family-brown">Zamanın ne olduğunu biliyoruz</span>
-
-</div>
-</div>
-</div>
-<div class="row shortdesc-image-column shortdesc-img-wrapper row">
-<div class="shortdesc-cta-desktop br-5 small-6 row" style="background-color:#fff;">
-<div class="shortdesc-msg animated slideInRight" id="shortdescription-NEW: Kamo">
-
-A.m. and p.m. serums plus a firming moisturizer to keep skin its most radiant morning, noon, and night.
-
-</div>
-
-<div class="productpage-cta animated slideInRight hide-for-mobile">
-<a href="./" class="bg-pure-white w-100 shop-link-desktop shop-now-link homepage-hero-slot-shop-now" aria-describedby="shortdescription-NEW: Kamo" data-creativename="homepagehero--Creative" data-promoid="homepagehero-promoId-NEW: Kamo" data-promotionname="homepagehero-promotxt-NEW: Kamo">
-<span>Hemen Al</span>
-</a>
-</div>
-
-</div>
-<div class="swiper-img-small small-6">
-
-<a href="./" class="pdp-link w-100 h-100">
-<img src="https://static.ticimax.cloud/74521/uploads/urunresimleri/nemlendirici-gul-kremi-4b-a95.png" alt="image" data-product-image- title="" class="product-img-small br-5 animated" width="335" height="335">
-</a>
-
-</div>
-
-<div class="productpage-cta-mobile small-12">
-<a href="./" class="bg-pure-white w-100 animated shop-link-mobile shop-now-link homepage-hero-slot-shop-now" aria-describedby="shortdescription-NEW: Kamo" data-creativename="homepagehero--Creative" data-promoid="homepagehero-promoId-NEW: Kamo" data-promotionname="homepagehero-promotxt-NEW: Kamo">
-<span>Hemen Al</span>
-</a>
-</div>
-
-</div>
-</div>
-<div class="swiper-botton-gradient" style="background-image:linear-gradient(180deg,#fafafa, #fff);">
-</div>
-</div>
-
-</div>
-</div>
- 
-	
-</div>
-
-<div class="hp-section-row">
-
-
-
-
-
-<div class="homepage-section-two-container">
-<div class="hero-categories-container" role="tablist">
-
-
-<button type="button" class="swiper-categories-btn swiper-tab-active" data-categoryid="swiper-cat-1" aria-label="Bestsellers category" data-list="Best Sellers" role="tab" aria-controls="swiper-cat-1" aria-selected="true" tabindex="-1">
-Çok Satanlar
-</button>
-
-</div>
-
-<div class="category-container cat-container-active" id="swiper-cat-1" role="tabpanel">
-
-
-
-<div class="products-container swiper swiper-cat-1">
-<div class="swiper-wrapper">
-
-<div class="product-tile-container swiper-slide" data-product-index="1">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="js-product-card de-product-card redesign-product-card de-featured-life-item" data-colors-to-show="null" data-trigger="scroll" aria-labelledby="product-id-812343032064" id="5bd1499877b0271c4276b6f828" role="group">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="de-card-main">
-<input type="hidden" value="false" class="disableQuickviewHoverBtn">
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="thumb-link" href="./" title="" data-pid="812343032064">
-<div class="de-cropped-image-wrapper animated slow fadeIn has-hover-image  on-load" style="background-color: #FAFAFA"><!-- dwMarker="product" dwContentID="5bd1499877b0271c4276b6f828" -->
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEX///+nxBvIAAAACklEQVQIHWNgAAAAAgABz8g15QAAAABJRU5ErkJggg==" data-src="https://static.ticimax.cloud/74521/Uploads/UrunResimleri/biberiye-ucucu-yagi-15-ml-b0d-48.png" alt="" width="460" height="460" role="presentation" class="plp-image-hover lazyload">
-
-<img src="https://static.ticimax.cloud/74521/Uploads/UrunResimleri/biberiye-ucucu-yagi-15-ml-b0d-48.png" alt="" role="presentation" class="hover-image" width="460" height="460" loading="lazy">
-
-
-
-<!-- product badge image -->
-<div class="product-badge-wrapper">
-
-
-<!-- ====== NEW BADGE ======== -->
-
-
-<!-- product Marketing label -->
-
-<div class="de-marketing-badge">
-Serum
-</div>
-
-</div>
-
-
-
-
-</div>
-
-
-<div class="de-product-detail">
-
-
-
-
-
-<span class="low-in-stock empty-span"></span>
-
-
-
-
-<div class="de-product-title animated slideInUp" id="title-812343032064">
-
-<div class="name productname-text" title="Ürüne git: Lavanta Uçucu Yağı 15 ml" id="product-id-812343032064" style="-webkit-box-orient: vertical;">
-
-
-Lavanta Uçucu Yağı 15 ml
-
-
-</div>
-
-<div class="price">
-
-
-
-
-
-
-<span class="de-product-price">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="price-sales">
-
-<span class="sr-only">güncel fiyat</span>
-
-<span name="price-812343032064">
-
-₺310
-
-</span>
-
-
-</span>
-
-
-
-
-
-
-
-
-
-</span>
-
-
-
-</div>
-
-</div>
-
-</div>
-</a>
-
-<div class="de-card-bottom">
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="pr-rating-wrapper">
-
-<a href="./" class="pr-main-container">
-
+<div class="arp-plp">
+  <nav class="arp-crumbs" aria-label="Sayfa yolu">
+    <a href="../../">Ana Sayfa</a><span aria-hidden="true">/</span><span>Güçlendiriciler</span>
+  </nav>
+  <header class="arp-plp__head">
+    <h1 class="arp-plp__title">Güçlendiriciler</h1>
     
-    
-        <div id="category-snippet-812343032064" class="pr-category-snippet" data-pr-plp-component="{" enable_client_side_structured_data":false,"api_key":"8e93b1cf-81e3-4447-ab06-b9c7bfc4f3b4","locale":"en_us","merchant_group_id":"940993610","merchant_id":"639428907","style_sheet":"="" on="" demandware.static="" sites-aromatherapica_us-site="" -="" en_us="" v1786784877203="" css="" powerreview-override.bundle.css","page_id":"812343032064","components":{"categorysnippet":"category-snippet-812343032064"}}"=""></div>
-    
-
-</a>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="js-quick-shop-wrapper de-quick-shop ">
-<form action="./" method="post" id="dwfrm_product_addtocart_d0xutzffqswe" class="js-quick-add-form de-inner">
-
-
-<div class="de-quick-add-inner">
-
-
-
-
-</div>
-
-
-</form>
-</div>
-
-<div id="a2c-error" class="callout alert"></div>
-<div class="persistant-add-to-cart">
-
-
-<form action="./" method="post" id="dwfrm_product_addtocart_d0swiwwxdwey" class="js-quick-add-form">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-
-
-
-    
-    
-    <input type="hidden" name="cartAction" value="add">
-    <input type="hidden" name="pid" id="sppid-812343032064" value="812343032064">
-    <input type="hidden" name="Quantity" id="spquantity-812343032064" value="1">
-    <input type="hidden" name="product-name" value="Lavanta Uçucu Yağı 15 ml">
-    <input type="hidden" name="listType" id="listType" value="null">
-	<input type="hidden" name="listName" id="listName" value="null">
-	
-	 
-	 <div class="product-add-to-cart">
-        <div id="a2c-error" aria-live="assertive" class="callout alert quantity-exceeded hide"></div>
+    <p class="arp-plp__count">2 ürün</p>
+  </header>
+  
+  <ul class="arp-grid">
+<li class="arp-card">
+  <article class="arp-card__inner">
+    <div class="arp-card__media">
+      <img class="arp-card__img arp-card__img--contain" src="../../images/ingredients/gul.svg" alt="GÜL SUYU 100 ml">
+      
+      
     </div>
-	
-    
-    
-    
+    <div class="arp-card__body">
+      <p class="arp-card__cat">Güçlendiriciler</p>
+      <h2 class="arp-card__name">GÜL SUYU 100 ml</h2>
+      <p class="arp-card__desc">Cildi ferahlatmaya, yatıştırmaya ve tazelemeye yardımcı 1. kalite gül suyu. Günlük cilt bakım rutininde doğal …</p>
+      <p class="arp-card__price">
         
-    
-    <button type="submit" title="Sepete Ekle" aria-label="Sepete Ekle" class="js-afterpay-price js-add-to-cart" id="add-to-cart" data-id="button-tile-add-to-cart-812343032064" data-productid="812343032064" data-instock="in-stock" data-price="39.0" data-replenishable="YES">
-        <span class="de-btn-text">Sepete Ekle </span>
-        
-        <span class="de-btn-overlay"></span>
-    </button>
-
-
-<input type="hidden" name="csrf_token" value="_iVloavcNUNLfbitwGr928uM3wMGbYOHjepPLyGCu1mDHuvnDk9HbzgKemUcZXqrFboEKwGz2dWTgPc4RJ8XZF1r4e0nCXTqDOPBtG5Yqp73ae3o1HK-wJlgNxl1LzfTkCsuqu0J9LpXV_f-1iZm6r7v6iJ5lFVuqZ1Yy0SAN49JivJMx5k=">
-
-
-</form>
-
-</div>
-
-</div>
-
-
-
-
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div id="create-wishlist-cntr" class="reveal no-border" data-reveal="" data-animation-in="fade-in">
-    <button class="close-button" data-close="" aria-label="Pencereyi kapat" type="button">
-        <span aria-hidden="true"><i class="icon-close"></i></span>
-    </button>
-
-    <div class="modal-body">
-        
+        <span class="arp-card__now">₺225</span>
+      </p>
+      <button type="button" class="arp-card__btn">Sepete Ekle</button>
     </div>
-</div>
-
-
-
-
-
-<div id="add-wishlist-cntr" class="reveal no-border" data-reveal="" data-animation-in="fade-in">
-    <button class="close-button" data-close="" aria-label="Pencereyi kapat" type="button">
-        <span aria-hidden="true"><i class="icon-close"></i></span>
-    </button>
-
-    <div class="modal-body">
-        
+  </article>
+</li>
+<li class="arp-card">
+  <article class="arp-card__inner">
+    <div class="arp-card__media">
+      <img class="arp-card__img arp-card__img--contain" src="../../images/ingredients/gul.svg" alt="GÜL SUYU 250 ml">
+      
+      
     </div>
-</div>
-
-</div>
-
-
-<div class="product-tile-container swiper-slide" data-product-index="2">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="js-product-card de-product-card redesign-product-card de-featured-life-item" data-colors-to-show="null" data-trigger="scroll" aria-labelledby="product-id-856556004180" id="c4279c56eb72235071085319d4" role="group">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="de-card-main">
-<input type="hidden" value="false" class="disableQuickviewHoverBtn">
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="thumb-link" href="./" title="" data-pid="856556004180">
-<div class="de-cropped-image-wrapper animated slow fadeIn has-hover-image  on-load" style="background-color: #FAFAFA"><!-- dwMarker="product" dwContentID="c4279c56eb72235071085319d4" -->
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEX///+nxBvIAAAACklEQVQIHWNgAAAAAgABz8g15QAAAABJRU5ErkJggg==" data-src="https://static.ticimax.cloud/74521/uploads/urunresimleri/jojoba-yagi-15-ml---ac33-.png" alt="" width="460" height="460" role="presentation" class="plp-image-hover lazyload">
-
-<img src="https://static.ticimax.cloud/74521/uploads/urunresimleri/jojoba-yagi-15-ml---ac33-.png" alt="" role="presentation" class="hover-image" width="460" height="460" loading="lazy">
-
-
-
-<!-- product badge image -->
-<div class="product-badge-wrapper">
-
-
-<!-- ====== NEW BADGE ======== -->
-
-
-<!-- product Marketing label -->
-
-<div class="de-marketing-badge">
-Serum
-</div>
-
-</div>
-
-
-
-
-</div>
-
-
-<div class="de-product-detail">
-
-
-
-
-
-<span class="low-in-stock empty-span"></span>
-
-
-
-
-<div class="de-product-title animated slideInUp" id="title-856556004180">
-
-<div class="name productname-text" title="Ürüne git: Jojoba Yağı 15 ml" id="product-id-856556004180" style="-webkit-box-orient: vertical;">
-
-
-Jojoba Yağı 15 ml
-
-
-</div>
-
-<div class="price">
-
-
-
-
-
-
-<span class="de-product-price">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="price-sales">
-
-<span class="sr-only">güncel fiyat</span>
-
-<span name="price-856556004180">
-
-₺230
-
-</span>
-
-
-</span>
-
-
-
-
-
-
-
-
-
-</span>
-
-
-
-</div>
-
-</div>
-
-</div>
-</a>
-
-<div class="de-card-bottom">
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="pr-rating-wrapper">
-
-<a href="./" class="pr-main-container">
-
-    
-    
-        <div id="category-snippet-856556004180" class="pr-category-snippet" data-pr-plp-component="{" enable_client_side_structured_data":false,"api_key":"8e93b1cf-81e3-4447-ab06-b9c7bfc4f3b4","locale":"en_us","merchant_group_id":"940993610","merchant_id":"639428907","style_sheet":"="" on="" demandware.static="" sites-aromatherapica_us-site="" -="" en_us="" v1786784877203="" css="" powerreview-override.bundle.css","page_id":"856556004180","components":{"categorysnippet":"category-snippet-856556004180"}}"=""></div>
-    
-
-</a>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="js-quick-shop-wrapper de-quick-shop ">
-<form action="./" method="post" id="dwfrm_product_addtocart_d0qypovrifjj" class="js-quick-add-form de-inner">
-
-
-<div class="de-quick-add-inner">
-
-
-
-
-</div>
-
-
-</form>
-</div>
-
-<div id="a2c-error" class="callout alert"></div>
-<div class="persistant-add-to-cart">
-
-
-<form action="./" method="post" id="dwfrm_product_addtocart_d0upuafpovgu" class="js-quick-add-form">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-
-
-
-    
-    
-    <input type="hidden" name="cartAction" value="add">
-    <input type="hidden" name="pid" id="sppid-856556004180" value="856556004180">
-    <input type="hidden" name="Quantity" id="spquantity-856556004180" value="1">
-    <input type="hidden" name="product-name" value="Jojoba Yağı 15 ml">
-    <input type="hidden" name="listType" id="listType" value="null">
-	<input type="hidden" name="listName" id="listName" value="null">
-	
-	 
-	 <div class="product-add-to-cart">
-        <div id="a2c-error" aria-live="assertive" class="callout alert quantity-exceeded hide"></div>
+    <div class="arp-card__body">
+      <p class="arp-card__cat">Güçlendiriciler</p>
+      <h2 class="arp-card__name">GÜL SUYU 250 ml</h2>
+      <p class="arp-card__desc">Cildi ferahlatmaya, yatıştırmaya ve tazelemeye yardımcı 1. kalite gül suyu. Günlük cilt bakım rutininde doğal …</p>
+      <p class="arp-card__price">
+        
+        <span class="arp-card__now">₺300</span>
+      </p>
+      <button type="button" class="arp-card__btn">Sepete Ekle</button>
     </div>
-	
-    
-    
-    
-        
-    
-    <button type="submit" title="Sepete Ekle" aria-label="Sepete Ekle" class="js-afterpay-price js-add-to-cart" id="add-to-cart" data-id="button-tile-add-to-cart-856556004180" data-productid="856556004180" data-instock="in-stock" data-price="56.0" data-replenishable="YES">
-        <span class="de-btn-text">Sepete Ekle </span>
-        
-        <span class="de-btn-overlay"></span>
-    </button>
-
-
-<input type="hidden" name="csrf_token" value="8aeLkU3FGYpye8oGRik4dHRKA5lR5KUuNpv4atrdRmHFUPpKwdkHZjckxOkhL7A-GWClLgO1AovjwSaARtOg9YsyAhN9o4d212Jq4GDYN_iT758-kE7TpnSXEOkm7w3rS-Niyd8euKNl0UOQzKa9a53ZmoBjEC7J3kEar3u32ftrwkRaoRo=">
-
-
-</form>
-
-</div>
-
-</div>
-
-
-
-
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div id="create-wishlist-cntr" class="reveal no-border" data-reveal="" data-animation-in="fade-in">
-    <button class="close-button" data-close="" aria-label="Pencereyi kapat" type="button">
-        <span aria-hidden="true"><i class="icon-close"></i></span>
-    </button>
-
-    <div class="modal-body">
-        
-    </div>
-</div>
-
-
-
-
-
-<div id="add-wishlist-cntr" class="reveal no-border" data-reveal="" data-animation-in="fade-in">
-    <button class="close-button" data-close="" aria-label="Pencereyi kapat" type="button">
-        <span aria-hidden="true"><i class="icon-close"></i></span>
-    </button>
-
-    <div class="modal-body">
-        
-    </div>
-</div>
-
-</div>
-
-
-<div class="product-tile-container swiper-slide" data-product-index="3">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="js-product-card de-product-card redesign-product-card de-featured-life-item" data-colors-to-show="null" data-trigger="scroll" aria-labelledby="product-id-999DE00000103" id="49b480388897da2ea499a95ae3" role="group">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="de-card-main">
-<input type="hidden" value="false" class="disableQuickviewHoverBtn">
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="thumb-link" href="./" title="" data-pid="999DE00000103">
-<div class="de-cropped-image-wrapper animated slow fadeIn has-hover-image  on-load" style="background-color: #FAFAFA"><!-- dwMarker="product" dwContentID="49b480388897da2ea499a95ae3" -->
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEX///+nxBvIAAAACklEQVQIHWNgAAAAAgABz8g15QAAAABJRU5ErkJggg==" data-src="https://static.ticimax.cloud/74521/uploads/urunresimleri/jojoba-badem-hacimlendirici-sampuan-40-ff25-4.png" alt="" width="460" height="460" role="presentation" class="plp-image-hover lazyload">
-
-<img src="https://static.ticimax.cloud/74521/uploads/urunresimleri/jojoba-badem-hacimlendirici-sampuan-40-ff25-4.png" alt="" role="presentation" class="hover-image" width="460" height="460" loading="lazy">
-
-
-
-<!-- product badge image -->
-<div class="product-badge-wrapper">
-
-
-<!-- ====== NEW BADGE ======== -->
-
-
-<!-- product Marketing label -->
-
-<div class="de-marketing-badge">
-Nemlendirici
-</div>
-
-</div>
-
-
-
-
-</div>
-
-
-<div class="de-product-detail">
-
-
-
-
-
-<span class="low-in-stock empty-span"></span>
-
-
-
-
-<div class="de-product-title animated slideInUp" id="title-999DE00000103">
-
-<div class="name productname-text" title="Ürüne git: Jojoba & Badem Hacimlendirici Şampuan 400ml" id="product-id-999DE00000103" style="-webkit-box-orient: vertical;">
-
-
-Jojoba & Badem Hacimlendirici Şampuan 400ml
-
-
-</div>
-
-<div class="price">
-
-
-
-
-
-
-<span class="de-product-price">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<span name="price-999DE00000103" id="product-price-999DE00000103">
-
-$24.00 <span aria-hidden="true">-</span> <span class="sr-only">ile</span> $99.00
-
-</span>
-
-
-
-
-
-
-
-
-
-
-</span>
-
-
-
-</div>
-
-</div>
-
-</div>
-</a>
-
-<div class="de-card-bottom">
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="pr-rating-wrapper">
-
-<a href="./" class="pr-main-container">
-
-    
-    
-        <div id="category-snippet-999DE00000103" class="pr-category-snippet" data-pr-plp-component="{" enable_client_side_structured_data":false,"api_key":"8e93b1cf-81e3-4447-ab06-b9c7bfc4f3b4","locale":"en_us","merchant_group_id":"940993610","merchant_id":"639428907","style_sheet":"="" on="" demandware.static="" sites-aromatherapica_us-site="" -="" en_us="" v1786784877203="" css="" powerreview-override.bundle.css","page_id":"999de00000103","components":{"categorysnippet":"category-snippet-999de00000103"}}"=""></div>
-    
-
-</a>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="js-quick-shop-wrapper de-quick-shop has-promo">
-<form action="./" method="post" id="dwfrm_product_addtocart_d0bpwjzfnmpl" class="js-quick-add-form de-inner">
-
-
-<div class="de-quick-add-inner">
-
-<div class="quick-add-dropdown">
-<!-- Size Dropdown -->
-
-
-</div>
-
-</div>
-
-
-</form>
-</div>
-
-<div id="a2c-error" class="callout alert"></div>
-<div class="persistant-add-to-cart">
-
-
-<form action="./" method="post" id="dwfrm_product_addtocart_d0etbgfkwpzb" class="js-quick-add-form">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-        
-            
-            
-            
-
-
-
-    
-    
-    <input type="hidden" name="cartAction" value="add">
-    <input type="hidden" name="pid" id="sppid-999DE00000103" value="856556004739">
-    <input type="hidden" name="Quantity" id="spquantity-999DE00000103" value="1">
-    <input type="hidden" name="product-name" value="Jojoba & Badem Hacimlendirici Şampuan 400ml">
-    <input type="hidden" name="listType" id="listType" value="null">
-	<input type="hidden" name="listName" id="listName" value="null">
-	
-	 
-	 <div class="product-add-to-cart">
-        <div id="a2c-error" aria-live="assertive" class="callout alert quantity-exceeded hide"></div>
-    </div>
-	
-    
-    
-    
-        
-    
-    <button type="submit" title="Sepete Ekle" aria-label="Sepete Ekle" class="js-afterpay-price js-add-to-cart" id="add-to-cart" data-id="button-tile-add-to-cart-856556004739" data-productid="856556004739" data-instock="in-stock" data-price="72.0" data-replenishable="YES">
-        <span class="de-btn-text">Sepete Ekle </span>
-        
-        <span class="de-btn-overlay"></span>
-    </button>
-
-
-<input type="hidden" name="csrf_token" value="9wleJzzs7MqNm_d6-eAviS-nsMBTZBUOCoYR7vBvOEJjw_d8lEgqgBcLgAfvVq6rW5UjxpShpsmo1LQCXftBSxqDi3qKbgbmbAet7gH6h7DE0tf69OBN3h2bnoDDPBN1t2FWUm7HtAII-7t3bs_5_K54kGv298qBsyZ_G1tJhvp2DEajaZk=">
-
-
-
-
-
-</form>
-
-</div>
-
-</div>
-
-
-
-
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div id="create-wishlist-cntr" class="reveal no-border" data-reveal="" data-animation-in="fade-in">
-    <button class="close-button" data-close="" aria-label="Pencereyi kapat" type="button">
-        <span aria-hidden="true"><i class="icon-close"></i></span>
-    </button>
-
-    <div class="modal-body">
-        
-    </div>
-</div>
-
-
-
-
-
-<div id="add-wishlist-cntr" class="reveal no-border" data-reveal="" data-animation-in="fade-in">
-    <button class="close-button" data-close="" aria-label="Pencereyi kapat" type="button">
-        <span aria-hidden="true"><i class="icon-close"></i></span>
-    </button>
-
-    <div class="modal-body">
-        
-    </div>
-</div>
-
-</div>
-
-
-<div class="product-tile-container swiper-slide" data-product-index="4">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="js-product-card de-product-card redesign-product-card de-featured-life-item" data-colors-to-show="null" data-trigger="scroll" aria-labelledby="product-id-812343034358" id="37b7d8b776256fb4bbbf9f3d8b" role="group">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="de-card-main">
-<input type="hidden" value="false" class="disableQuickviewHoverBtn">
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="thumb-link" href="./" title="" data-pid="812343034358">
-<div class="de-cropped-image-wrapper animated slow fadeIn has-hover-image  on-load" style="background-color: #FAFAFA"><!-- dwMarker="product" dwContentID="37b7d8b776256fb4bbbf9f3d8b" -->
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEX///+nxBvIAAAACklEQVQIHWNgAAAAAgABz8g15QAAAABJRU5ErkJggg==" data-src="https://static.ticimax.cloud/74521/Uploads/UrunResimleri/uzum-cekirdegi-matrixyl-3000-anti-agin-ddc-91.png" alt="" width="460" height="460" role="presentation" class="plp-image-hover lazyload">
-
-<img src="https://static.ticimax.cloud/74521/Uploads/UrunResimleri/uzum-cekirdegi-matrixyl-3000-anti-agin-ddc-91.png" alt="" role="presentation" class="hover-image" width="460" height="460" loading="lazy">
-
-
-
-<!-- product badge image -->
-<div class="product-badge-wrapper">
-
-
-<!-- ====== NEW BADGE ======== -->
-
-
-<!-- product Marketing label -->
-
-<div class="de-marketing-badge">
-Serum
-</div>
-
-</div>
-
-
-
-
-</div>
-
-
-<div class="de-product-detail">
-
-
-
-
-
-<span class="low-in-stock empty-span"></span>
-
-
-
-
-<div class="de-product-title animated slideInUp" id="title-812343034358">
-
-<div class="name productname-text" title="Ürüne git: Üzüm Çekirdeği Saç Kremi 250ml" id="product-id-812343034358" style="-webkit-box-orient: vertical;">
-
-
-Üzüm Çekirdeği Saç Kremi 250ml
-
-
-</div>
-
-<div class="price">
-
-
-
-
-
-
-<span class="de-product-price">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="price-sales">
-
-<span class="sr-only">güncel fiyat</span>
-
-<span name="price-812343034358">
-
-₺230
-
-</span>
-
-
-</span>
-
-
-
-
-
-
-
-
-
-</span>
-
-
-
-</div>
-
-</div>
-
-</div>
-</a>
-
-<div class="de-card-bottom">
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="pr-rating-wrapper">
-
-<a href="./" class="pr-main-container">
-
-    
-    
-        <div id="category-snippet-812343034358" class="pr-category-snippet" data-pr-plp-component="{" enable_client_side_structured_data":false,"api_key":"8e93b1cf-81e3-4447-ab06-b9c7bfc4f3b4","locale":"en_us","merchant_group_id":"940993610","merchant_id":"639428907","style_sheet":"="" on="" demandware.static="" sites-aromatherapica_us-site="" -="" en_us="" v1786784877203="" css="" powerreview-override.bundle.css","page_id":"812343034358","components":{"categorysnippet":"category-snippet-812343034358"}}"=""></div>
-    
-
-</a>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="js-quick-shop-wrapper de-quick-shop ">
-<form action="./" method="post" id="dwfrm_product_addtocart_d0bsjavbverw" class="js-quick-add-form de-inner">
-
-
-<div class="de-quick-add-inner">
-
-
-
-
-</div>
-
-
-</form>
-</div>
-
-<div id="a2c-error" class="callout alert"></div>
-<div class="persistant-add-to-cart">
-
-
-<form action="./" method="post" id="dwfrm_product_addtocart_d0cpejxnhbcs" class="js-quick-add-form">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-
-
-
-    
-    
-    <input type="hidden" name="cartAction" value="add">
-    <input type="hidden" name="pid" id="sppid-812343034358" value="812343034358">
-    <input type="hidden" name="Quantity" id="spquantity-812343034358" value="1">
-    <input type="hidden" name="product-name" value="Üzüm Çekirdeği Saç Kremi 250ml">
-    <input type="hidden" name="listType" id="listType" value="null">
-	<input type="hidden" name="listName" id="listName" value="null">
-	
-	 
-	 <div class="product-add-to-cart">
-        <div id="a2c-error" aria-live="assertive" class="callout alert quantity-exceeded hide"></div>
-    </div>
-	
-    
-    
-    
-        
-    
-    <button type="submit" title="Sepete Ekle" aria-label="Sepete Ekle" class="js-afterpay-price js-add-to-cart" id="add-to-cart" data-id="button-tile-add-to-cart-812343034358" data-productid="812343034358" data-instock="in-stock" data-price="79.0" data-replenishable="YES">
-        <span class="de-btn-text">Sepete Ekle </span>
-        
-        <span class="de-btn-overlay"></span>
-    </button>
-
-
-<input type="hidden" name="csrf_token" value="g2IVVEywpozrmpm3B6rHuQM-EhPRu56EKVvQCkyTZCPDeKWFQec0WCbyP1kCeeKBv6iYK9DXjuKqTsKyvskcFulSk81KWqxmDBa8kT0Rul2-992AFLCPNDi25thSvwupznIFUy89t-jyfPtV4oCohddIz2njh97_86dLMFYmaNaCMXjLoVo=">
-
-
-</form>
-
-</div>
-
-</div>
-
-
-
-
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div id="create-wishlist-cntr" class="reveal no-border" data-reveal="" data-animation-in="fade-in">
-    <button class="close-button" data-close="" aria-label="Pencereyi kapat" type="button">
-        <span aria-hidden="true"><i class="icon-close"></i></span>
-    </button>
-
-    <div class="modal-body">
-        
-    </div>
-</div>
-
-
-
-
-
-<div id="add-wishlist-cntr" class="reveal no-border" data-reveal="" data-animation-in="fade-in">
-    <button class="close-button" data-close="" aria-label="Pencereyi kapat" type="button">
-        <span aria-hidden="true"><i class="icon-close"></i></span>
-    </button>
-
-    <div class="modal-body">
-        
-    </div>
-</div>
-
-</div>
-
-
-<div class="product-tile-container swiper-slide" data-product-index="5">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="js-product-card de-product-card redesign-product-card de-featured-life-item" data-colors-to-show="null" data-trigger="scroll" aria-labelledby="product-id-999DE00000104" id="ab4798edb53c003073b94f92f3" role="group">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="de-card-main">
-<input type="hidden" value="false" class="disableQuickviewHoverBtn">
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="thumb-link" href="./" title="" data-pid="999DE00000104">
-<div class="de-cropped-image-wrapper animated slow fadeIn has-hover-image  on-load" style="background-color: #FAFAFA"><!-- dwMarker="product" dwContentID="ab4798edb53c003073b94f92f3" -->
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEX///+nxBvIAAAACklEQVQIHWNgAAAAAgABz8g15QAAAABJRU5ErkJggg==" data-src="https://static.ticimax.cloud/74521/uploads/urunresimleri/anti-aging-argireline-peptide-face-cre-b4c0d-.png" alt="" width="460" height="460" role="presentation" class="plp-image-hover lazyload">
-
-<img src="https://static.ticimax.cloud/74521/uploads/urunresimleri/anti-aging-argireline-peptide-face-cre-b4c0d-.png" alt="" role="presentation" class="hover-image" width="460" height="460" loading="lazy">
-
-
-
-<!-- product badge image -->
-<div class="product-badge-wrapper">
-
-
-<!-- ====== NEW BADGE ======== -->
-
-
-<!-- product Marketing label -->
-
-<div class="de-marketing-badge">
-Serum
-</div>
-
-</div>
-
-
-
-
-</div>
-
-
-<div class="de-product-detail">
-
-
-
-
-
-<span class="low-in-stock empty-span"></span>
-
-
-
-
-<div class="de-product-title animated slideInUp" id="title-999DE00000104">
-
-<div class="name productname-text" title="Ürüne git: ANTI AGING ARGIRELINE PEPTIDE FACE CREAM" id="product-id-999DE00000104" style="-webkit-box-orient: vertical;">
-
-
-ANTI AGING ARGIRELINE PEPTIDE FACE CREAM
-
-
-</div>
-
-<div class="price">
-
-
-
-
-
-
-<span class="de-product-price">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<span name="price-999DE00000104" id="product-price-999DE00000104">
-
-$90.00 <span aria-hidden="true">-</span> <span class="sr-only">ile</span> $134.00
-
-</span>
-
-
-
-
-
-
-
-
-
-
-</span>
-
-
-
-</div>
-
-</div>
-
-</div>
-</a>
-
-<div class="de-card-bottom">
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="pr-rating-wrapper">
-
-<a href="./" class="pr-main-container">
-
-    
-    
-        <div id="category-snippet-999DE00000104" class="pr-category-snippet" data-pr-plp-component="{" enable_client_side_structured_data":false,"api_key":"8e93b1cf-81e3-4447-ab06-b9c7bfc4f3b4","locale":"en_us","merchant_group_id":"940993610","merchant_id":"639428907","style_sheet":"="" on="" demandware.static="" sites-aromatherapica_us-site="" -="" en_us="" v1786784877203="" css="" powerreview-override.bundle.css","page_id":"999de00000104","components":{"categorysnippet":"category-snippet-999de00000104"}}"=""></div>
-    
-
-</a>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="js-quick-shop-wrapper de-quick-shop has-promo">
-<form action="./" method="post" id="dwfrm_product_addtocart_d0hromerpciz" class="js-quick-add-form de-inner">
-
-
-<div class="de-quick-add-inner">
-
-<div class="quick-add-dropdown">
-<!-- Size Dropdown -->
-
-
-</div>
-
-</div>
-
-
-</form>
-</div>
-
-<div id="a2c-error" class="callout alert"></div>
-<div class="persistant-add-to-cart">
-
-
-<form action="./" method="post" id="dwfrm_product_addtocart_d0mpbwypfiok" class="js-quick-add-form">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-        
-            
-            
-            
-
-
-
-    
-    
-    <input type="hidden" name="cartAction" value="add">
-    <input type="hidden" name="pid" id="sppid-999DE00000104" value="812343032781">
-    <input type="hidden" name="Quantity" id="spquantity-999DE00000104" value="1">
-    <input type="hidden" name="product-name" value="ANTI AGING ARGIRELINE PEPTIDE FACE CREAM">
-    <input type="hidden" name="listType" id="listType" value="null">
-	<input type="hidden" name="listName" id="listName" value="null">
-	
-	 
-	 <div class="product-add-to-cart">
-        <div id="a2c-error" aria-live="assertive" class="callout alert quantity-exceeded hide"></div>
-    </div>
-	
-    
-    
-    
-        
-    
-    <button type="submit" title="Sepete Ekle" aria-label="Sepete Ekle" class="js-afterpay-price js-add-to-cart" id="add-to-cart" data-id="button-tile-add-to-cart-812343032781" data-productid="812343032781" data-instock="in-stock" data-price="90.0" data-replenishable="YES">
-        <span class="de-btn-text">Sepete Ekle </span>
-        
-        <span class="de-btn-overlay"></span>
-    </button>
-
-
-<input type="hidden" name="csrf_token" value="gJOI_9E0_rbHwxCGa1WzF9DZ_FgjwIXhzV_bEwjkFWhjSoOUgNbb51_Tx_xnJ0JzmYyjWUQC-suPDyMO-q4UQeyGqEt4gm2ToroBDuhNFMm-Ji2txn8xaF_bxk2oX03c522p6ZxhVRAJnVgcC9h_oqG16Aek4SsejW5sAxgrIUJ79T2WCdI=">
-
-
-
-
-
-</form>
-
-</div>
-
-</div>
-
-
-
-
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div id="create-wishlist-cntr" class="reveal no-border" data-reveal="" data-animation-in="fade-in">
-    <button class="close-button" data-close="" aria-label="Pencereyi kapat" type="button">
-        <span aria-hidden="true"><i class="icon-close"></i></span>
-    </button>
-
-    <div class="modal-body">
-        
-    </div>
-</div>
-
-
-
-
-
-<div id="add-wishlist-cntr" class="reveal no-border" data-reveal="" data-animation-in="fade-in">
-    <button class="close-button" data-close="" aria-label="Pencereyi kapat" type="button">
-        <span aria-hidden="true"><i class="icon-close"></i></span>
-    </button>
-
-    <div class="modal-body">
-        
-    </div>
-</div>
-
-</div>
-
-
-<div class="product-tile-container swiper-slide" data-product-index="6">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="js-product-card de-product-card redesign-product-card de-featured-life-item" data-colors-to-show="null" data-trigger="scroll" aria-labelledby="product-id-999DE00000100" id="c3edd4c0c18f57d85915f1aedc" role="group">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="de-card-main">
-<input type="hidden" value="false" class="disableQuickviewHoverBtn">
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="thumb-link" href="./" title="" data-pid="999DE00000100">
-<div class="de-cropped-image-wrapper animated slow fadeIn has-hover-image  on-load" style="background-color: #FAFAFA"><!-- dwMarker="product" dwContentID="c3edd4c0c18f57d85915f1aedc" -->
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEX///+nxBvIAAAACklEQVQIHWNgAAAAAgABz8g15QAAAABJRU5ErkJggg==" data-src="https://static.ticimax.cloud/74521/uploads/urunresimleri/nemlendirici-gul-kremi-4b-a95.png" alt="" width="460" height="460" role="presentation" class="plp-image-hover lazyload">
-
-<img src="https://static.ticimax.cloud/74521/uploads/urunresimleri/nemlendirici-gul-kremi-4b-a95.png" alt="" role="presentation" class="hover-image" width="460" height="460" loading="lazy">
-
-
-
-<!-- product badge image -->
-<div class="product-badge-wrapper">
-
-
-<!-- ====== NEW BADGE ======== -->
-
-
-<!-- product Marketing label -->
-
-<div class="de-marketing-badge">
-Bakım Ürünü
-</div>
-
-</div>
-
-
-
-
-</div>
-
-
-<div class="de-product-detail">
-
-
-
-
-
-<span class="low-in-stock empty-span"></span>
-
-
-
-
-<div class="de-product-title animated slideInUp" id="title-999DE00000100">
-
-<div class="name productname-text" title="Ürüne git: NEMLENDİRİCİ GÜL KREMİ" id="product-id-999DE00000100" style="-webkit-box-orient: vertical;">
-
-
-NEMLENDİRİCİ GÜL KREMİ
-
-
-</div>
-
-<div class="price">
-
-
-
-
-
-
-<span class="de-product-price">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="price-sales">
-
-<span class="sr-only">güncel fiyat</span>
-
-<span name="price-812343032392">
-
-₺375
-
-</span>
-
-
-</span>
-
-
-
-
-
-
-
-
-
-</span>
-
-
-
-</div>
-
-</div>
-
-</div>
-</a>
-
-<div class="de-card-bottom">
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="pr-rating-wrapper">
-
-<a href="./" class="pr-main-container">
-
-    
-    
-        <div id="category-snippet-999DE00000100" class="pr-category-snippet" data-pr-plp-component="{" enable_client_side_structured_data":false,"api_key":"8e93b1cf-81e3-4447-ab06-b9c7bfc4f3b4","locale":"en_us","merchant_group_id":"940993610","merchant_id":"639428907","style_sheet":"="" on="" demandware.static="" sites-aromatherapica_us-site="" -="" en_us="" v1786784877203="" css="" powerreview-override.bundle.css","page_id":"999de00000100","components":{"categorysnippet":"category-snippet-999de00000100"}}"=""></div>
-    
-
-</a>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="js-quick-shop-wrapper de-quick-shop ">
-<form action="./" method="post" id="dwfrm_product_addtocart_d0zrotmjvjjm" class="js-quick-add-form de-inner">
-
-
-<div class="de-quick-add-inner">
-
-<div class="quick-add-dropdown">
-<!-- Size Dropdown -->
-
-
-</div>
-
-</div>
-
-
-</form>
-</div>
-
-<div id="a2c-error" class="callout alert"></div>
-<div class="persistant-add-to-cart">
-
-
-<form action="./" method="post" id="dwfrm_product_addtocart_d0tvwyywkxaf" class="js-quick-add-form">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-        
-            
-            
-            
-
-
-
-    
-    
-    <input type="hidden" name="cartAction" value="add">
-    <input type="hidden" name="pid" id="sppid-999DE00000100" value="812343032392">
-    <input type="hidden" name="Quantity" id="spquantity-999DE00000100" value="1">
-    <input type="hidden" name="product-name" value="NEMLENDİRİCİ GÜL KREMİ">
-    <input type="hidden" name="listType" id="listType" value="null">
-	<input type="hidden" name="listName" id="listName" value="null">
-	
-	 
-	 <div class="product-add-to-cart">
-        <div id="a2c-error" aria-live="assertive" class="callout alert quantity-exceeded hide"></div>
-    </div>
-	
-    
-    
-    
-        
-    
-    <button type="submit" title="Sepete Ekle" aria-label="Sepete Ekle" class="js-afterpay-price js-add-to-cart" id="add-to-cart" data-id="button-tile-add-to-cart-812343032392" data-productid="812343032392" data-instock="in-stock" data-price="76.0" data-replenishable="YES">
-        <span class="de-btn-text">Sepete Ekle </span>
-        
-        <span class="de-btn-overlay"></span>
-    </button>
-
-
-<input type="hidden" name="csrf_token" value="rNsccpgXR4nDUHXKq4rjXiC4O8SND8pg33uZS-OVRZr-5IzIX74pbAGz8XNCB4_Sb13p6gPnUoPiJ7boWIF9SSfKDnJHAJRi7rwJwg1G65uxsGkPOBAtPn3QuCAupMMsl9o1BfIIV8EvRo3FlupHr_LQaXeD1q9FHOTK3siNzXeIXAs1nwE=">
-
-
-
-
-
-</form>
-
-</div>
-
-</div>
-
-
-
-
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div id="create-wishlist-cntr" class="reveal no-border" data-reveal="" data-animation-in="fade-in">
-    <button class="close-button" data-close="" aria-label="Pencereyi kapat" type="button">
-        <span aria-hidden="true"><i class="icon-close"></i></span>
-    </button>
-
-    <div class="modal-body">
-        
-    </div>
-</div>
-
-
-
-
-
-<div id="add-wishlist-cntr" class="reveal no-border" data-reveal="" data-animation-in="fade-in">
-    <button class="close-button" data-close="" aria-label="Pencereyi kapat" type="button">
-        <span aria-hidden="true"><i class="icon-close"></i></span>
-    </button>
-
-    <div class="modal-body">
-        
-    </div>
-</div>
-
-</div>
-
-
-</div>
-<div class="navigation-controls">
-<button class="swiper-button-prev section2-swiper-btn-prev nav-control-btn" aria-label="previous slide" aria-hidden="true" tabindex="-1">
-
-
-
-<span class="svg-icon">
-    <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M13 6.75C13.4142 6.75 13.75 6.41421 13.75 6C13.75 5.58579 13.4142 5.25 13 5.25V6.75ZM0.46967 5.46967C0.176777 5.76256 0.176777 6.23744 0.46967 6.53033L5.24264 11.3033C5.53553 11.5962 6.01041 11.5962 6.3033 11.3033C6.59619 11.0104 6.59619 10.5355 6.3033 10.2426L2.06066 6L6.3033 1.75736C6.59619 1.46447 6.59619 0.989593 6.3033 0.696699C6.01041 0.403806 5.53553 0.403806 5.24264 0.696699L0.46967 5.46967ZM13 5.25H1V6.75H13V5.25Z" fill="#45474A"></path>
-    </svg>
-</span>
-
-</button>
-<button class="swiper-button-next section2-swiper-btn-next nav-control-btn" aria-label="next slide" aria-hidden="true" tabindex="-1">
-
-
-
-<span class="svg-icon">
-    <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 5.25C0.585786 5.25 0.25 5.58579 0.25 6C0.25 6.41421 0.585786 6.75 1 6.75L1 5.25ZM13.5303 6.53033C13.8232 6.23744 13.8232 5.76256 13.5303 5.46967L8.75736 0.696699C8.46447 0.403806 7.98959 0.403806 7.6967 0.696699C7.40381 0.989593 7.40381 1.46447 7.6967 1.75736L11.9393 6L7.6967 10.2426C7.40381 10.5355 7.40381 11.0104 7.6967 11.3033C7.98959 11.5962 8.46447 11.5962 8.75736 11.3033L13.5303 6.53033ZM1 6.75L13 6.75V5.25L1 5.25L1 6.75Z" fill="#45474A"></path>
-    </svg>
-</span>
-
-</button>
-</div>
-</div>
-
-<div class="category-page-link-wrapper">
-<a href="./" class="shop-all-cta">
-<span>Çok Satanları İncele</span>
-</a>
-</div>
-</div>
-
-<script language="javascript" type="text/javascript">
-var homepagesectiontwoProductCache_1 = {"product":[{"id":"812343032064","productVariantID":"812343032064","name":"Lavanta Uçucu Yağı 15 ml","brand":"","price":39,"category":"Shop","collectionName":null,"subCategory":"Skincare","subSubCategory":"Serums","productOutOfStock":"IN_STOCK","productColor":null,"variant":"30 ML/1 FL OZ","productAutoReplen":"YES","productType":"Product","customProductType":"Product","img_url":"./","productNumReviews":1930,"productStarRating":4.6,"customSize":"30 ML/1 FL OZ","listType":"Homepage Recommender","listName":"Best Sellers","position":1,"lastChance":"false","new":"false","productLiveDate":null},{"id":"856556004180","productVariantID":"856556004180","name":"Jojoba Yağı 15 ml","brand":"","price":56,"category":"Shop","collectionName":null,"subCategory":"Skincare","subSubCategory":"Serums","productOutOfStock":"IN_STOCK","productColor":null,"variant":"50 ML","productAutoReplen":"YES","productType":"Product","customProductType":"Product","img_url":"./","productNumReviews":2375,"productStarRating":4.6,"customSize":"50 ML","listType":"Homepage Recommender","listName":"Best Sellers","position":2,"lastChance":"false","new":"false","productLiveDate":null},{"id":"999DE00000103","productVariantID":"856556004739","name":"Jojoba & Badem Hacimlendirici Şampuan 400ml","brand":"","price":72,"category":"Shop","collectionName":null,"subCategory":"Skincare","subSubCategory":"Moisturizers","productOutOfStock":"IN_STOCK","size":"50 ML/1.69 FL OZ","variant":"50 ML/1.69 FL OZ","productColor":null,"productAutoReplen":"YES","productType":"Product","customProductType":"Product","img_url":"./","productNumReviews":3482,"productStarRating":4.5,"customSize":null,"listType":"Homepage Recommender","listName":"Best Sellers","position":3,"lastChance":"false","new":"false","productLiveDate":null},{"id":"812343034358","productVariantID":"812343034358","name":"Üzüm Çekirdeği Saç Kremi 250ml","brand":"","price":79,"category":"Shop","collectionName":null,"subCategory":"Skincare","subSubCategory":"Serums","productOutOfStock":"IN_STOCK","productColor":null,"variant":"28 ML","productAutoReplen":"YES","productType":"Product","customProductType":"Product","img_url":"/on/demandware.static/-/Sites-itemmaster_aromatherapica/default/dw6a3f3061/products/images/Skincare/Serum/812343034358-C-Firma/C-Firma-PDP_Carousel/C-Firma_1.jpg","productNumReviews":1538,"productStarRating":4.4,"customSize":"28 ML","listType":"Homepage Recommender","listName":"Best Sellers","position":4,"lastChance":"false","new":"false","productLiveDate":null},{"id":"999DE00000104","productVariantID":"812343032781","name":"ANTI AGING ARGIRELINE PEPTIDE FACE CREAM","brand":"","price":90,"category":"Shop","collectionName":null,"subCategory":"Skincare","subSubCategory":"Serums","productOutOfStock":"IN_STOCK","size":"30 ML/1 FL OZ","variant":"30 ML/1 FL OZ","productColor":null,"productAutoReplen":"YES","productType":"Product","customProductType":"Product","img_url":"./","productNumReviews":340,"productStarRating":4.5,"customSize":null,"listType":"Homepage Recommender","listName":"Best Sellers","position":5,"lastChance":"false","new":"false","productLiveDate":null},{"id":"999DE00000100","productVariantID":"812343032392","name":"NEMLENDİRİCİ GÜL KREMİ","brand":"","price":76,"category":"Shop","collectionName":null,"subCategory":"Skincare","subSubCategory":"Masks + Treatments","productOutOfStock":"IN_STOCK","size":"30 ML/1 FL OZ","variant":"30 ML/1 FL OZ","productColor":null,"productAutoReplen":"YES","productType":"Product","customProductType":"Product","img_url":"./","productNumReviews":267,"productStarRating":4.6,"customSize":"Available sizes: 30 ml / 1 fl oz, 10 ml / .33 fl oz","listType":"Homepage Recommender","listName":"Best Sellers","position":6,"lastChance":"false","new":"false","productLiveDate":null}]};
-</script>
-
-</div>
-
-</div>
-<div class="hp-section-row">
-
-	 
-
-	
-</div>
-<div class="hp-section-row">
-
-	 
-
-
-	
-
-
-
-<div id="homepage-section-3">
-
-
-
-
-
-
-
-<style>
-.homepage-section-3__1 {
-background-image: url(images/HP_DE-Difference_Background_Desktop_updated-20260209-110935.jpg);
-}
-</style>
-<div class="homepage-section-3__1 promo-creative" role="group" aria-labelledby="section-3-heading-1" data-href="./" data-creative="Skin Philosophy">
-
-
-
-
-<div class="de-section-3_1-Content">
-
-<p class="de-heading-3_1" id="section-3-heading-1">
-<span>Aromatherapica Farkı</span>
-</p>
-
-
-<p class="de-description-3_1">
-<style type="text/css">
-    .homepage-section-3__1 {
-        background-size: 100%;
-        display: block;
-        padding: 7% 0 0 4%;
-    }
-    .homepage-section-3__1 .de-heading-3_1 {
-        text-transform: none;
-        font-size: 29px;
-    }
-    .homepage-section-3__1 .de-section-3_1-Content {
-        margin: 0;
-        justify-content: left;
-        align-items: flex-start;
-    }
-    .homepage-section-3__1 .de-description-3_1 {
-        text-align: left;
-        font-size: 19px;
-    }
-    .homepage-section-3__1 .hp-section3-button {
-        margin-top: 4rem;
-    }
-
-    .homepage-section-3__1 .de-heading-3_1,
-    .homepage-section-3__1 .de-description-3_1 {
-        font-family: Brown;
-        font-weight: 400;
-    }
-    @media screen and (max-width: 640px) {
-        .homepage-section-3__1 {
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-            margin-bottom: 0;
-            display: flex;
-            justify-content: left;
-            align-items: center;
-            padding: 0;
-            padding-left: 7%;
-        }
-        .homepage-section-3__1 {
-            background-image: url("images/HP_DE-Difference_Background_Mobile_updated-20260209-110935.jpg");
-        }
-    }
-    @media screen and (min-width: 640px) {
-        .homepage-section-3__1 {
-            height: 100%;
-        }
-        .homepage-section-3__1 .de-heading-3_1 {
-            font-size: 45px;
-        }
-        .homepage-section-3__1 .de-description-3_1 {
-            font-size: 23px;
-            line-height: 120%;
-        }
-        .homepage-section-3__1 .hp-section3-button {
-            margin-top: 6rem;
-        }
-    }
-</style>
-Aromatherapica,<br class="show-for-small-only">
-etkinlik ile<br class="hide-for-small-only">
-doğallığın aynı<br class="show-for-small-only">
-şişede buluşabileceğine inanır.<br>
-Cilde uyumlu formüllerimiz,<br class="show-for-small-only">
-etkili düzeyde saf<br class="hide-for-small-only">
-levels of<br class="show-for-small-only">
-aktif bileşenlerle hazırlanır;<br>
-kolayca emilir ve işe yarar.
-</p>
-
-
-<a href="./" class="hp-section3-button section3-learnmore-btn" data-creativename="Skin Philosophy" data-promoid="SKIN1" data-promotionname="Skin Philosophy">
-<span class="ctaText">daha fazlası</span>
-</a>
-
-</div>
-</div>
-
-
-
-
-
-
-
-
-<div class="homepage-section-3__2 " role="group" aria-labelledby="section-3-heading-2" data-href="collections/skincare/">
-<style>
-.homepage-section-3__2 {
-background: url(images/HP_Meet-MVP_Background_Desktop_updated-20260209-111004.jpg);
-background-position: center;
-/* Center the image */
-background-repeat: no-repeat;
-/* Do not repeat the image */
-background-size: 100% 100%;
-}
-</style>
-<div class="de-section-3_2-Content">
-<div class="tag-holder">
-
-<p class="tag-text">Öne Çıkan Ürünler</p>
-
-</div>
-
-
-<p class="de-description-3_2">
-<!-- homepage-section-three-2 MVPs-->
-<style>
-    .tag-holder {
-        align-items: flex-start;
-        letter-spacing: 0;
-    }
-
-    .de-section-3_2-Content {
-        margin: 0;
-    }
-    #homepage-section-3 {
-        padding: 0;
-    }
-
-    #homepage-section-3 .grid-2-container {
-        margin-left: 0;
-    }
-
-    #homepage-section-3 .grid-2-container p {
-        font-size: 19px;
-        margin-left: 0;
-    }
-
-    #homepage-section-3 .tag-text {
-        font-size: 1.3em;
-        font-weight: 900;
-        text-transform: none;
-        background-color: transparent;
-        letter-spacing: -0.72px;
-        font-family: BrownBold, "sans-serif";
-        padding: 0;
-    }
-
-    #section-3-2-button {
-        align-self: flex-start;
-    }
-
-    .hp-section3-button .ctaText {
-        padding: 0;
-    }
-
-    .hp-section3-button {
-        padding: 5px 10px;
-        height: 30px;
-        width: 23rem;
-    }
-    #homepage-section-3 .tag-text {
-        font-size: 29px;
-    }
-    @media (min-width: 768px) {
-        .de-section-3_2-Content {
-            text-align: left;
-            padding: 0;
-        }
-
-        #homepage-section-3 .grid-2-container {
-            padding-bottom: 5%;
-        }
-
-        #homepage-section-3 .grid-2-container p {
-            font-size: 23px;
-        }
-
-        #homepage-section-3 .tag-text {
-            font-size: 45px;
-        }
-
-        #section-3-2-button {
-            align-self: left;
-        }
-        .homepage-section-3__2 {
-            height: 100%;
-            display: block;
-            padding: 7% 0 0 4%;
-            background-size: contain;
-        }
-    }
-    #homepage-section-3 .tag-text {
-        font-family: Brown;
-        font-weight: 400;
-    }
-    @media screen and (max-width: 640px) {
-        .homepage-section-3__2 {
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-            justify-content: flex-start;
-            align-items: flex-start;
-        }
-        #homepage-section-3 .de-section-3_2-Content {
-            padding-left: 7%;
-            padding-top: 7%;
-        }
-        .homepage-section-3__2 {
-            background-image: url("images/HP_Meet-MVP_Background_Mobile_updated-20260209-111004.jpg");
-        }
-    }
-</style>
-
-</p><div class="grid-2-container">
-    <p>
-        Aromatherapica’yı sevilen bir marka yapan<br class="show-for-small-only">
-        Aromatherapica<br class="hide-for-small-only">
-        öne çıkan formüller — sade,<br class="show-for-small-only">
-        etkili, ödün vermeyen.
-    </p>
-</div>
-
-<!-- Aromatherapica: alternate section copy to be supplied -->
-<p></p>
-
-
-<a href="./" class="hp-section3-button section3-getstarted-btn" id="section-3-2-button" data-creativename="Routine Builder" data-promoid="ROUTINE1" data-promotionname="Routine Builder">
-<span class="ctaText">TÜM CİLT BAKIMINI İNCELE</span>
-</a>
-
-</div>
-</div>
-
-
-
-</div>
- 
-	
-</div>
-<div class="hp-section-row">
-
-	 
-
-
-	
-
-
-
-<div id="homepage-section-4">
-
-
-
-
-
-
-
-<div class="homepage-section-4__1 promo-creative" style="background-color:#fafafa;" role="group" aria-labelledby="section4-heading-1" data-href="collections/best-sellers/" data-creative="HP Promo Grid:  HP-Promo-Kamo-Puffer-section-four-1">
-<div class="de-section-4_1-Content">
-
-<header>
-<h2 class="hp-section4-heading" id="section4-heading-1">Doğallıkta esneklik</h2>
-</header>
-
-
-<p class="hp-section4-description">
-<style>
-    .terms-text a {
-        font-family: "BrownRegular";
-        font-size: 0.8em;
-        text-decoration: none;
-        font-weight: normal;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        border-bottom: 1px solid;
-        line-height: 1.2;
-        display: inline-block;
-    }
-
-    @media (min-width: 768px) {
-        .hp-section4-button {
-            margin: 12% 0;
-        }
-    }
-
-    @media (min-width: 1140px) {
-        .terms-text a {
-            font-size: 1em;
-        }
-    }
-
-    @media (max-width: 640px) {
-        #homepage-section-4 {
-            flex-direction: column;
-        }
-    }
-</style>
-
-New Kamo Drops is super-flexible: A full-coverage foundation, concealer, and tinted moisturizer? Yes, yes, and yes. Explore new Kamo Drops with our sample card, free with orders $110+.
-<br><br class="show-for-small-only">
-
-<a href="#" class="promotion-bar-link js-open-sh-popup" data-popup-name="skinny-banner-popup-08-11-2026_KamoTravelBag_header">
-    </a></p><p class="terms-text"><a href="#" class="promotion-bar-link js-open-sh-popup" data-popup-name="skinny-banner-popup-08-11-2026_KamoTravelBag_header">Koşullar geçerlidir.</a></p><a href="#" class="promotion-bar-link js-open-sh-popup" data-popup-name="skinny-banner-popup-08-11-2026_KamoTravelBag_header">
-</a>
-<p></p>
-
-
-<div class="hp-section4-button">
-<a href="./" class="section4-shop-now-btn" data-creativename="Smoothie Bag 1" data-promoid="Shop Now" data-promotionname="Shop Now" aria-label="Shop Shop Now" tabindex="0">
-<span class="ctaText">Hemen Al</span>
-</a>
-</div>
-
-</div>
-</div>
-
-
-
-
-
-
-
-
-<div class="homepage-section-4__2 promo-creative" style="background-color:#fafafa;" data-href="collections/best-sellers/" data-creative="HP Promo Grid: HP-Promo-Kamo-Puffer-section-four-1">
-<div class="de-section-4_2-Content">
-
-<video autoplay="" loop="" muted="" playsinline="" class="promo-video" preload="metadata">
-<source data-src="/on/demandware.static/-/Sites-aromatherapica_us-Library/default/dwc919581a/contentassetimages/2026/grid/DE074_Kamo_GWP_Site_HpCarousel_BigSquare_PLP.mp4" type="video/mp4">
-</video>
-<div class="video-overlay">
-<button id="play-pause-button" type="button" class="no-redirect play-pause-button" aria-label="Videoyu oynat">
-<i class="fa fa-pause play-pause-icon no-redirect"></i>
-</button>
-<button id="mute-unmute-btn" class="no-redirect mute-unmute-btn " aria-label="Sesi kapat">
-<i class="mute-unmute-icon fa fa-volume-off no-redirect"></i>
-</button>
-</div>
-
-
-</div>
-</div>
-
-
-
-</div>
- 
-	
-</div>
-<div class="hp-section-row">
-
-	 
-
-	
-</div>
-<div class="hp-section-row">
-
-	 
-
-	
-</div>
-<div class="hp-section-row">
-
-	 
-
-	
-</div>
-
-</main>
+  </article>
+</li></ul>
+</div></main>
 
 
 
@@ -6475,19 +2136,19 @@ New Kamo Drops is super-flexible: A full-coverage foundation, concealer, and tin
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 1" src="images/IMG_0088.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 1" src="../../images/IMG_0088.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 2" src="images/IMG_1135.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 2" src="../../images/IMG_1135.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 3" src="images/IMG_3349.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 3" src="../../images/IMG_3349.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
@@ -6499,115 +2160,115 @@ New Kamo Drops is super-flexible: A full-coverage foundation, concealer, and tin
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 5" src="images/IMG_3363.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 5" src="../../images/IMG_3363.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 6" src="images/IMG_3364.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 6" src="../../images/IMG_3364.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 7" src="images/IMG_3366.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 7" src="../../images/IMG_3366.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 8" src="images/IMG_3390.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 8" src="../../images/IMG_3390.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 9" src="images/IMG_3425.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 9" src="../../images/IMG_3425.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 10" src="images/IMG_3447.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 10" src="../../images/IMG_3447.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 11" src="images/IMG_3448.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 11" src="../../images/IMG_3448.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 12" src="images/IMG_3459.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 12" src="../../images/IMG_3459.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 13" src="images/IMG_3461.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 13" src="../../images/IMG_3461.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 14" src="images/IMG_3462.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 14" src="../../images/IMG_3462.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 15" src="images/IMG_3463.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 15" src="../../images/IMG_3463.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 16" src="images/IMG_3464.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 16" src="../../images/IMG_3464.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 17" src="images/IMG_3465.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 17" src="../../images/IMG_3465.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 18" src="images/IMG_3466.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 18" src="../../images/IMG_3466.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 19" src="images/IMG_3467.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 19" src="../../images/IMG_3467.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 20" src="images/IMG_3469.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 20" src="../../images/IMG_3469.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 21" src="images/IMG_3495.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 21" src="../../images/IMG_3495.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 22" src="images/IMG_4481.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 22" src="../../images/IMG_4481.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 23" src="images/IMG_4671.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 23" src="../../images/IMG_4671.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
@@ -6619,13 +2280,13 @@ New Kamo Drops is super-flexible: A full-coverage foundation, concealer, and tin
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 25" src="images/IMG_7131.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 25" src="../../images/IMG_7131.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 26" src="images/Steven_Selfie_With_Product_02.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 26" src="../../images/Steven_Selfie_With_Product_02.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
@@ -6641,19 +2302,19 @@ New Kamo Drops is super-flexible: A full-coverage foundation, concealer, and tin
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 1" src="images/IMG_0088.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 1" src="../../images/IMG_0088.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 2" src="images/IMG_1135.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 2" src="../../images/IMG_1135.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 3" src="images/IMG_3349.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 3" src="../../images/IMG_3349.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
@@ -6665,115 +2326,115 @@ New Kamo Drops is super-flexible: A full-coverage foundation, concealer, and tin
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 5" src="images/IMG_3363.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 5" src="../../images/IMG_3363.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 6" src="images/IMG_3364.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 6" src="../../images/IMG_3364.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 7" src="images/IMG_3366.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 7" src="../../images/IMG_3366.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 8" src="images/IMG_3390.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 8" src="../../images/IMG_3390.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 9" src="images/IMG_3425.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 9" src="../../images/IMG_3425.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 10" src="images/IMG_3447.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 10" src="../../images/IMG_3447.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 11" src="images/IMG_3448.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 11" src="../../images/IMG_3448.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 12" src="images/IMG_3459.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 12" src="../../images/IMG_3459.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 13" src="images/IMG_3461.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 13" src="../../images/IMG_3461.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 14" src="images/IMG_3462.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 14" src="../../images/IMG_3462.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 15" src="images/IMG_3463.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 15" src="../../images/IMG_3463.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 16" src="images/IMG_3464.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 16" src="../../images/IMG_3464.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 17" src="images/IMG_3465.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 17" src="../../images/IMG_3465.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 18" src="images/IMG_3466.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 18" src="../../images/IMG_3466.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 19" src="images/IMG_3467.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 19" src="../../images/IMG_3467.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 20" src="images/IMG_3469.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 20" src="../../images/IMG_3469.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 21" src="images/IMG_3495.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 21" src="../../images/IMG_3495.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 22" src="images/IMG_4481.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 22" src="../../images/IMG_4481.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 23" src="images/IMG_4671.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 23" src="../../images/IMG_4671.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
@@ -6785,13 +2446,13 @@ New Kamo Drops is super-flexible: A full-coverage foundation, concealer, and tin
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 25" src="images/IMG_7131.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 25" src="../../images/IMG_7131.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
 <li class="marequee-img-wrapper">
 <div class="footer-insta-link">
-<img class="socail-user-img" alt="Aromatherapica Instagram görseli 26" src="images/Steven_Selfie_With_Product_02.jpg" width="217" height="217" loading="lazy">
+<img class="socail-user-img" alt="Aromatherapica Instagram görseli 26" src="../../images/Steven_Selfie_With_Product_02.jpg" width="217" height="217" loading="lazy">
 </div>
 </li>
 
@@ -6923,7 +2584,7 @@ New Kamo Drops is super-flexible: A full-coverage foundation, concealer, and tin
 <div class="footer-section2">
 <!-- Footer Icon -->
 <div class="de-logo-icon-wrapper de-footer-block medium-3" style="background-color:#E5F5FC;">
-<a href="./" class="footer-logo-link w-100">
+<a href="../../" class="footer-logo-link w-100">
 
 
 
@@ -7127,7 +2788,7 @@ New Kamo Drops is super-flexible: A full-coverage foundation, concealer, and tin
 <div class="video-content-wrapper">
 
 <div class="promo-video-footer">
-<a href="./" class="social-site-link h-100">
+<a href="../../" class="social-site-link h-100">
 
 
 
@@ -7308,7 +2969,7 @@ Lavanta Uçucu Yağı 15 ml
 
     .de-submenu #navItem-Holiday-GiftGuide {
         background: transparent
-            url("images/Holiday-2025_Gift_Guide_Navigation_Highlight.gif")
+            url("../../images/Holiday-2025_Gift_Guide_Navigation_Highlight.gif")
             center no-repeat;
         background-size: cover;
         background-position: -13px 111%;
@@ -7336,29 +2997,29 @@ Lavanta Uçucu Yağı 15 ml
         </div>
         <ul class="submenu-container" aria-labelledby="footerlist-1" role="group" id="footerlist-1-menus">
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Nemlendiriciler</a>
+                <a href="../../" class="footer-menu-item-link">Nemlendiriciler</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Serumlar</a>
+                <a href="../../" class="footer-menu-item-link">Serumlar</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Maskeler ve Bakım</a>
+                <a href="../../" class="footer-menu-item-link">Maskeler ve Bakım</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Temizleyiciler</a>
+                <a href="../../" class="footer-menu-item-link">Temizleyiciler</a>
             </li>
             <!-- <li class="footer-menu-item">
                 <a 
-                    href="./"
+                    href="../../"
                     class="footer-menu-item-link"
                     >Güneş Koruma</a
                 >
             </li> -->
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Göz ve Dudak</a>
+                <a href="../../" class="footer-menu-item-link">Göz ve Dudak</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Seyahat Boyu</a>
+                <a href="../../" class="footer-menu-item-link">Seyahat Boyu</a>
             </li>
         </ul>
     </div>
@@ -7383,16 +3044,16 @@ Lavanta Uçucu Yağı 15 ml
         </div>
         <ul class="submenu-container" aria-labelledby="footerlist-2" role="group" id="footerlist-2-menus">
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Şampuanlar</a>
+                <a href="../../" class="footer-menu-item-link">Şampuanlar</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Saç Kremleri</a>
+                <a href="../../" class="footer-menu-item-link">Saç Kremleri</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Bakım Ürünleri</a>
+                <a href="../../" class="footer-menu-item-link">Bakım Ürünleri</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Şekillendiriciler</a>
+                <a href="../../" class="footer-menu-item-link">Şekillendiriciler</a>
             </li>
         </ul>
     </div>
@@ -7417,16 +3078,16 @@ Lavanta Uçucu Yağı 15 ml
         </div>
         <ul class="submenu-container" aria-labelledby="footerlist-3" role="group" id="footerlist-3-menus">
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Temizleyiciler</a>
+                <a href="../../" class="footer-menu-item-link">Temizleyiciler</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Losyonlar</a>
+                <a href="../../" class="footer-menu-item-link">Losyonlar</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Peelingler</a>
+                <a href="../../" class="footer-menu-item-link">Peelingler</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Deodorantlar</a>
+                <a href="../../" class="footer-menu-item-link">Deodorantlar</a>
             </li>
         </ul>
     </div>
@@ -7451,16 +3112,16 @@ Lavanta Uçucu Yağı 15 ml
         </div>
         <ul class="submenu-container" aria-labelledby="footerlist-4" role="group" id="footerlist-4-menus">
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Çok Satanlar</a>
+                <a href="../../" class="footer-menu-item-link">Çok Satanlar</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Hediyeler</a>
+                <a href="../../" class="footer-menu-item-link">Hediyeler</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Setler ve Paketler</a>
+                <a href="../../" class="footer-menu-item-link">Setler ve Paketler</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Aromatherapica Ürünleri</a>
+                <a href="../../" class="footer-menu-item-link">Aromatherapica Ürünleri</a>
             </li>
         </ul>
     </div>
@@ -7485,22 +3146,22 @@ Lavanta Uçucu Yağı 15 ml
         </div>
         <ul class="submenu-container" aria-labelledby="footerlist-5" role="group" id="footerlist-5-menus">
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Felsefemiz</a>
+                <a href="../../" class="footer-menu-item-link">Felsefemiz</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Hikâyemiz</a>
+                <a href="../../" class="footer-menu-item-link">Hikâyemiz</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Karışım Rehberi</a>
+                <a href="../../" class="footer-menu-item-link">Karışım Rehberi</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Aromatherapica Blog</a>
+                <a href="../../" class="footer-menu-item-link">Aromatherapica Blog</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Basın</a>
+                <a href="../../" class="footer-menu-item-link">Basın</a>
             </li>
             <!-- <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Gönüllü Geri Çağırma</a>
+                <a href="../../" class="footer-menu-item-link">Gönüllü Geri Çağırma</a>
             </li> -->
         </ul>
     </div>
@@ -7525,22 +3186,22 @@ Lavanta Uçucu Yağı 15 ml
         </div>
         <ul class="submenu-container" aria-labelledby="footerlist-6">
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Bize Ulaşın</a>
+                <a href="../../" class="footer-menu-item-link">Bize Ulaşın</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Mağazalar</a>
+                <a href="../../" class="footer-menu-item-link">Mağazalar</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Kargo ve İade</a>
+                <a href="../../" class="footer-menu-item-link">Kargo ve İade</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Sıkça Sorulan Sorular</a>
+                <a href="../../" class="footer-menu-item-link">Sıkça Sorulan Sorular</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Kariyer</a>
+                <a href="../../" class="footer-menu-item-link">Kariyer</a>
             </li>
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Topluluk İndirimleri</a>
+                <a href="../../" class="footer-menu-item-link">Topluluk İndirimleri</a>
             </li>
             <!-- <li class="footer-menu-item discounts-dropdown">
                 <button
@@ -7599,7 +3260,7 @@ Lavanta Uçucu Yağı 15 ml
                 </ul>
             </li> -->
             <li class="footer-menu-item">
-                <a href="./" class="footer-menu-item-link">Abone ol, kazan</a>
+                <a href="../../" class="footer-menu-item-link">Abone ol, kazan</a>
             </li>
             <li class="footer-menu-item">
                 <a href="javascript:void(0);" class="checkGiftCardBalanceFooter footer-menu-item-link">Hediye Kartı Bakiyesi</a>
@@ -7749,7 +3410,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </style>
 
 
-<script type="text/javascript" src="js/bootstrap.min.js"
+<script type="text/javascript" src="../../js/bootstrap.min.js"
 ></script>
 </dwmarker="content"></div> 
 
@@ -7923,11 +3584,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <ul class="footer-left-bottom-container">
     <li data-de-reveal="lines-masked">
-        <a href="./" class="privacy-page-link">Gizlilik Politikası</a>
+        <a href="../../" class="privacy-page-link">Gizlilik Politikası</a>
     </li>
 
     <li data-de-reveal="lines-masked">
-        <a href="./" class="terms-page-link">Kullanım Koşulları</a>
+        <a href="../../" class="terms-page-link">Kullanım Koşulları</a>
     </li>
 
     <li data-de-reveal="lines-masked">
@@ -8461,7 +4122,7 @@ Aromatherapica</p>
 
 <div class="newsletter-form-field-info newsletter-optin-legalverbiage hide">
 <span class="field-info">
-<div class="terms-condition-text">I agree that Aromatherapica may collect my personal information – including contact information, payment, demographic or behavioral characteristics, technical computer, website usage and social network information or other categories permitted by our <a href="./" class="privacy-policy-link">Gizlilik Politikası</a> – for the purposes of order fulfillment, marketing communications, account maintenance, website personalization &amp; improvement, or other purposes permitted by our Privacy Policy. By visiting our website and by submitting my information, I agree with the <a href="./" class="privacy-policy-link">Gizlilik Politikası</a> – Finansal Teşvikler politikamız dâhil – ve web sitesinin <a href="./" class="terms-link">Kullanım Koşulları</a>.</div>
+<div class="terms-condition-text">I agree that Aromatherapica may collect my personal information – including contact information, payment, demographic or behavioral characteristics, technical computer, website usage and social network information or other categories permitted by our <a href="../../" class="privacy-policy-link">Gizlilik Politikası</a> – for the purposes of order fulfillment, marketing communications, account maintenance, website personalization &amp; improvement, or other purposes permitted by our Privacy Policy. By visiting our website and by submitting my information, I agree with the <a href="../../" class="privacy-policy-link">Gizlilik Politikası</a> – Finansal Teşvikler politikamız dâhil – ve web sitesinin <a href="../../" class="terms-link">Kullanım Koşulları</a>.</div>
 </span>
 </div>
 
@@ -8491,7 +4152,7 @@ Aromatherapica</p>
 
 <div class="newsletter-form-field-info sms-optin-legalverbiage hide">
 <span class="field-info">
-<div class="sms-content-text">By submitting this form, I consent to receive recurring automated promotional and personalized marketing text messages (e.g. cart reminders) from Aromatherapica at the cell number used when signing up. Consent not required to purchase. Reply STOP to cancel or reply HELP for information. Msg frequency varies. Msg &amp; data rates may apply. I agree that the collection and processing of my personal data will be in compliance with the Aromatherapica <a href="./" class="privacy-policy-link">Gizlilik Politikası</a> – Finansal Teşvikler politikamız dâhil – ve Aromatherapica <a href="./" class="terms-link">SMS Kullanım Koşulları</a>.</div>
+<div class="sms-content-text">By submitting this form, I consent to receive recurring automated promotional and personalized marketing text messages (e.g. cart reminders) from Aromatherapica at the cell number used when signing up. Consent not required to purchase. Reply STOP to cancel or reply HELP for information. Msg frequency varies. Msg &amp; data rates may apply. I agree that the collection and processing of my personal data will be in compliance with the Aromatherapica <a href="../../" class="privacy-policy-link">Gizlilik Politikası</a> – Finansal Teşvikler politikamız dâhil – ve Aromatherapica <a href="../../" class="terms-link">SMS Kullanım Koşulları</a>.</div>
 </span>
 </div>
 
@@ -8538,39 +4199,39 @@ Aromatherapica</p>
 
 
 
-<script src="js/jquery-3.6.0.min_1.js" defer=""></script>
-<link rel="stylesheet" href="css/loading-attribute-polyfill.css" media="print" onload="this.media='all'">
+<script src="../../js/jquery-3.6.0.min_1.js" defer=""></script>
+<link rel="stylesheet" href="../../css/loading-attribute-polyfill.css" media="print" onload="this.media='all'">
 <noscript>
 <link rel="stylesheet" href="/on/demandware.static/Sites-aromatherapica_us-Site/-/en_US/v1786784877203/css/loading-attribute-polyfill.css"/>
 </noscript>
 
 
-<script src="js/swiper-bundle.min.js" type="text/javascript" defer=""></script>
-<script src="js/textZoomEvent.js" type="text/javascript" defer=""></script>
-<script src="js/accessibility.js" type="text/javascript" defer=""></script>
-<script src="js/input-mask.js" type="module" defer=""></script>
-<script src="js/jquery-ui.min.js" type="text/javascript" defer=""></script>
-<script src="js/foundation.min.js" type="text/javascript" defer=""></script>
-<script src="js/jquery.nice-select.js" type="text/javascript" defer=""></script>
+<script src="../../js/swiper-bundle.min.js" type="text/javascript" defer=""></script>
+<script src="../../js/textZoomEvent.js" type="text/javascript" defer=""></script>
+<script src="../../js/accessibility.js" type="text/javascript" defer=""></script>
+<script src="../../js/input-mask.js" type="module" defer=""></script>
+<script src="../../js/jquery-ui.min.js" type="text/javascript" defer=""></script>
+<script src="../../js/foundation.min.js" type="text/javascript" defer=""></script>
+<script src="../../js/jquery.nice-select.js" type="text/javascript" defer=""></script>
 
-<script src="js/slick.min.js" type="text/javascript" defer=""></script>
-<script src="js/jquery.validate.min.js" type="text/javascript" defer=""></script>
-<script src="js/foundation.accordion.js" type="text/javascript" defer=""></script>
-<script src="js/jquery.zoom.min.js" defer=""></script>
-<script src="js/owl.carousel.min.js" type="text/javascript" defer=""></script>
+<script src="../../js/slick.min.js" type="text/javascript" defer=""></script>
+<script src="../../js/jquery.validate.min.js" type="text/javascript" defer=""></script>
+<script src="../../js/foundation.accordion.js" type="text/javascript" defer=""></script>
+<script src="../../js/jquery.zoom.min.js" defer=""></script>
+<script src="../../js/owl.carousel.min.js" type="text/javascript" defer=""></script>
 <script type="text/javascript">
 
 (function(){
 window.SessionAttributes = {"DISPLAY_MODAL":null,"WISHLIST_PRODUCT_ID":null,"SHOW_CAPTCHA":null,"SPC_CHKOUTSTEPS":1,"MAX_BONUS_ITEMS":0,"COMPARISON_PRODUCTS":null};
 }());
 </script>
-<script src="js/modernizr.min.js" type="text/javascript" defer=""></script>
-<script src="js/SpritTextJS.min.js" type="text/javascript" defer=""></script>
-<script src="js/selectric.min.js" type="text/javascript" defer=""></script>
-<script src="js/TweenMax.js" type="text/javascript" defer=""></script>
-<script src="js/fancybox.min.js" type="text/javascript" defer=""></script>
-<script src="js/ajaxzip3.js" type="text/javascript" defer=""></script>
-<script src="js/imgAntiDownload.js" type="text/javascript" defer=""></script>
+<script src="../../js/modernizr.min.js" type="text/javascript" defer=""></script>
+<script src="../../js/SpritTextJS.min.js" type="text/javascript" defer=""></script>
+<script src="../../js/selectric.min.js" type="text/javascript" defer=""></script>
+<script src="../../js/TweenMax.js" type="text/javascript" defer=""></script>
+<script src="../../js/fancybox.min.js" type="text/javascript" defer=""></script>
+<script src="../../js/ajaxzip3.js" type="text/javascript" defer=""></script>
+<script src="../../js/imgAntiDownload.js" type="text/javascript" defer=""></script>
 
 
 
@@ -8583,11 +4244,11 @@ window.SitePreferences = {"LISTING_INFINITE_SCROLL":true,"LISTING_REFINE_SORT":t
 }());
 </script>
 
-<script type="text/javascript" src="js/w-adv-13.min.js" defer=""></script>
+<script type="text/javascript" src="../../js/w-adv-13.min.js" defer=""></script>
 
 
-<script src="js/home.js" defer=""></script>
-<script src="js/loading-attribute-polyfill.umd.js" type="text/javascript" defer=""></script>
+<script src="../../js/home.js" defer=""></script>
+<script src="../../js/loading-attribute-polyfill.umd.js" type="text/javascript" defer=""></script>
 
 
 
@@ -8598,7 +4259,7 @@ window.SitePreferences = {"LISTING_INFINITE_SCROLL":true,"LISTING_REFINE_SORT":t
 
 
     
-    <script src="js/ui.js" async=""></script>
+    <script src="../../js/ui.js" async=""></script>
     <script>
        window.POWERREVIEW = {
             api_key: "8e93b1cf-81e3-4447-ab06-b9c7bfc4f3b4",
@@ -8804,7 +4465,7 @@ var newsletterRecieve = "Aromatherapica bültenini şu adreste alacaksınız:";
 
 <script>//common/scripts.isml</script>
 
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="../../js/main.js"></script>
 <script type="text/javascript">
 window.OrdergrooveTrackingUrl = "/on/demandware.store/Sites-aromatherapica_us-Site/en_US/OrderGroove-PurchasePostTracking"
 </script>
@@ -8873,10 +4534,10 @@ function trackPage() {
 /* ]]> */
 // -->
 </script>
-<script type="text/javascript" src="js/dwanalytics-22.2.js" async="async" onload="trackPage()"></script>
+<script type="text/javascript" src="../../js/dwanalytics-22.2.js" async="async" onload="trackPage()"></script>
 <!-- Demandware Active Data (body_end-active_data.js) -->
-<script src="js/dwac-21.7.js" type="text/javascript" async="async"></script><!-- CQuotient Activity Tracking (body_end-cquotient.js) -->
-<script src="js/gretel.min.js" type="text/javascript" async="async"></script>
+<script src="../../js/dwac-21.7.js" type="text/javascript" async="async"></script><!-- CQuotient Activity Tracking (body_end-cquotient.js) -->
+<script src="../../js/gretel.min.js" type="text/javascript" async="async"></script>
 <!-- Demandware Apple Pay -->
 <script type="text/javascript">//<!--
 /* <![CDATA[ */
@@ -8885,12 +4546,12 @@ dw.applepay = {"action":{"cancel":"https:\/\/www.aromatherapica.com\/on\/demandw
 /* ]]> */
 // -->
 </script>
-<script type="text/javascript" src="js/applepay.js" async="true"></script>
+<script type="text/javascript" src="../../js/applepay.js" async="true"></script>
 
 
-<script defer="" type="text/javascript" src="js/checkout.js"></script>
+<script defer="" type="text/javascript" src="../../js/checkout.js"></script>
 <!-- Aromatherapica: sabit ust menunun yer ayirma duzeltmesi -->
-<script src="js/layout-fix.js"></script>
+<script src="../../js/layout-fix.js"></script>
 <!-- Aromatherapica yonetim paneli: logoya 4 kez tiklayin -->
-<script src="js/admin-panel.js"></script>
+<script src="../../js/admin-panel.js"></script>
 </body></html>

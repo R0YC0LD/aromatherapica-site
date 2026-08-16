@@ -791,8 +791,8 @@ switch (gtCurPage) {
                 if(document.getElementsByClassName('de-breadcrumb').length > 0){
                     $pageSubCategory = document.getElementsByClassName('de-breadcrumb')[0].getElementsByTagName('li')[1].getElementsByTagName('span')[0] ? document.getElementsByClassName('de-breadcrumb')[0].getElementsByTagName('li')[1].getElementsByTagName('span')[0].innerHTML.trim() : ""
                 }
-                if(document.getElementsByClassName('drunk-life-page-wrapper').length > 0){
-                    $pageSubCategory = 'Drunk Life';
+                if(document.getElementsByClassName('arp-featured-page-wrapper').length > 0){
+                    $pageSubCategory = 'Öne Çıkanlar';
                 }
 
                 let $pageCategory = searchItems.search ? "Site Search" : "Category Page";

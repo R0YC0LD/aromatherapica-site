@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Ürün görseli">
+  <rect width="200" height="200" fill="#f4f4f2"/>
+  <g fill="none" stroke="#c9c9c4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M88 48h24v14l10 12a20 20 0 0 1 5 13v49a10 10 0 0 1-10 10H83a10 10 0 0 1-10-10v-49a20 20 0 0 1 5-13l10-12z"/>
+    <path d="M84 44h32"/>
+    <path d="M79 108h42"/>
+  </g>
+  <circle cx="100" cy="132" r="9" fill="#e2e2dd"/>
+</svg>

@@ -88,25 +88,44 @@ yalnizca panelin kazara acilmasini engeller.
 Gercek koruma gerekiyorsa sunucu tarafi kimlik dogrulamasi olan bir cozume
 (ornegin Netlify Identity, Cloudflare Access veya git tabanli bir CMS) gecilmelidir.
 
-## Kategori sayfalari
+## Derleme
 
-Kategori sayfalari `index.html` sablon alinarak uretilir; yalnizca `<main>`
-icerigi degisir, header/footer/stiller/panel birebir korunur.
+Site `data/catalog.json` (138 urun, 18 kategori) uzerinden uretilir.
+Tek komut tum adimlari sirayla calistirir:
 
 ```bash
-node tools/build-categories.js
+node tools/build.js
 ```
 
-- Urunler `index.html` icindeki urun onbelleginden okunur (ad, fiyat, kategori,
-  varyant, puan, yorum sayisi); gorseller `images/` altindan id ile eslesir.
-- Cikti: `collections/<slug>/index.html`
-- Menu ve footer linkleri uretilen yerel sayfalara baglanir; yerel karsiligi
-  olmayan tum ic yollar ana sayfaya dusurulur, boylece hicbir tiklama 404 vermez.
-- Komut tekrar calistirilabilir, ayni sonucu verir.
+| Adim | Dosya | Isi |
+|---|---|---|
+| 1 | `tools/homepage-products.js` | Ana sayfa urun kartlarina ve hero gorsellerine gercek katalog verisi |
+| 2 | `tools/build-categories.js` | Magaza menusunu kategori agacina baglar, kategori sayfalarini uretir |
+| 3 | `tools/translate.js` | Tum HTML dosyalarini Turkcelestirir, `lang="tr"` yapar |
+| 4 | `tools/rename-tokens.js` | Eski markadan kalan CSS sinifi / ID adlarini HTML+CSS+JS'te esgudumlu yeniler |
+| 5 | `tools/clean-thirdparty.js` | Calismayan ucuncu parti entegrasyonlari cikarir |
 
-Yeni kategori eklemek icin `tools/build-categories.js` icindeki `CATEGORIES`
-dizisine bir satir ekleyip komutu yeniden calistirin. Urun eklendiginde de
-ayni komut yeterlidir.
+> **Onemli:** 1. adim eski urun adlarini aradigi icin derleme, `index.html`'in
+> islenmemis (git'teki) halinden baslamalidir:
+>
+> ```bash
+> git checkout -- index.html && node tools/build.js
+> ```
+
+### Urun ve kategori guncelleme
+
+Ticimax'ten yeni katalog aldiginizda `data/catalog.json` dosyasini degistirip
+derlemeyi tekrar calistirmak yeterlidir. Kategori sayfalari, magaza menusu ve
+ana sayfa vitrini otomatik guncellenir.
+
+Urun gorselleri Ticimax CDN'inden gelir (`imageUrl`). Gorseli olmayan urunler
+icin `images/ingredients/` altindaki icerik gorselleri ad eslesmesiyle
+kullanilir; eslesme yoksa `images/product-placeholder.svg` gosterilir.
+
+### Linkler
+
+Menu ve footer linkleri uretilen yerel sayfalara baglanir; yerel karsiligi
+olmayan tum ic yollar ana sayfaya dusurulur, boylece hicbir tiklama 404 vermez.
 
 ## Dosya yapisi
 
