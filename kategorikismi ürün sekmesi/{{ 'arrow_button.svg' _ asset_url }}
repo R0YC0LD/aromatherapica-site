@@ -1,0 +1,15 @@
+<!DOCTYPE html><html><head>
+<meta charset="utf-8">
+	<title>404 - URL Error</title>
+	<link rel="STYLESHEET" type="text/css" href="css/style.css">
+</head>
+<body>
+	<h1>URL Not Found</h1>
+	<img src="images/system_arrow.gif" width="21" height="21" alt="" border="0">
+	<p class="system_info">
+		The requested URL is invalid.
+	</p>
+	<hr>
+
+
+</body></html>

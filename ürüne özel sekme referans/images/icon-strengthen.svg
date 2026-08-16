@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="expanded_-_export" data-name="expanded - export" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #4a4a4a;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M82.56,82.56v334.89h334.89V82.56H82.56ZM102.56,397.44v-115.01h115.01v115.01h-115.01ZM237.56,397.44v-135.01H102.56v-64.24h199.25v199.25h-64.24ZM397.44,397.44h-75.64v-219.25H102.56v-75.64h294.89v294.89Z"/>
+</svg>

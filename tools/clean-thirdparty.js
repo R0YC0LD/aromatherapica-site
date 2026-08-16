@@ -66,6 +66,35 @@ const KURALLAR = [
         /[ \t]*loadScript\("\/on\/demandware\.static\/Sites-nars_us-Site[^"]*"[^;]*;\s*/gi]
 ];
 
+/* Ic ice <div>'leri sayarak bir blogu tamamen kaldirir.
+   Duzenli ifade ic ice yapiyi cozemedigi icin elle eslestirme yapilir. */
+function removeDivByClass(html, cls) {
+    let kaldirilan = 0;
+    for (;;) {
+        const i = html.indexOf(`class="${cls}`);
+        if (i < 0) break;
+        const bas = html.lastIndexOf('<div', i);
+        if (bas < 0) break;
+
+        let derinlik = 0, p = bas, son = -1;
+        const acik = /<div\b/gi, kapali = /<\/div>/gi;
+        while (p < html.length) {
+            acik.lastIndex = p; kapali.lastIndex = p;
+            const a = acik.exec(html), k = kapali.exec(html);
+            if (!k) break;
+            if (a && a.index < k.index) { derinlik++; p = a.index + 1; }
+            else { derinlik--; if (derinlik === 0) { son = k.index + 6; break; } p = k.index + 1; }
+        }
+        if (son < 0) break;
+        html = html.slice(0, bas) + html.slice(son);
+        kaldirilan++;
+    }
+    return { html, kaldirilan };
+}
+
+/* Icerigi olmayan, sablondan devralinan bos tanitim panelleri */
+const BOS_BLOKLAR = ['homepage-section-4__2'];
+
 function htmlFiles() {
     const out = [];
     (function walk(dir) {
@@ -93,6 +122,13 @@ function main() {
             if (html !== oncesi) {
                 const adet = (oncesi.match(re) || []).length;
                 sayac[ad] = (sayac[ad] || 0) + adet;
+            }
+        }
+        for (const cls of BOS_BLOKLAR) {
+            const r = removeDivByClass(html, cls);
+            if (r.kaldirilan) {
+                html = r.html;
+                sayac[`Bos tanitim paneli (${cls})`] = (sayac[`Bos tanitim paneli (${cls})`] || 0) + r.kaldirilan;
             }
         }
         if (html !== src) { fs.writeFileSync(file, html, 'utf8'); dosya++; }

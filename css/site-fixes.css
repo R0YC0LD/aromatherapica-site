@@ -8,6 +8,85 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
+   0) Yazi tipi: Turkce karakter destegi
+
+   Sablonun fontlari Latin-1 alt kumesidir:
+     - Brown ailesi   : g-breve, s-cedilla, noktasiz i ve I yok (ç ö ü var)
+     - Sainte Colombe : Turkce karakterlerin hicbiri yok
+   Bu yuzden "Yagları" gibi kelimeler kelime ortasinda baska bir yazi tipine
+   dusuyor ve bozuk gorunuyordu.
+
+   Cozum: gorunum olarak yakin, Turkce destegi tam olan sistem fontlari.
+   Boylece urun adlarindaki Turkce karakterler dogru yazilabilir.
+   (Marka adi "Aromatherapica" salt Latin oldugu icin logo Brown ile kalir.)
+   -------------------------------------------------------------------------- */
+:root {
+    --arp-sans: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --arp-serif: Georgia, "Times New Roman", Cambria, serif;
+}
+
+body,
+body p,
+body span,
+body a,
+body li,
+body div,
+body button,
+body input,
+body select,
+body textarea,
+body label,
+.de-flyout-nav .de-submenu a,
+.category-name-text,
+.third-level-cat-link span,
+.de-site-footer .footer-menu-item-link,
+.arp-card__name,
+.arp-card__cat,
+.arp-card__desc,
+.arp-card__price,
+.arp-card__btn,
+.arp-subnav a,
+.arp-crumbs,
+.arp-plp__count {
+    font-family: var(--arp-sans) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+.arp-plp__title,
+.de-heading-3_1,
+.arp-empty-cat__title {
+    font-family: var(--arp-serif) !important;
+}
+
+/* Logo yazisi marka fontuyla kalsin (Turkce karakter icermiyor) */
+.de-text-logo text,
+.de-logo-icon text,
+.footer-full-logo text {
+    font-family: BrownRegular, "Segoe UI", Arial, sans-serif !important;
+}
+
+/* Ikon fontlari etkilenmemeli */
+.fa,
+[class^="icon-"],
+[class*=" icon-"],
+.svg-icon,
+em[class*="icon"] {
+    font-family: inherit;
+}
+
+.fa {
+    font-family: FontAwesome !important;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+    font-family: icomoon !important;
+}
+
+/* --------------------------------------------------------------------------
    1) Mega menude ucuncu seviyenin ikinci seviyenin ustune binmesi
 
    .levelthree-categories mutlak konumlu ve kirilma noktalarina gore
@@ -67,7 +146,19 @@
 }
 
 /* --------------------------------------------------------------------------
-   3) Dar ekranlarda ucuncu seviye ekrandan tasmasin
+   3) Bos tanitim paneli kaldirildi; kalan panel tum satiri kaplasin
+
+   Sablonda dorduncu bolum iki sutunluydu; ikinci sutun icerigi olmayan olu bir
+   bloktu ve kaldirildi. Kalan panel yarim genislikte bosluk birakmasin.
+   -------------------------------------------------------------------------- */
+.homepage-section-4__1 {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 100% !important;
+}
+
+/* --------------------------------------------------------------------------
+   4) Dar ekranlarda ucuncu seviye ekrandan tasmasin
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
 

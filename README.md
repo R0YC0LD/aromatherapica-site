@@ -106,8 +106,27 @@ node tools/build.js
 | 5 | `tools/rename-tokens.js` | Eski markadan kalan CSS sinifi / ID adlarini HTML+CSS+JS'te esgudumlu yeniler |
 | 6 | `tools/clean-thirdparty.js` | Calismayan ucuncu parti entegrasyonlari cikarir |
 
-Sablonun Turkce icerikle bozulan yerleri (mega menu sutun cakismasi, yanlis
-buyuk harfler) `css/site-fixes.css` ile duzeltilir; bundle'lara dokunulmaz.
+Sablonun Turkce icerikle bozulan yerleri `css/site-fixes.css` ile duzeltilir;
+bundle'lara dokunulmaz.
+
+### Yazi tipi notu
+
+Sablonun kendi fontlari Latin-1 alt kumesidir ve Turkce karakterleri tam
+tasimaz:
+
+| Font | Eksik karakterler |
+|---|---|
+| Brown ailesi (govde) | `ğ Ğ ş Ş ı İ` |
+| Sainte Colombe (baslik) | Turkce karakterlerin tamami |
+
+Bu yuzden "Yagları" gibi kelimeler kelime ortasinda baska bir yazi tipine
+dusuyordu. Govde ve basliklar, gorunum olarak yakin ve Turkce destegi tam olan
+sistem fontlarina alindi (`Segoe UI` / `Georgia` yigini). Marka adi salt Latin
+oldugundan logo Brown ile kalir.
+
+Ayrica `fonts/BrownRegular.woff2|woff|ttf|eot` dosyalarinin dordu de aslinda
+HTML hata sayfasiydi (kazima sirasinda font inmemis); font hic yuklenmiyordu.
+Gercek dosyalarla (`BrownRegular_1.*`) degistirildi.
 
 > **Onemli:** 1. adim eski urun adlarini aradigi icin derleme, `index.html`'in
 > islenmemis (git'teki) halinden baslamalidir:
