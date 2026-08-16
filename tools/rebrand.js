@@ -98,6 +98,109 @@ function baglantilar(html, up, slug) {
     });
 }
 
+/* ------------------------------------------------------- urun adi izleri */
+
+/* Sablonlar eski markanin urun sayfalarindan alindigi icin isaretlemenin
+   icinde o urunlerin adlari kaliyor: gorsel alt metinleri, data-product-name
+   oznitelikleri, boyut secenekleri ve JSON veri bloklari.
+
+   Uzun adlar once degistirilir; sonra tekil marka kelimeleri temizlenir. */
+const URUN_ADLARI = [
+    'Bora Barrier Rich Repair Refillable Moisturizer with 6-Butterlipid Complex',
+    'B-Hydra™ Intensive Hydration Serum with Hyaluronic Acid',
+    'T.L.C. Framboos™ Glycolic Resurfacing Night Serum',
+    'Lala Retro™ Nourishing Whipped Refillable Moisturizer',
+    'Protini™ Polypeptide Firming Refillable Moisturizer',
+    'Kamo Triple-Peptide™ Multi-Use Serum Foundation',
+    'D-Bronzi™ Bronzing Drops with Peptides',
+    'Protini™ Polypeptide Cream Travel size',
+    'Protini™ Polypeptide Cream Refill',
+    'C-Firma Fresh Vitamin-C Day Serum',
+    'Protini™ Polypeptide Cream - Big',
+    'Beste™ No. 9 Jelly Cleanser',
+    'C-Tango™ Vitamin C Eye Cream',
+    'A-Passioni™ Retinol Cream',
+    'Protini™ Polypeptide Cream',
+    'Kamo Triple-Peptide™',
+    'Lala Retro™',
+    'Bora Barrier',
+    'A-Passioni',
+    'T.L.C. Framboos',
+    'D-Bronzi',
+    'B-Hydra',
+    'C-Firma',
+    'C-Tango',
+    'Framboos',
+    'Protini',
+    'Sukari',
+    'Beste',
+    'Kamo',
+    'Lala'
+];
+
+/* Sayfanin kendi urununun adi (varsa) yerine gecer; yoksa marka adi. */
+function sayfaninUrunAdi(html) {
+    const m = html.match(/<script type="application\/json" id="arp-urun">([\s\S]*?)<\/script>/);
+    if (!m) return null;
+    try { return JSON.parse(m[1]).name || null; } catch (e) { return null; }
+}
+
+/* URL icindeki eski urun slug'lari (kamo-triple-peptide..., protini-...).
+   Buyuk/kucuk harfe duyarsizdir ama yalnizca slug bicimindeki (tireli)
+   kaliplari hedefler; Turkce metinlere dokunmaz. */
+const URUN_SLUGLARI = /\b(?:kamo-triple-peptide|protini-polypeptide|protini-powerpeptide|c-firma-fresh|b-hydra-intensive|lala-retro|beste-no\.?-?9|c-tango-vitamin|virgin-marula|a-passioni-retinol|t\.l\.c\.-framboos|d-bronzi-bronzing|bora-barrier)[a-z0-9.-]*/gi;
+
+function urunAdiIzleri(html) {
+    const yerine = sayfaninUrunAdi(html) || 'Aromatherapica';
+    let n = 0;
+
+    /* Dosya yollari en basta maskelenir. Aksi halde urun adi degisimi
+       "images/..._KamoTravelBag-popup.jpg" gibi dosya adlarinin icine de
+       girip var olmayan dosyalara referans olusturuyordu. */
+    const kasa = [];
+    html = html.replace(/\s(?:src|href|data-src|data-href)="[^"]*"/gi, (m) => {
+        kasa.push(m);
+        return ` YOL${kasa.length - 1} `;
+    });
+
+    for (const ad of URUN_ADLARI) {
+        if (!html.includes(ad)) continue;
+        n += html.split(ad).length - 1;
+        html = html.split(ad).join(yerine);
+    }
+    // "™" isareti eski adlardan artakalmis olabilir
+    html = html.replace(new RegExp(escapeRegExp(yerine) + '™', 'g'), yerine);
+
+    // Sablondan kalan yapisal veri (JSON-LD) baska urunleri tarif ediyor;
+    // arama motorlarina yanlis bilgi vermemesi icin kaldirilir.
+    html = html.replace(
+        /<script type="application\/ld\+json">[\s\S]*?<\/script>/gi,
+        (blok) => URUN_SLUGLARI.test(blok) ? '' : blok);
+
+    // Kalan slug'lar (veri oznitelikleri, inline js degiskenleri)
+    let oncesi = html;
+    html = html.replace(URUN_SLUGLARI, 'aromatherapica-urun');
+    if (html !== oncesi) n++;
+
+    /* Kucuk harfli kalintılar: kazima sirasinda bozulmus oznitelikler ve
+       analitik yapilandirmalari ("product_name":"protini™="" ...").
+       Yalnizca Turkce kelimelerle cakismayan adlar buyuk/kucuk harf
+       duyarsiz taranir - "Lala" ve "Beste" listede DEGILDIR, cunku
+       "Damlaları" / "Phenylalanine" gibi kelimelerin icinde geciyorlar. */
+    const GUVENLI = /\b(?:protini|kamo|framboos|c-firma|b-hydra|c-tango|a-passioni|sukari|bora barrier|d-bronzi)[a-z0-9_-]*/gi;
+
+    oncesi = html;
+    html = html.replace(GUVENLI, yerine);
+    if (html !== oncesi) n++;
+
+    // Basta maskelenen dosya yollarini geri koy
+    html = html.replace(/ YOL(d+) /g, (m, i) => kasa[+i]);
+
+    return { html, n };
+}
+
+function escapeRegExp(s) { return String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
 /* --------------------------------------------------------------- gorseller */
 
 /* Sablonlardaki logolar eski markanin fil cizimidir (SVG path'leri).
@@ -200,6 +303,7 @@ function main() {
 
         html = logolar(html);
         html = gorselIzleri(html, up);
+        const ua = urunAdiIzleri(html); html = ua.html; n += ua.n;
         html = baglantilar(html, up, slug);
 
         if (html !== src) {
