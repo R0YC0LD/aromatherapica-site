@@ -68,7 +68,20 @@ function loadCatalog() {
         return prods.filter(p => ids.has(p.categoryId));
     };
 
-    return { cats, prods, byId, children, roots, productsOf };
+    /* Bir kategorinin altindaki, dogrudan urunu olan yaprak kategoriler */
+    const leaves = id => {
+        const out = [];
+        (function gez(pid) {
+            for (const ch of children(pid)) {
+                const kendi = prods.filter(p => p.categoryId === ch.id).length;
+                if (kendi > 0) out.push(ch);
+                gez(ch.id);
+            }
+        })(id);
+        return out;
+    };
+
+    return { cats, prods, byId, children, roots, productsOf, leaves };
 }
 
 /* ------------------------------------------------------------- isaretleme */
@@ -243,7 +256,10 @@ function rewriteShopNav(html, cat, up) {
     if (end < 0) return html;
 
     const items = cat.roots.map(root => {
-        const subs = cat.children(root.id);
+        /* Katalog uc seviyeli; site menusu ise iki seviye gosterir.
+           Ara gruplari ("Urune Gore ...") atlayip dogrudan urunu olan
+           yaprak kategorileri listeleriz - menu hem kisa hem kullanisli olur. */
+        const subs = cat.leaves(root.id);
         const id = `navItem-${root.slug}`;
         const href = `${up}collections/${root.slug}/`;
 
@@ -310,7 +326,8 @@ function main() {
     let toplam = 0;
     for (const c of cat.cats) {
         const products = cat.productsOf(c.id);
-        const subs = cat.children(c.id).map(s => ({ cat: s, count: cat.productsOf(s.id).length }));
+        // Ara gruplarin altindaki yaprak kategorileri goster ki gezinme kolay olsun
+        const subs = cat.leaves(c.id).map(s => ({ cat: s, count: cat.productsOf(s.id).length }));
 
         let page = headR + categoryMain(c, products, subs, up) + tailR;
         page = page.replace(/<title>[^<]*<\/title>/,

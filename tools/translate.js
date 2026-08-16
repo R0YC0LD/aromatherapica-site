@@ -156,6 +156,18 @@ const DICT = {
     'Terms + conditions apply': 'Koşullar geçerlidir',
     'TERMS AND CONDITIONS APPLY.': 'KOŞULLAR GEÇERLİDİR.',
 
+    // --- promosyon seridi ---
+    'Why do we subscribe? So we can save...AND get a free deluxe sample on new $50+ subscription orders!':
+        'Düzenli alışverişte avantaj: 1.500 TL ve üzeri siparişlerde kargo bedava!',
+    'SIGN UP AND RECEIVE 15% OFF YOUR FIRST ORDER!':
+        'KAYIT OLUN, İLK SİPARİŞİNİZDE %15 İNDİRİM KAZANIN!',
+    'Free Kamo sample card + travel bag with $110+ orders!':
+        'Doğanın saf özü: %100 katkısız uçucu ve taşıyıcı yağlar.',
+    'Free shipping (and free good mood!) with orders $40+ at checkout.':
+        'Sepette 1.500 TL ve üzeri alışverişlerde kargo bedava.',
+    'A.m. and p.m. serums plus a firming moisturizer to keep skin its most radiant morning, noon, and night.':
+        'Sabah ve akşam bakımınız için uçucu yağlar, taşıyıcı yağlar ve nemlendiriciler — cildiniz gün boyu bakımlı kalsın.',
+
     // --- ana sayfa kampanya ve tanitim metinleri ---
     'NEW LAUNCH ALERT!': 'YENİ ÜRÜN!',
     'Try Kamo for free!': 'Doğallığı keşfedin!',
@@ -252,6 +264,17 @@ function translateAttrs(html) {
     return { html: out, n };
 }
 
+/* Sablon duzeltmeleri stil dosyasi (paketlerden sonra yuklenmeli) */
+function ensureFixesCss(html, file) {
+    // 404 sayfasi her derinlikte sunulabildigi icin bilincli olarak kendi
+    // kendine yeterlidir; goreli varlik yolu ekleme.
+    if (/404\.html$/i.test(file)) return html;
+    if (html.includes('css/site-fixes.css')) return html;
+    const up = /collections[\\/]/.test(file) ? '../../' : '';
+    return html.replace('</head>',
+        `<link rel="stylesheet" href="${up}css/site-fixes.css">\n</head>`);
+}
+
 /* Sayfa dili ve ana sayfa basligi/aciklamasi */
 function setLang(html) {
     html = html.replace(/<html\s+lang="[^"]*"/i, '<html lang="tr"');
@@ -302,7 +325,7 @@ function main() {
     let toplamMetin = 0, toplamOznitelik = 0, dosya = 0;
     for (const file of allHtmlFiles()) {
         const src = fs.readFileSync(file, 'utf8');
-        let html = setLang(src);
+        let html = ensureFixesCss(setLang(src), file);
         const a = translateText(html); html = a.html;
         const b = translateAttrs(html); html = b.html;
         const c = translateScripts(html); html = c.html;

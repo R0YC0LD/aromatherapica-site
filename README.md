@@ -99,11 +99,15 @@ node tools/build.js
 
 | Adim | Dosya | Isi |
 |---|---|---|
-| 1 | `tools/homepage-products.js` | Ana sayfa urun kartlarina ve hero gorsellerine gercek katalog verisi |
-| 2 | `tools/build-categories.js` | Magaza menusunu kategori agacina baglar, kategori sayfalarini uretir |
-| 3 | `tools/translate.js` | Tum HTML dosyalarini Turkcelestirir, `lang="tr"` yapar |
-| 4 | `tools/rename-tokens.js` | Eski markadan kalan CSS sinifi / ID adlarini HTML+CSS+JS'te esgudumlu yeniler |
-| 5 | `tools/clean-thirdparty.js` | Calismayan ucuncu parti entegrasyonlari cikarir |
+| 1 | `tools/import-xlsx.js` | `data/urunler.xlsx` (Ticimax disa aktarimi) -> `data/catalog.json` |
+| 2 | `tools/homepage-products.js` | Ana sayfa urun kartlarina ve hero gorsellerine gercek katalog verisi |
+| 3 | `tools/build-categories.js` | Magaza menusunu kategori agacina baglar, kategori sayfalarini uretir |
+| 4 | `tools/translate.js` | Tum HTML dosyalarini Turkcelestirir, `lang="tr"` yapar |
+| 5 | `tools/rename-tokens.js` | Eski markadan kalan CSS sinifi / ID adlarini HTML+CSS+JS'te esgudumlu yeniler |
+| 6 | `tools/clean-thirdparty.js` | Calismayan ucuncu parti entegrasyonlari cikarir |
+
+Sablonun Turkce icerikle bozulan yerleri (mega menu sutun cakismasi, yanlis
+buyuk harfler) `css/site-fixes.css` ile duzeltilir; bundle'lara dokunulmaz.
 
 > **Onemli:** 1. adim eski urun adlarini aradigi icin derleme, `index.html`'in
 > islenmemis (git'teki) halinden baslamalidir:
@@ -114,9 +118,23 @@ node tools/build.js
 
 ### Urun ve kategori guncelleme
 
-Ticimax'ten yeni katalog aldiginizda `data/catalog.json` dosyasini degistirip
-derlemeyi tekrar calistirmak yeterlidir. Kategori sayfalari, magaza menusu ve
-ana sayfa vitrini otomatik guncellenir.
+Ticimax'ten yeni urun listesi disari aktardiginizda `data/urunler.xlsx`
+dosyasini degistirip derlemeyi calistirmak yeterlidir. Kategori agaci
+`BREADCRUMBKAT` sutunundan otomatik kurulur ("Ust>Ara>Alt" bicimi, uc seviyeye
+kadar); yeni bir kategori gorulurse sayfasi kendiliginden acilir.
+
+Kategori sayfalari, magaza menusu ve ana sayfa vitrini otomatik guncellenir.
+
+### Urun gorselleri
+
+Gorseller `catalog.json` icindeki `imageUrl` alanindan gelir ve ice aktarim
+sirasinda urun adina gore korunur; yani `urunler.xlsx` yenilendiginde mevcut
+gorseller kaybolmaz.
+
+Gorseli olmayan urunler icin `images/ingredients/` altindaki icerik gorselleri
+ad eslesmesiyle kullanilir (ornegin "Hint Yagi" -> `hint.svg`); eslesme yoksa
+`images/product-placeholder.svg` gosterilir. Gercek urun fotograflari
+eklendikce `catalog.json` icindeki `imageUrl` alanlari doldurulabilir.
 
 Urun gorselleri Ticimax CDN'inden gelir (`imageUrl`). Gorseli olmayan urunler
 icin `images/ingredients/` altindaki icerik gorselleri ad eslesmesiyle

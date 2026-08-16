@@ -19,6 +19,7 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 
 const ADIMLAR = [
+    ['import-xlsx.js', 'Urun listesini ice aktar (data/urunler.xlsx)'],
     ['homepage-products.js', 'Ana sayfa urun karuseli'],
     ['build-categories.js', 'Magaza menusu ve kategori sayfalari'],
     ['translate.js', 'Turkcelestirme'],

@@ -1,0 +1,88 @@
+/* ==========================================================================
+   Aromatherapica - Sablon duzeltmeleri
+   --------------------------------------------------------------------------
+   Sablon Ingilizce, kisa kategori adlarina gore tasarlanmisti. Turkce ve daha
+   uzun kategori adlariyla bozulan yerler burada duzeltilir.
+
+   Bu dosya paketlerden SONRA yuklenir; bundle'lara dokunulmaz.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1) Mega menude ucuncu seviyenin ikinci seviyenin ustune binmesi
+
+   .levelthree-categories mutlak konumlu ve kirilma noktalarina gore
+   left:50% / 75% / 95% aliyor. Bu deger, ikinci seviye ogesinin genisligine
+   goredir; "Sac ve Vucut Bakimi" gibi uzun adlarda sutunlar cakisiyordu.
+   Ucuncu seviyeyi ikinci seviyenin bittigi yerden baslatiyoruz.
+   -------------------------------------------------------------------------- */
+.de-flyout-nav .second-level-menu {
+    position: relative;
+}
+
+.de-flyout-nav .second-level-menu>.cat-level-2 {
+    white-space: nowrap;
+    padding-right: 1.5rem;
+}
+
+.de-flyout-nav .levelthree-categories {
+    left: 100% !important;
+    margin-left: 1.25rem;
+    min-width: 13rem;
+}
+
+.de-flyout-nav .levelthree-categories .third-level-cat-link {
+    white-space: nowrap;
+}
+
+/* Ucuncu seviye "left:100%" ile konumlandigi icin ikinci seviye sutunu ne
+   kadar genisse o kadar saga kayar. Sutunu icerigine gore daraltiyoruz ki
+   ucuncu seviye, yandaki "Kesfet" sutununa carpmadan aradaki bosluga sigsin. */
+.de-flyout-nav .de-submenu {
+    width: -moz-max-content;
+    width: max-content;
+    min-width: 0;
+    max-width: 14rem;
+}
+
+/* Ucuncu seviye akista yer kaplamadigi icin "Magaza" sutununun sagina
+   acilacagi kadar bosluk birakiyoruz; boylece "Kesfet" sutunu ile carpismaz. */
+.de-flyout-nav .de-flyout-wrap>li.products-allproducts-store {
+    padding-right: 12rem;
+}
+
+/* --------------------------------------------------------------------------
+   2) "Sac Ve Vucut Bakimi" gibi yanlis buyuk harfler
+
+   Sablon tum menu ve footer baglantilarina text-transform:capitalize
+   uyguluyor. Ingilizcede sorun cikarmaz ama Turkcede baglaclari ("ve", "ile")
+   buyuk harfe cevirir. Kategori adlari zaten dogru yazildigi icin donusumu
+   kapatiyoruz.
+   -------------------------------------------------------------------------- */
+.de-flyout-nav .de-submenu a,
+.de-site-footer .footer-menu-wrapper .footer-menu-item-link,
+.de-site-footer .footer-menu-wrapper .copyright-wrapper .de-copyright>p,
+.category-name-text,
+.third-level-cat-link span {
+    text-transform: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   3) Dar ekranlarda ucuncu seviye ekrandan tasmasin
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+
+    .de-flyout-nav .levelthree-categories {
+        left: 0 !important;
+        margin-left: 0;
+        position: static !important;
+        min-width: 0;
+    }
+
+    .de-flyout-nav .de-submenu {
+        min-width: 0;
+    }
+
+    .de-flyout-nav .second-level-menu>.cat-level-2 {
+        white-space: normal;
+    }
+}
