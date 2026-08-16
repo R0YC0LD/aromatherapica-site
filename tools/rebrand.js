@@ -156,11 +156,16 @@ function urunAdiIzleri(html) {
 
     /* Dosya yollari en basta maskelenir. Aksi halde urun adi degisimi
        "images/..._KamoTravelBag-popup.jpg" gibi dosya adlarinin icine de
-       girip var olmayan dosyalara referans olusturuyordu. */
+       girip var olmayan dosyalara referans olusturuyordu.
+
+       Isaretci bosluga bagli OLMAMALI: onceki surumde " YOL0 " kullaniliyordu.
+       Bitisik iki oznitelikte (" YOL0  YOL1 ") ilk eslesme aradaki boslugu
+       tuketiyor, ikincisi geri konamiyordu. Sonuc: bozuk href/src
+       oznitelikleri ve stilsiz sayfalar. */
     const kasa = [];
     html = html.replace(/\s(?:src|href|data-src|data-href)="[^"]*"/gi, (m) => {
         kasa.push(m);
-        return ` YOL${kasa.length - 1} `;
+        return `@@ARPYOL${kasa.length - 1}@@`;
     });
 
     for (const ad of URUN_ADLARI) {
@@ -168,7 +173,7 @@ function urunAdiIzleri(html) {
         n += html.split(ad).length - 1;
         html = html.split(ad).join(yerine);
     }
-    // "™" isareti eski adlardan artakalmis olabilir
+    // Ticari marka isareti eski adlardan artakalmis olabilir
     html = html.replace(new RegExp(escapeRegExp(yerine) + '™', 'g'), yerine);
 
     // Sablondan kalan yapisal veri (JSON-LD) baska urunleri tarif ediyor;
@@ -182,11 +187,9 @@ function urunAdiIzleri(html) {
     html = html.replace(URUN_SLUGLARI, 'aromatherapica-urun');
     if (html !== oncesi) n++;
 
-    /* Kucuk harfli kalintılar: kazima sirasinda bozulmus oznitelikler ve
-       analitik yapilandirmalari ("product_name":"protini™="" ...").
-       Yalnizca Turkce kelimelerle cakismayan adlar buyuk/kucuk harf
-       duyarsiz taranir - "Lala" ve "Beste" listede DEGILDIR, cunku
-       "Damlaları" / "Phenylalanine" gibi kelimelerin icinde geciyorlar. */
+    /* Kucuk harfli kalintilar: kazima sirasinda bozulmus oznitelikler ve
+       analitik yapilandirmalari. "Lala" ve "Beste" listede DEGILDIR, cunku
+       Turkce "Damlalari" / "Phenylalanine" kelimelerinin icinde geciyorlar. */
     const GUVENLI = /\b(?:protini|kamo|framboos|c-firma|b-hydra|c-tango|a-passioni|sukari|bora barrier|d-bronzi)[a-z0-9_-]*/gi;
 
     oncesi = html;
@@ -194,7 +197,7 @@ function urunAdiIzleri(html) {
     if (html !== oncesi) n++;
 
     // Basta maskelenen dosya yollarini geri koy
-    html = html.replace(/ YOL(d+) /g, (m, i) => kasa[+i]);
+    html = html.replace(/@@ARPYOL(\d+)@@/g, (m, i) => kasa[+i]);
 
     return { html, n };
 }
@@ -255,7 +258,7 @@ function htmlDosyalari() {
         for (const f of fs.readdirSync(dir)) {
             if (/^(\.git|node_modules|tools|data)$/.test(f)) continue;
             // referans kazimalari donusturulmez
-            if (/^(kategorikismi|ürüne özel)/.test(f)) continue;
+            if (/^(kategorikismi|ürüne özel|site sepet)/.test(f)) continue;
             const fp = path.join(dir, f);
             const st = fs.statSync(fp);
             if (st.isDirectory()) gez(fp);

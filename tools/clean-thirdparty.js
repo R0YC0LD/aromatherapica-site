@@ -66,7 +66,11 @@ const KURALLAR = [
     ['Demandware main.js scripti',
         /[ \t]*<script[^>]*src="\/on\/demandware\.static\/[^"]*\/main\.js"[^>]*>\s*<\/script>\s*/gi],
     ['Eski PayPal yukleyicisi',
-        /[ \t]*loadScript\("\/on\/demandware\.static\/Sites-nars_us-Site[^"]*"[^;]*;\s*/gi]
+        /[ \t]*loadScript\("\/on\/demandware\.static\/Sites-nars_us-Site[^"]*"[^;]*;\s*/gi],
+    // Sablondan devralinan canonical/alternate etiketleri eski markanin
+    // urun sayfalarina isaret ediyor; arama motorlarini yanlis yonlendirir.
+    ['Eski canonical/hreflang etiketleri',
+        /[ \t]*<link[^>]*rel="(?:canonical|alternate)"[^>]*>\s*/gi]
 ];
 
 /* Sinifa gore bir blogu tamamen kaldirir.

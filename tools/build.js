@@ -26,6 +26,7 @@ const ADIMLAR = [
     ['rebrand.js', 'Marka donusumu ve ic baglantilar'],
     ['translate.js', 'Turkcelestirme'],
     ['rename-tokens.js', 'Teknik isim temizligi'],
+    ['rename-assets.js', 'Eski marka adli dosyalarin yeniden adlandirilmasi'],
     ['clean-thirdparty.js', 'Olu ucuncu parti entegrasyonlar']
 ];
 
