@@ -156,6 +156,11 @@ const DICT = {
     'Terms + conditions apply': 'Koşullar geçerlidir',
     'TERMS AND CONDITIONS APPLY.': 'KOŞULLAR GEÇERLİDİR.',
 
+    // --- kategori sayfasi filtre bolumu ---
+    'Sort By': 'Sırala',
+    'Shop by': 'Kategoriler',
+    'Refine Your Results By:': 'Sonuçları daralt:',
+
     // --- kategori sayfasi ust basligi ---
     'An ingredient-elimination philosophy for a total skin reset.':
         'Doğadan gelen saf içerikler, sade ve etkili bakım.',

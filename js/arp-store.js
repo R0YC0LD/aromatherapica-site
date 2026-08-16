@@ -103,7 +103,9 @@
 
     function siralamayiKur() {
         var kap = document.querySelector('.js-product-container');
-        var secim = document.querySelector('#arp-siralama');
+        // Sablonun kendi stilli secicisi kullanilir; boylece gorunum bozulmaz
+        var secim = document.querySelector('#grid-sort-header') ||
+            document.querySelector('#arp-siralama');
         if (!kap || !secim) return;
 
         // ilk sirayi "onerilen" olarak sakla

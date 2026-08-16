@@ -178,37 +178,59 @@ ${p.stock > 0
 </div>`;
 }
 
-/* Sol taraftaki kategori filtreleri gercek kategori agacina baglanir.
-   Sablondaki eski marka kategorileri (Nemlendiriciler, Goz ve Dudak, refills...)
-   tamamen degistirilir. */
+/* Sol kenardaki kategori filtreleri.
+   Sablonun KENDI isaretlemesi (refinement-header, category-filters-wrapper,
+   filter-pills) birebir korunur; yalnizca kategoriler bizimkilerle degisir.
+   Boylece search.bundle.css'ten gelen gorunum aynen kalir. */
 function filtreListesi(cat, aktif, up) {
-    const satir = (c, seviye) => {
-        const n = cat.productsOf(c.id).length;
-        const secili = c.id === aktif.id;
-        return `<li${seviye ? ' class="arp-alt"' : ''}>
-<a class="${secili ? 'aktif' : ''}" href="${esc(`${up}collections/${c.slug}/`)}">
-<span>${esc(c.name)}</span><span class="arp-sayi">${n}</span></a>
-</li>`;
-    };
-    return `<p class="arp-filtre-baslik">Kategoriler</p>
-<ul class="arp-filtre-liste">
-${cat.roots.map(r => satir(r, 0) + cat.leaves(r.id).map(c => satir(c, 1)).join('')).join('')}
-</ul>`;
+    // Aktif kategorinin bagli oldugu ust kategori acik gosterilir
+    const yol = cat.yol(aktif.id);
+    const aktifKok = yol[0] || aktif;
+
+    const kokler = cat.roots.map(r => {
+        const acik = r.id === aktifKok.id;
+        const yapraklar = cat.leaves(r.id);
+        const kokHref = esc(`${up}collections/${r.slug}/`);
+
+        const piller = yapraklar.map(c => {
+            const secili = c.id === aktif.id;
+            return `				<li class="category-filters">
+						<a href="${esc(`${up}collections/${c.slug}/`)}" role="switch" aria-checked="${secili}" class="${secili ? 'active ' : ' '}filter-pills" data-cgid="${esc(c.slug)}">
+							${esc(c.name)}
+						</a>
+				</li>`;
+        }).join('\n');
+
+        const altListe = yapraklar.length ? `
+	<ul class="category-filters-wrapper filter-level-two" data-cgid="${esc(r.slug)}">
+					<button class="filter-pills default-filter${aktif.id === r.id ? ' active' : ''}" aria-checked="${aktif.id === r.id}" data-cgid="${esc(r.slug)}" data-href="${kokHref}" role="switch" onclick="location.href='${kokHref}'">TÜMÜ</button>
+${piller}
+	</ul>` : '';
+
+        return `				<li class="category-filters${acik ? ' active expanded' : ''} level-one">
+						<a href="${kokHref}" title="${esc(r.name)}" class="${acik ? ' active ' : ' '}refinement-link js-product-trigger" data-cgid="${esc(r.slug)}">
+							${esc(r.name)}
+						</a>${altListe}
+				</li>`;
+    }).join('\n');
+
+    return `
+<section class="refinement-header">
+<div class="title">Kategoriler</div>
+</section>
+	<ul class="category-filters-wrapper filter-level-one" data-cgid="tum-urunler">
+${kokler}
+	</ul>`;
 }
 
-/* Turkce siralama secici - js/arp-store.js tarafindan calistirilir */
-function siralamaSecici() {
-    return `<div class="arp-siralama-sar">
-<label for="arp-siralama">Sırala</label>
-<select id="arp-siralama">
-<option value="onerilen">Önerilen</option>
+/* Siralama: sablonun stilli select'i (#grid-sort-header) korunur,
+   yalnizca secenekleri Turkcelestirilip js/arp-store.js'e baglanir. */
+const SIRALAMA_SECENEKLERI = `
+<option value="onerilen" selected="">Sırala: Önerilen</option>
 <option value="fiyat-artan">Fiyat: Düşükten yükseğe</option>
 <option value="fiyat-azalan">Fiyat: Yüksekten düşüğe</option>
 <option value="isim-az">İsim: A–Z</option>
-<option value="isim-za">İsim: Z–A</option>
-</select>
-</div>`;
-}
+<option value="isim-za">İsim: Z–A</option>`;
 
 /* ---------------------------------------------------------- urun sayfasi */
 
@@ -324,13 +346,22 @@ function main() {
                 ? urunler.map(p => urunKarti(p, up)).join('\n')
                 : `<div class="arp-bos-kategori"><p>Bu kategoride henüz ürün yok.</p><a class="de-btn de-btn--black" href="${up}">Ana sayfaya dön</a></div>`);
 
-        // 2) sol kenar: kategori filtreleri (sablonun eski kategorileri gider)
+        // 2) sol kenar: kategori filtreleri (sablonun isaretlemesi korunur)
         sayfa = icerikDegistir(sayfa, 'refinement-content refinement-wrapper',
             filtreListesi(cat, c, up));
 
-        // 3) siralama: sablonun calismayan Demandware secicisi yerine kendi secicimiz
-        sayfa = icerikDegistir(sayfa, 'refinement-content sort-wrapper', siralamaSecici());
-        sayfa = icerikDegistir(sayfa, 'search-result-options', siralamaSecici());
+        // 3) siralama: sablonun stilli select'inin secenekleri Turkcelestirilir
+        sayfa = sayfa.replace(
+            /(<select id="grid-sort-header"[^>]*>)[\s\S]*?(<\/select>)/,
+            `$1${SIRALAMA_SECENEKLERI}\n$2`);
+
+        // 4) mobil filtre sekmesindeki kategori adi
+        sayfa = sayfa.replace(
+            /(<button class="refinement-tab category"[^>]*>\s*<span class="tab-name">)[^<]*(<\/span>)/,
+            `$1${esc(c.name)}$2`);
+        sayfa = sayfa.replace(
+            /(<button class="refinement-tab sort"[^>]*>\s*<span class="tab-name">)[^<]*(<\/span>)/,
+            '$1Sırala$2');
 
         // 3) baslik ve aciklama
         sayfa = sayfa.replace(/<title>[^<]*<\/title>/, `<title>${esc(c.name)} | Aromatherapica</title>`);

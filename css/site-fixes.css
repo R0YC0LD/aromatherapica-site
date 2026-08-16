@@ -228,3 +228,281 @@ em[class*="icon"] {
     font-size: .92rem;
     color: #45474a;
 }
+
+/* ==========================================================================
+   Magaza islevleri (js/arp-store.js)
+   Filtre ve siralama gorunumu sablonun kendi stillerinden gelir; burada
+   yalnizca sablonda karsiligi olmayan parcalar tanimlidir.
+   ========================================================================== */
+
+/* --- urun kartindaki butonlar --- */
+.arp-kart-butonlar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .4rem;
+    margin-top: .5rem;
+}
+
+.arp-plp-cta {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: .65rem .5rem;
+    border: 1px solid #45474a;
+    background: #fff;
+    color: #45474a;
+    font-size: .68rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .16s, color .16s;
+}
+
+.arp-plp-cta:hover:not([disabled]) {
+    background: #45474a;
+    color: #fff;
+}
+
+.arp-plp-cta[disabled] {
+    border-color: #d7d8da;
+    color: #a3a6aa;
+    cursor: not-allowed;
+}
+
+/* --- bildirim --- */
+.arp-bildirim {
+    position: fixed;
+    left: 50%;
+    bottom: 26px;
+    transform: translate(-50%, 14px);
+    background: #45474a;
+    color: #fff;
+    border-radius: 4px;
+    padding: .8rem 1.4rem;
+    font-size: .85rem;
+    z-index: 2147482000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s, transform .2s;
+    max-width: 86vw;
+}
+
+.arp-bildirim.is-on {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+/* --- urun sayfasi adet secici --- */
+.arp-adet-sar {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    margin: 0 0 .9rem;
+}
+
+.arp-adet-sar label {
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #6d7075;
+}
+
+#arp-adet {
+    width: 70px;
+    padding: .55rem;
+    border: 1px solid #dededa;
+    border-radius: 3px;
+    text-align: center;
+    font-size: .95rem;
+}
+
+/* --- sepet sayfasi --- */
+.arp-sepet-duzen {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 2.5rem;
+    align-items: start;
+    margin: 1.5rem 0 4rem;
+}
+
+@media (max-width:900px) {
+    .arp-sepet-duzen {
+        grid-template-columns: 1fr;
+    }
+}
+
+.arp-sepet-liste {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #e6e6e2;
+}
+
+.arp-sepet-satir {
+    display: grid;
+    grid-template-columns: 96px 1fr auto;
+    gap: 1.2rem;
+    padding: 1.3rem 0;
+    border-bottom: 1px solid #e6e6e2;
+    align-items: start;
+}
+
+.arp-sepet-gorsel {
+    display: block;
+    background: #f4f4f2;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.arp-sepet-gorsel img {
+    width: 100%;
+    height: 96px;
+    object-fit: contain;
+    padding: 8%;
+    display: block;
+}
+
+.arp-sepet-ad {
+    display: block;
+    color: #45474a;
+    text-decoration: none;
+    font-size: .95rem;
+    line-height: 1.35;
+    margin-bottom: .3rem;
+}
+
+.arp-sepet-ad:hover {
+    text-decoration: underline;
+}
+
+.arp-sepet-birim {
+    color: #6d7075;
+    font-size: .82rem;
+    margin: 0 0 .7rem;
+}
+
+.arp-sepet-adet {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #dededa;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.arp-sepet-adet button {
+    width: 34px;
+    height: 34px;
+    border: 0;
+    background: #fff;
+    color: #45474a;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.arp-sepet-adet button:hover {
+    background: #f2f2ef;
+}
+
+.arp-sepet-adet input {
+    width: 46px;
+    height: 34px;
+    border: 0;
+    border-left: 1px solid #dededa;
+    border-right: 1px solid #dededa;
+    text-align: center;
+    font-size: .9rem;
+    color: #45474a;
+    -moz-appearance: textfield;
+}
+
+.arp-sepet-adet input::-webkit-outer-spin-button,
+.arp-sepet-adet input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.arp-sepet-sag {
+    text-align: right;
+}
+
+.arp-sepet-tutar {
+    margin: 0 0 .5rem;
+    font-size: .95rem;
+    color: #45474a;
+    font-weight: 500;
+}
+
+.arp-sil {
+    border: 0;
+    background: none;
+    color: #8b8e93;
+    font-size: .78rem;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+}
+
+.arp-sil:hover {
+    color: #45474a;
+}
+
+.arp-sepet-ozet {
+    background: #f7f7f4;
+    border-radius: 6px;
+    padding: 1.6rem;
+    position: sticky;
+    top: 120px;
+}
+
+.arp-sepet-ozet h2 {
+    font-size: 1.1rem;
+    margin: 0 0 1.2rem;
+}
+
+.arp-ozet-satir {
+    display: flex;
+    justify-content: space-between;
+    font-size: .9rem;
+    color: #45474a;
+    padding: .5rem 0;
+}
+
+.arp-ozet-not {
+    font-size: .78rem;
+    color: #6d7075;
+    margin: .2rem 0 .4rem;
+}
+
+.arp-ozet-toplam {
+    border-top: 1px solid #dededa;
+    margin-top: .6rem;
+    padding-top: .9rem;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.arp-odeme {
+    width: 100%;
+    margin-top: 1.2rem;
+    padding: .9rem;
+    border: 1px solid #45474a;
+    background: #45474a;
+    color: #fff;
+    font-size: .74rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.arp-odeme:hover {
+    background: #2f3134;
+}
+
+.arp-sepet-devam {
+    display: block;
+    text-align: center;
+    margin-top: .9rem;
+    font-size: .82rem;
+    color: #6d7075;
+}
