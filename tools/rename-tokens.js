@@ -22,6 +22,10 @@ const TOKENS = {
     'drunkUS-miaw-button': 'arp-chat-button',
     'drunk-life-page-wrapper': 'arp-featured-page-wrapper',
     'de-drunk-life-item': 'de-featured-life-item',
+    // sablonda hem 'barewithus' hem 'bareWithus' yazimi kullanilmis
+    'bareWithus': 'arp-ugc',
+    'barewithus': 'arp-ugc',
+    'BareWithUs': 'arp-ugc',
     'drunk-mag-tag-landing': 'arp-blog-tag-landing',
     'drunk-life-image-block': 'arp-featured-image-block',
     'drunk-mag-landing': 'arp-blog-landing',
@@ -39,8 +43,10 @@ const TOKENS = {
 };
 
 const EXT = /\.(html?|css|js)$/i;
-/* Uretilmis/kopya dosyalar ve saticiya ait buyuk kutuphaneler disarida */
-const SKIP_DIR = /(^|[\\/])(\.git|node_modules|tools|data)([\\/]|$)/;
+/* Uretilmis/kopya dosyalar, saticiya ait kutuphaneler ve SABLONLAR disarida.
+   Referans klasorleri her derlemede sablon olarak okundugu icin asla
+   degistirilmemeli - aksi halde her calistirmada biraz daha bozulurlar. */
+const SKIP_DIR = /(^|[\\/])(\.git|node_modules|tools|data|kategorikismi ürün sekmesi|ürüne özel sekme referans|site sepet sekmesi referans)([\\/]|$)/;
 
 function files() {
     const out = [];

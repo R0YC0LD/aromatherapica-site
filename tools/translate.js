@@ -156,6 +156,10 @@ const DICT = {
     'Terms + conditions apply': 'Koşullar geçerlidir',
     'TERMS AND CONDITIONS APPLY.': 'KOŞULLAR GEÇERLİDİR.',
 
+    // --- kategori sayfasi ust basligi ---
+    'An ingredient-elimination philosophy for a total skin reset.':
+        'Doğadan gelen saf içerikler, sade ve etkili bakım.',
+
     // --- promosyon seridi ---
     'Why do we subscribe? So we can save...AND get a free deluxe sample on new $50+ subscription orders!':
         'Düzenli alışverişte avantaj: 1.500 TL ve üzeri siparişlerde kargo bedava!',
@@ -269,7 +273,8 @@ function ensureFixesCss(html, file) {
     // 404 sayfasi her derinlikte sunulabildigi icin bilincli olarak kendi
     // kendine yeterlidir; goreli varlik yolu ekleme.
     if (/404\.html$/i.test(file)) return html;
-    const up = /(collections|urun)[\\/]/.test(file) ? '../../' : '';
+    const up = /(collections|urun)[\\/]/.test(file) ? '../../'
+        : (/sepet[\\/]/.test(file) ? '../' : '');
 
     if (!html.includes('css/site-fixes.css')) {
         html = html.replace('</head>',
@@ -279,6 +284,10 @@ function ensureFixesCss(html, file) {
     if (!html.includes('js/layout-fix.js')) {
         html = html.replace('</body>',
             `<script src="${up}js/layout-fix.js"></script>\n</body>`);
+    }
+    if (!html.includes('js/arp-store.js')) {
+        html = html.replace('</body>',
+            `<script src="${up}js/arp-store.js"></script>\n</body>`);
     }
     if (!html.includes('js/admin-panel.js')) {
         html = html.replace('</body>',
@@ -324,6 +333,8 @@ function allHtmlFiles() {
     (function walk(dir) {
         for (const f of fs.readdirSync(dir)) {
             if (f === '.git' || f === 'node_modules') continue;
+            // Sablon klasorleri her derlemede okunuyor; degistirilmemeli
+            if (/^(kategorikismi|ürüne özel|site sepet)/.test(f)) continue;
             const fp = path.join(dir, f);
             const st = fs.statSync(fp);
             if (st.isDirectory()) walk(fp);

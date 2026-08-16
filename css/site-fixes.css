@@ -177,3 +177,54 @@ em[class*="icon"] {
         white-space: normal;
     }
 }
+
+/* --- urun sayfasi: kendi aciklama bolumumuz --- */
+.arp-urun-aciklama {
+    background: #fafafa;
+    padding: 3.5rem 1.5rem;
+}
+
+.arp-urun-aciklama__ic {
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.arp-urun-aciklama h2 {
+    font-size: 1.6rem;
+    margin: 0 0 1.2rem;
+    color: #45474a;
+}
+
+.arp-urun-aciklama p {
+    line-height: 1.75;
+    color: #4a4d51;
+    margin: 0 0 1rem;
+    font-size: .97rem;
+}
+
+.arp-urun-kunye {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0 0;
+    padding-top: 1.6rem;
+    border-top: 1px solid #e6e6e2;
+}
+
+.arp-urun-kunye div {
+    margin: 0;
+}
+
+.arp-urun-kunye dt {
+    font-size: .68rem;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: #8b8e93;
+    margin-bottom: .3rem;
+}
+
+.arp-urun-kunye dd {
+    margin: 0;
+    font-size: .92rem;
+    color: #45474a;
+}

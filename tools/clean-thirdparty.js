@@ -69,26 +69,40 @@ const KURALLAR = [
         /[ \t]*loadScript\("\/on\/demandware\.static\/Sites-nars_us-Site[^"]*"[^;]*;\s*/gi]
 ];
 
-/* Ic ice <div>'leri sayarak bir blogu tamamen kaldirir.
-   Duzenli ifade ic ice yapiyi cozemedigi icin elle eslestirme yapilir. */
-function removeDivByClass(html, cls) {
+/* Sinifa gore bir blogu tamamen kaldirir.
+
+   Dikkat: eleman <div> olmak zorunda degil (section, aside...). Once sinifi
+   tasiyan etiketin ADI bulunur, sonra ayni turdeki ic ice etiketler sayilarak
+   kapanis bulunur. Ayrica kaldirilacak parcanin gercekten o sinifi icerdigi
+   dogrulanir; aksi halde yanlis blok silinip dongu bozulabiliyordu. */
+function removeBlockByClass(html, cls) {
     let kaldirilan = 0;
-    for (;;) {
+    for (let guvenlik = 0; guvenlik < 20; guvenlik++) {
         const i = html.indexOf(`class="${cls}`);
         if (i < 0) break;
-        const bas = html.lastIndexOf('<div', i);
+
+        // sinifi tasiyan etiketin baslangici ve adi
+        const bas = html.lastIndexOf('<', i);
         if (bas < 0) break;
+        const adEsle = html.slice(bas).match(/^<([a-zA-Z][\w-]*)/);
+        if (!adEsle) break;
+        const tag = adEsle[1];
 
         let derinlik = 0, p = bas, son = -1;
-        const acik = /<div\b/gi, kapali = /<\/div>/gi;
+        const acik = new RegExp(`<${tag}\\b`, 'gi');
+        const kapali = new RegExp(`</${tag}>`, 'gi');
         while (p < html.length) {
             acik.lastIndex = p; kapali.lastIndex = p;
             const a = acik.exec(html), k = kapali.exec(html);
             if (!k) break;
             if (a && a.index < k.index) { derinlik++; p = a.index + 1; }
-            else { derinlik--; if (derinlik === 0) { son = k.index + 6; break; } p = k.index + 1; }
+            else { derinlik--; if (derinlik === 0) { son = k.index + tag.length + 3; break; } p = k.index + 1; }
         }
         if (son < 0) break;
+
+        const parca = html.slice(bas, son);
+        if (!parca.includes(`class="${cls}`)) break;   // yanlis blok - dokunma
+
         html = html.slice(0, bas) + html.slice(son);
         kaldirilan++;
     }
@@ -99,13 +113,35 @@ function removeDivByClass(html, cls) {
    - homepage-section-4__2 : icerigi olmayan bos tanitim paneli
    - pdp-section-a-note    : eski markanin kurucusunun kisisel notu
      (Ingilizce pazarlama metni ve imza gorseli; urun sayfasinda yeri yok) */
-const BOS_BLOKLAR = ['homepage-section-4__2', 'pdp-section-a-note'];
+const BOS_BLOKLAR = [
+    'homepage-section-4__2',
+    'pdp-section-a-note',
+    // Ulke secici acilir pencere: secilen bolgeye gore var olmayan alan
+    // adlarina yonlendiriyor ve sayfa icerigiyle cakisiyordu.
+    'country-selector-wrapper',
+    // Urun sayfasindaki pazarlama bolumleri sablonun ornek urunune aitti
+    // (klinik iddialar, "hangi cilde uygun", SSS, onerilen urunler).
+    // Baska bir urunun metinleri bizim sayfalarimizda yaniltici olur.
+    'pdp-section-2',
+    'pdp-section-3',
+    'pdp-section-4',
+    'pdp-section-6',
+    'pdp-section-8',
+    'faq-question-and-answer-section',
+    'de-pdp-section10-title',
+    'de-pdp-section10-slides',
+    'pdp-promo-slick',
+    'pdp-ingredients-swiper',
+    'pdp-recommendations-container'
+];
 
 function htmlFiles() {
     const out = [];
     (function walk(dir) {
         for (const f of fs.readdirSync(dir)) {
             if (/^(\.git|node_modules|tools|data)$/.test(f)) continue;
+            // Sablonlar her derlemede okunuyor; degistirilmemeli
+            if (/^(kategorikismi|ürüne özel|site sepet)/.test(f)) continue;
             const fp = path.join(dir, f);
             const st = fs.statSync(fp);
             if (st.isDirectory()) walk(fp);
@@ -131,7 +167,7 @@ function main() {
             }
         }
         for (const cls of BOS_BLOKLAR) {
-            const r = removeDivByClass(html, cls);
+            const r = removeBlockByClass(html, cls);
             if (r.kaldirilan) {
                 html = r.html;
                 sayac[`Bos tanitim paneli (${cls})`] = (sayac[`Bos tanitim paneli (${cls})`] || 0) + r.kaldirilan;

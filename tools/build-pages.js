@@ -107,15 +107,13 @@ function loadCatalog() {
     return { cats, prods, byId, children, roots, productsOf, leaves, yol };
 }
 
-const INGREDIENTS = fs.existsSync(path.join(ROOT, 'images', 'ingredients'))
-    ? fs.readdirSync(path.join(ROOT, 'images', 'ingredients')).filter(f => f.endsWith('.svg')).map(f => f.replace(/\.svg$/, ''))
-    : [];
-
+/* Gorseli olmayan urunler icin notr bir yer tutucu kullanilir.
+   Onceden images/ingredients/*.svg deneniyordu; bunlar dekoratif icerik
+   illustrasyonlari (uzerinde "Hi" gibi etiketler var) ve urun gorseli
+   yerine konunca kotu duruyordu. Gercek fotograflar eklenene kadar
+   sade bir sise silueti daha temiz. */
 function urunGorseli(p, up) {
-    if (p.imageUrl) return p.imageUrl;
-    const hay = (p.slug || '') + ' ' + (p.name || '').toLowerCase();
-    const hit = INGREDIENTS.slice().sort((a, b) => b.length - a.length).find(i => hay.includes(i));
-    return hit ? `${up}images/ingredients/${hit}.svg` : `${up}images/product-placeholder.svg`;
+    return p.imageUrl || `${up}images/product-placeholder.svg`;
 }
 
 const urunYolu = (p, up) => `${up}urun/${p.slug}/`;
@@ -132,9 +130,12 @@ function urunKarti(p, up) {
     /* Sarmalayici .product-card izgaradaki sutun genisligini belirler;
        .de-featured-life-item ise kart ic yerlesimini verir. Ikisi de
        sablondaki ile birebir ayni olmali, aksi halde kartlar kuculuyor. */
+    /* data-arp-* oznitelikleri js/arp-store.js tarafindan siralama ve
+       sepete ekleme icin kullanilir. */
     return `
 <div class="product-card">
-<div class="js-product-card de-product-card redesign-product-card de-featured-life-item loaded" data-trigger="scroll" aria-labelledby="product-id-${id}" id="card-${id}" role="group">
+<div class="js-product-card de-product-card redesign-product-card de-featured-life-item loaded" data-trigger="scroll" aria-labelledby="product-id-${id}" id="card-${id}" role="group"
+ data-arp-id="${id}" data-arp-slug="${esc(p.slug)}" data-arp-isim="${esc(p.name)}" data-arp-fiyat="${fiyat}" data-arp-gorsel="${esc(gorsel)}">
 <div class="de-card-main">
 <a class="thumb-link" href="${esc(urunYolu(p, up))}" title="" data-pid="${id}">
 <div class="de-cropped-image-wrapper animated slow fadeIn on-load" style="background-color: #FAFAFA">
@@ -164,8 +165,11 @@ ${indirim ? `<span class="price-standard">${tl.format(p.price)}</span> ` : ''}${
 </a>
 <div class="de-card-bottom">
 <div class="js-quick-shop-wrapper de-quick-shop">
-<div class="de-inner">
-<a class="de-btn de-btn--black arp-plp-cta" href="${esc(urunYolu(p, up))}">${p.stock > 0 ? 'İncele' : 'Tükendi'}</a>
+<div class="de-inner arp-kart-butonlar">
+<a class="arp-plp-cta" href="${esc(urunYolu(p, up))}">İncele</a>
+${p.stock > 0
+            ? '<button type="button" class="arp-plp-cta" data-arp-ekle>Sepete Ekle</button>'
+            : '<button type="button" class="arp-plp-cta" disabled>Tükendi</button>'}
 </div>
 </div>
 </div>
@@ -174,19 +178,36 @@ ${indirim ? `<span class="price-standard">${tl.format(p.price)}</span> ` : ''}${
 </div>`;
 }
 
-/* Sol taraftaki kategori filtreleri gercek kategori agacina baglanir */
+/* Sol taraftaki kategori filtreleri gercek kategori agacina baglanir.
+   Sablondaki eski marka kategorileri (Nemlendiriciler, Goz ve Dudak, refills...)
+   tamamen degistirilir. */
 function filtreListesi(cat, aktif, up) {
-    return cat.roots.map(r => {
-        const alt = cat.leaves(r.id);
-        const satir = (c, seviye) => {
-            const n = cat.productsOf(c.id).length;
-            const secili = c.id === aktif.id;
-            return `<li class="refinement-item${seviye ? ' refinement-sub' : ''}">
-<a class="${secili ? 'active ' : ''}refinement-link" href="${esc(`${up}collections/${c.slug}/`)}">${esc(c.name)} <span class="refinement-count">${n}</span></a>
+    const satir = (c, seviye) => {
+        const n = cat.productsOf(c.id).length;
+        const secili = c.id === aktif.id;
+        return `<li${seviye ? ' class="arp-alt"' : ''}>
+<a class="${secili ? 'aktif' : ''}" href="${esc(`${up}collections/${c.slug}/`)}">
+<span>${esc(c.name)}</span><span class="arp-sayi">${n}</span></a>
 </li>`;
-        };
-        return satir(r, 0) + alt.map(c => satir(c, 1)).join('');
-    }).join('');
+    };
+    return `<p class="arp-filtre-baslik">Kategoriler</p>
+<ul class="arp-filtre-liste">
+${cat.roots.map(r => satir(r, 0) + cat.leaves(r.id).map(c => satir(c, 1)).join('')).join('')}
+</ul>`;
+}
+
+/* Turkce siralama secici - js/arp-store.js tarafindan calistirilir */
+function siralamaSecici() {
+    return `<div class="arp-siralama-sar">
+<label for="arp-siralama">Sırala</label>
+<select id="arp-siralama">
+<option value="onerilen">Önerilen</option>
+<option value="fiyat-artan">Fiyat: Düşükten yükseğe</option>
+<option value="fiyat-azalan">Fiyat: Yüksekten düşüğe</option>
+<option value="isim-az">İsim: A–Z</option>
+<option value="isim-za">İsim: Z–A</option>
+</select>
+</div>`;
 }
 
 /* ---------------------------------------------------------- urun sayfasi */
@@ -218,6 +239,8 @@ function urunSayfasi(p, cat, plpTemplate, up) {
     s = s.replace(/(?:\.\.\/\.\.\/)?images\/Protini[A-Za-z0-9._-]*\.(?:jpg|jpeg|png|webp)/g, gorsel);
     // uzak CDN'deki sablon gorselleri
     s = s.replace(/https:\/\/[^"']*\/products\/images\/[^"']*\.(?:jpg|jpeg|png|webp)[^"']*/g, gorsel);
+    // sablonun tanitim videolari projede yok; urun gorseliyle degistirilir
+    s = s.replace(/(?:\.\.\/\.\.\/)?media\/[A-Za-z0-9._-]+\.(?:mp4|webm|mov)/g, gorsel);
 
     // 4) pazarlama metni ve aciklama
     if (p.shortDesc) s = s.split(PDP_ORNEK.pazarlama).join(p.shortDesc);
@@ -227,7 +250,51 @@ function urunSayfasi(p, cat, plpTemplate, up) {
     s = s.replace(/(<meta name="description" content=")[^"]*(")/,
         `$1${esc((p.seoDesc || p.shortDesc || p.name).slice(0, 300))}$2`);
 
-    // 6) ekmek kirintisi: kategori yolu
+    // 6) sepete ekleme: urun verisi + adet secici, sablonun butonu kullanilir
+    const indirimliFiyat = indirim ? p.salePrice : p.price;
+    const veri = {
+        id: String(p.id), slug: p.slug, name: p.name,
+        price: indirimliFiyat, image: gorsel
+    };
+    s = s.replace('</body>',
+        `<script type="application/json" id="arp-urun">${JSON.stringify(veri)
+            .replace(/</g, '\\u003c')}</script>\n</body>`);
+
+    // sablondaki sepete ekle butonunu kendi islevimize bagla
+    s = s.replace(/(<button[^>]*id="add-to-cart"[^>]*)>/i,
+        (m, bas) => `${bas.replace(/\sdata-arp-ekle/g, '')} data-arp-ekle>`);
+    // adet secici, butonun hemen oncesine
+    s = s.replace(/(<button[^>]*id="add-to-cart")/i,
+        `<div class="arp-adet-sar"><label for="arp-adet">Adet</label>` +
+        `<input type="number" id="arp-adet" min="1" value="1"></div>$1`);
+
+    /* 7) Urun aciklamasi: sablonun pazarlama bolumleri kaldirildigi icin
+       urunun kendi Turkce aciklamasini kendi bolumumuzde gosteriyoruz. */
+    if (p.description) {
+        const paragraflar = String(p.description)
+            .split(/\n+/).map(t => t.trim()).filter(Boolean)
+            .map(t => `<p>${esc(t)}</p>`).join('');
+        const bolum = `
+<section class="arp-urun-aciklama">
+  <div class="arp-urun-aciklama__ic">
+    <h2>Ürün Açıklaması</h2>
+    ${paragraflar}
+    <dl class="arp-urun-kunye">
+      ${p.brandName ? `<div><dt>Marka</dt><dd>${esc(p.brandName)}</dd></div>` : ''}
+      <div><dt>Kategori</dt><dd>${esc(p.categoryName || '')}</dd></div>
+      ${p.sku ? `<div><dt>Stok kodu</dt><dd>${esc(p.sku)}</dd></div>` : ''}
+      <div><dt>Durum</dt><dd>${p.stock > 0 ? 'Stokta' : 'Tükendi'}</dd></div>
+    </dl>
+  </div>
+</section>`;
+        s = s.replace('</main>', bolum + '\n</main>');
+        if (!s.includes('arp-urun-aciklama')) {
+            // <main> yoksa footer oncesine ekle
+            s = s.replace('<footer', bolum + '\n<footer');
+        }
+    }
+
+    // 8) ekmek kirintisi: kategori yolu
     const yol = cat.yol(p.categoryId);
     const kirinti = `<a href="${up}">Ana Sayfa</a>` +
         yol.map(c => ` / <a href="${up}collections/${c.slug}/">${esc(c.name)}</a>`).join('') +
@@ -257,8 +324,13 @@ function main() {
                 ? urunler.map(p => urunKarti(p, up)).join('\n')
                 : `<div class="arp-bos-kategori"><p>Bu kategoride henüz ürün yok.</p><a class="de-btn de-btn--black" href="${up}">Ana sayfaya dön</a></div>`);
 
-        // 2) kategori filtreleri
-        sayfa = icerikDegistir(sayfa, 'sort-filters-wrapper', filtreListesi(cat, c, up), 'ul');
+        // 2) sol kenar: kategori filtreleri (sablonun eski kategorileri gider)
+        sayfa = icerikDegistir(sayfa, 'refinement-content refinement-wrapper',
+            filtreListesi(cat, c, up));
+
+        // 3) siralama: sablonun calismayan Demandware secicisi yerine kendi secicimiz
+        sayfa = icerikDegistir(sayfa, 'refinement-content sort-wrapper', siralamaSecici());
+        sayfa = icerikDegistir(sayfa, 'search-result-options', siralamaSecici());
 
         // 3) baslik ve aciklama
         sayfa = sayfa.replace(/<title>[^<]*<\/title>/, `<title>${esc(c.name)} | Aromatherapica</title>`);
@@ -287,6 +359,33 @@ function main() {
         uretilenUrun++;
     }
     console.log(`${uretilenUrun} urun sayfasi uretildi (urun/<slug>/).`);
+
+    /* --- sepet sayfasi --- */
+    const CART_SRC = path.join(ROOT, 'site sepet sekmesi referans', 'index.html');
+    if (fs.existsSync(CART_SRC)) {
+        const cartUp = '../';
+        let cart = rebase(fs.readFileSync(CART_SRC, 'utf8'), cartUp);
+
+        // Bos sepet kabugu korunur; dolu durum js/arp-store.js tarafindan cizilir
+        cart = icerikDegistir(cart, 'column small-12 cart-header-container de-cart-empty-container',
+            `<h1 class="shopping-bag">sepetim (0)</h1>
+<div id="arp-sepet"></div>
+<div class="de-empty-cart">
+<h1 class="de-cart-title de-empty-cart-title">Sepetiniz boş</h1>
+<a href="${cartUp}" class="de-cart-return"><span>Alışverişe başla</span></a>
+</div>`);
+
+        cart = cart.replace(/<title>[^<]*<\/title>/, '<title>Sepetim | Aromatherapica</title>');
+        cart = cart.replace(/(<meta name="description" content=")[^"]*(")/,
+            '$1Aromatherapica alışveriş sepetiniz.$2');
+
+        const dir = path.join(ROOT, 'sepet');
+        fs.mkdirSync(dir, { recursive: true });
+        fs.writeFileSync(path.join(dir, 'index.html'), cart, 'utf8');
+        console.log('1 sepet sayfasi uretildi (sepet/).');
+    } else {
+        console.log('UYARI: sepet sablonu bulunamadi, sepet sayfasi uretilmedi.');
+    }
 }
 
 main();

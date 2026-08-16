@@ -80,12 +80,68 @@ function baglantilar(html, up, slug) {
         return home;
     };
     return html.replace(/<a\s([^>]*?)>/gi, (tag, attrs) => {
+        // Sepet ikonu/baglantisi her zaman sepet sayfasina gitmeli
+        if (/\b(mini-cart-link|de-cart-icon|de-nav-cart-link)\b/.test(attrs) ||
+            /data-cart-view/.test(attrs)) {
+            const yeni = attrs
+                .replace(/(href=")([^"]*)(")/i, `$1${up}sepet/$3`)
+                .replace(/\sinactiveLink\b/, '')
+                .replace(/(title=")[^"]*(")/i, '$1Sepetim$2')
+                .replace(/(aria-label=")[^"]*(")/i, '$1Sepeti aç$2');
+            return `<a ${yeni}>`;
+        }
         const out = attrs.replace(/(href=")([^"]*)(")/i, (m, a, val, b) => {
             const y = karar(val);
             return y === null ? m : a + y + b;
         });
         return `<a ${out}>`;
     });
+}
+
+/* --------------------------------------------------------------- gorseller */
+
+/* Sablonlardaki logolar eski markanin fil cizimidir (SVG path'leri).
+   Ayni kutu olculeriyle "Aromatherapica" yazisina cevrilir; boylece
+   yerlesim ve CSS gecisleri bozulmaz. */
+const LOGO_YAZI = (w, h, vb, fs, ls) =>
+    `<svg width="${w}" height="${h}" viewBox="${vb}" fill="none" xmlns="http://www.w3.org/2000/svg">` +
+    `<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" ` +
+    `font-family="BrownRegular, 'Segoe UI', Arial, sans-serif" font-size="${fs}" ` +
+    `letter-spacing="${ls}" fill="#45474A">Aromatherapica</text></svg>`;
+
+const LOGO_KUTU = {
+    'de-text-logo': LOGO_YAZI(180, 10, '0 0 180 10', 9.5, 1.6),
+    'de-logo-icon': LOGO_YAZI(70, 30, '0 0 450 200', 46, 2),
+    'footer-full-logo': LOGO_YAZI(243, 140, '0 0 243 140', 22, 1.4)
+};
+
+function logolar(html) {
+    for (const [cls, yeni] of Object.entries(LOGO_KUTU)) {
+        const isaret = `<span class="svg-icon ${cls}">`;
+        let i;
+        while ((i = html.indexOf(isaret)) >= 0) {
+            const svgBas = html.indexOf('<svg', i);
+            const svgSon = html.indexOf('</svg>', svgBas);
+            if (svgBas < 0 || svgSon < 0) break;
+            const mevcut = html.slice(svgBas, svgSon + 6);
+            if (mevcut.includes('Aromatherapica')) break;   // zaten donusturulmus
+            html = html.slice(0, svgBas) + yeni + html.slice(svgSon + 6);
+        }
+    }
+    return html;
+}
+
+/* Instagram bolumundeki musteri fotograflari eski markanin urunlerini
+   gosteriyor. Marka amblemiyle degistirilir. */
+function gorselIzleri(html, up) {
+    // hem yerel (images/IMG_1234.jpg) hem uzak CDN bicimini yakala
+    html = html.replace(/(<img[^>]*src=")[^"]*IMG_\d+\.jpg("[^>]*>)/g,
+        `$1${up}images/aromatherapica-emblem.png$2`);
+    html = html.replace(/(<img[^>]*src=")(?:\.\.\/)*images\/(?:protini-ugc|footer-Protini-img|Protini-Cream|Steven_Selfie[^"]*)\.(?:jpg|png)("[^>]*>)/g,
+        `$1${up}images/aromatherapica-emblem.png$2`);
+    // eski markanin etiketi
+    html = html.replace(/#barewithus/gi, '#aromatherapica');
+    return html;
 }
 
 /* ------------------------------------------------------------------- ana */
@@ -139,7 +195,11 @@ function main() {
         if (html.length !== oncekiUzunluk) n++;
 
         const rel = path.relative(ROOT, file).replace(/\\/g, '/');
-        const up = /^(collections|urun)\//.test(rel) ? '../../' : '';
+        const up = /^(collections|urun)\//.test(rel) ? '../../'
+            : (/^sepet\//.test(rel) ? '../' : '');
+
+        html = logolar(html);
+        html = gorselIzleri(html, up);
         html = baglantilar(html, up, slug);
 
         if (html !== src) {
